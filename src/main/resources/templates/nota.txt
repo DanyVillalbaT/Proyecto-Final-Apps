@@ -1,0 +1,1 @@
+Aquí van todas las plantillas que necesitará el proyecto para manejar la parte visual y funcional

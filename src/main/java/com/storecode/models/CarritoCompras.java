@@ -1,9 +1,13 @@
 package com.storecode.models;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+
+import com.storecode.models.ItemCarrito;
 
 @Entity
 public class CarritoCompras {
@@ -12,9 +16,9 @@ public class CarritoCompras {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	//private List<ItemCarrito> listaItemsCarrito;
+	private List<ItemCarrito> listaItemsCarrito;
 	private double valorTotalItems;
-	//private long idUsuario o idPersona; Esta es la relación entre un usuario y su carrito
+	//private long idUser; Esta es la fk entre usuario y el carrito
 
 	public CarritoCompras() {
 		super();
@@ -24,6 +28,7 @@ public class CarritoCompras {
 		super();
 		this.id = id;
 		this.valorTotalItems = calcularValorTotalItems();
+		this.listaItemsCarrito = new List<>();
 	}
 	
 	//Faltan Getters and Setters
@@ -41,6 +46,10 @@ public class CarritoCompras {
 
 	public void setValorTotalItems(double valorTotalItems) {
 		this.valorTotalItems = valorTotalItems;
+	}
+
+	public List<ItemCarrito> getListaItemsCarrito (){
+		return listaItemsCarrito;
 	}
 	
 	public double calcularValorTotalItems() {

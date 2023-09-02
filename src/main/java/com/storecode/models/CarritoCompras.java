@@ -1,13 +1,12 @@
 package com.storecode.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
-import com.storecode.models.ItemCarrito;
 
 @Entity
 public class CarritoCompras {
@@ -28,7 +27,7 @@ public class CarritoCompras {
 		super();
 		this.id = id;
 		this.valorTotalItems = calcularValorTotalItems();
-		this.listaItemsCarrito = new List<>();
+		this.listaItemsCarrito = new ArrayList<>();
 	}
 	
 	//Faltan Getters and Setters

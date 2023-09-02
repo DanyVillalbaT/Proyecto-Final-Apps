@@ -64,7 +64,7 @@ public class Compra {
 	}
 
 	public DetalleCompra getDetalleCompra() {
-		return detalleCompra
+		return detalleCompra;
 	}
 	
 }

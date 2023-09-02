@@ -1,9 +1,11 @@
 package com.storecode.models;
 
+import java.util.List;
+
 public class DetalleCompra {
 	
 	private long id;
-	//private List<ItemCarrito> listaItems;
+	private List<ItemCarrito> listaItems;
 	private String direccionEnvio;
 	private double costoEnvio;
 	private double impuesto;
@@ -13,9 +15,10 @@ public class DetalleCompra {
 		super();
 	}
 
-	public DetalleCompra(long id, String direccionEnvio, double costoEnvio, double impuesto, String tipoPago) {
+	public DetalleCompra(long id, List<ItemCarrito> listaItems, String direccionEnvio, double costoEnvio, double impuesto, String tipoPago) {
 		super();
 		this.id = id;
+		this.listaItems = listaItems;
 		this.direccionEnvio = direccionEnvio;
 		this.costoEnvio = costoEnvio;
 		this.impuesto = impuesto;
@@ -24,6 +27,10 @@ public class DetalleCompra {
 
 	public long getId() {
 		return id;
+	}
+
+	public List<ItemCarrito> getListaItems(){
+		return listaItems;
 	}
 
 	public void setId(long id) {

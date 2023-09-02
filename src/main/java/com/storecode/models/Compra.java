@@ -15,20 +15,20 @@ public class Compra {
 	private String estado;
 	private String fecha;
 	private double valorTotal;
-	private int idUsuario; //Sería la fk de usuario
-	//private DetalleCompra detalleCompra;
+	//private int idUsuario; Sería la fk de usuario
+	private DetalleCompra detalleCompra;
 	
 	public Compra() {
 		super();
 	}
 	
-	public Compra(long id, String estado, String fecha, double valorTotal, int idUsuario) {
+	public Compra(long id, String estado, String fecha, double valorTotal, DetalleCompra detalleCompra) {
 		super();
 		this.id = id;
 		this.estado = estado;
 		this.fecha = fecha;
 		this.valorTotal = valorTotal;
-		this.idUsuario = idUsuario;
+		this.detalleCompra = detalleCompra;
 	}
 	
 	public long getId() {
@@ -62,13 +62,9 @@ public class Compra {
 	public void setValorTotal(double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
-	
-	public int getIdUsuario() {
-		return idUsuario;
-	}
-	
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
+
+	public DetalleCompra getDetalleCompra() {
+		return detalleCompra
 	}
 	
 }

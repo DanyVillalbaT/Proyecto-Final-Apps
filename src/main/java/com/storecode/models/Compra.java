@@ -13,7 +13,6 @@ public class Compra {
 	private long id;
 	
 	private String estado;
-	private String fechaCompra;
 	private String fecha;
 	private double valorTotal;
 	private int idUsuario; //Sería la fk de usuario
@@ -23,11 +22,10 @@ public class Compra {
 		super();
 	}
 	
-	public Compra(long id, String estado, String fechaCompra, String fecha, double valorTotal, int idUsuario) {
+	public Compra(long id, String estado, String fecha, double valorTotal, int idUsuario) {
 		super();
 		this.id = id;
 		this.estado = estado;
-		this.fechaCompra = fechaCompra;
 		this.fecha = fecha;
 		this.valorTotal = valorTotal;
 		this.idUsuario = idUsuario;
@@ -36,36 +34,39 @@ public class Compra {
 	public long getId() {
 		return id;
 	}
+	
 	public void setId(long id) {
 		this.id = id;
 	}
+	
 	public String getEstado() {
 		return estado;
 	}
+	
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	public String getFechaCompra() {
-		return fechaCompra;
-	}
-	public void setFechaCompra(String fechaCompra) {
-		this.fechaCompra = fechaCompra;
-	}
+	
 	public String getFecha() {
 		return fecha;
 	}
+	
 	public void setFecha(String fecha) {
 		this.fecha = fecha;
 	}
+	
 	public double getValorTotal() {
 		return valorTotal;
 	}
+	
 	public void setValorTotal(double valorTotal) {
 		this.valorTotal = valorTotal;
 	}
+	
 	public int getIdUsuario() {
 		return idUsuario;
 	}
+	
 	public void setIdUsuario(int idUsuario) {
 		this.idUsuario = idUsuario;
 	}

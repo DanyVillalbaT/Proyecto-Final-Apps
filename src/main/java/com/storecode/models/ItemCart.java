@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 
-@Entity(name = "itemCarts")
+@Entity(name = "item_carts")
 public class ItemCart {
 
 	@Id

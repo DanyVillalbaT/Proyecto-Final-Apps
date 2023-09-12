@@ -25,7 +25,7 @@ public class Sale {
 	@Column(name = "sale_total_value")
 	private double totalValue;
 	
-	private DetalleVenta detalleVenta;
+	private SaleDetail saleDetail;
 	
 	@OneToOne
 	@JoinColumn(name = "sale_user")
@@ -35,13 +35,13 @@ public class Sale {
 		super();
 	}
 
-	public Sale(long id, String status, String date, double totalValue, DetalleVenta detalleVenta, User user) {
+	public Sale(long id, String status, String date, double totalValue, SaleDetail saleDetail, User user) {
 		super();
 		this.id = id;
 		this.status = status;
 		this.date = date;
-		this.totalValue = totalValue;
-		this.detalleVenta = detalleVenta;
+		this.totalValue = calculateTotalValue();
+		this.saleDetail = saleDetail;
 		this.user = user;
 	}
 
@@ -77,12 +77,12 @@ public class Sale {
 		this.totalValue = totalValue;
 	}
 
-	public DetalleVenta getDetalleVenta() {
-		return detalleVenta;
+	public SaleDetail getSaleDetail() {
+		return saleDetail;
 	}
 
-	public void setDetalleVenta(DetalleVenta detalleVenta) {
-		this.detalleVenta = detalleVenta;
+	public void setSaleDetail(SaleDetail saleDetail) {
+		this.saleDetail = saleDetail;
 	}
 
 	public User getUser() {
@@ -91,6 +91,12 @@ public class Sale {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public double calculateTotalValue() {
+		double tax = 0;
+		double deliveryCost = 0;
+		return totalValue = saleDetail.getAccumulatedValue() + tax + deliveryCost;
 	}
 	
 }

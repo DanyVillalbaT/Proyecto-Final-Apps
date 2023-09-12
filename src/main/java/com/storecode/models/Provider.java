@@ -1,5 +1,6 @@
 package com.storecode.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -14,60 +15,70 @@ public class Provider {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	private String nombre;
-	private String ubicacion;
-	private int telefono;
+	@Column(name = "prov_name")
+	private String name;
+	
+
+	@Column(name = "prov_ubication")
+	private String ubication;
+	
+
+	@Column(name = "prov_phone")
+	private int phone;
+	
+
+	@Column(name = "prov_product_list")
 	private List<Product> listaProductos;
 	
 	public Provider() {
 		super();
 	}
-	
-	public Provider(int id, String nombre, String ubicacion, int telefono, List<Product> listaProductos) {
+
+	public Provider(int id, String name, String ubication, int phone, List<Product> listaProductos) {
 		super();
 		this.id = id;
-		this.nombre = nombre;
-		this.ubicacion = ubicacion;
-		this.telefono = telefono;
+		this.name = name;
+		this.ubication = ubication;
+		this.phone = phone;
 		this.listaProductos = listaProductos;
 	}
-	
+
 	public int getId() {
 		return id;
 	}
-	
+
 	public void setId(int id) {
 		this.id = id;
 	}
-	
-	public String getNombre() {
-		return nombre;
+
+	public String getName() {
+		return name;
 	}
-	
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	
-	public String getUbicacion() {
-		return ubicacion;
+
+	public String getUbication() {
+		return ubication;
 	}
-	
-	public void setUbicacion(String ubicacion) {
-		this.ubicacion = ubicacion;
+
+	public void setUbication(String ubication) {
+		this.ubication = ubication;
 	}
-	
-	public int getTelefono() {
-		return telefono;
+
+	public int getPhone() {
+		return phone;
 	}
-	
-	public void setTelefono(int telefono) {
-		this.telefono = telefono;
+
+	public void setPhone(int phone) {
+		this.phone = phone;
 	}
-	
+
 	public List<Product> getListaProductos() {
 		return listaProductos;
 	}
-	
+
 	public void setListaProductos(List<Product> listaProductos) {
 		this.listaProductos = listaProductos;
 	}

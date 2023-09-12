@@ -6,7 +6,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Producto {
+public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +16,7 @@ public class Producto {
 	private int cantDisponible;
 	private double precioActual;
 
-	public Producto(long id, String nombre, String descripcion, int cantDisponible, double precioActual) {
+	public Product(long id, String nombre, String descripcion, int cantDisponible, double precioActual) {
 		// TODO Auto-generated constructor stub
 		this.cantDisponible = cantDisponible;
 		this.descripcion = descripcion;
@@ -25,7 +25,7 @@ public class Producto {
 		this.precioActual = precioActual;
 	}
 
-	public Producto() {
+	public Product() {
 		super();
 	}
 

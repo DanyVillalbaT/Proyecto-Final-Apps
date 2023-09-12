@@ -8,7 +8,7 @@ import java.util.List;
 
 
 @Entity
-public class Proveedor {
+public class Provider {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,13 +17,13 @@ public class Proveedor {
 	private String nombre;
 	private String ubicacion;
 	private int telefono;
-	private List<Producto> listaProductos;
+	private List<Product> listaProductos;
 	
-	public Proveedor() {
+	public Provider() {
 		super();
 	}
 	
-	public Proveedor(int id, String nombre, String ubicacion, int telefono, List<Producto> listaProductos) {
+	public Provider(int id, String nombre, String ubicacion, int telefono, List<Product> listaProductos) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -64,11 +64,11 @@ public class Proveedor {
 		this.telefono = telefono;
 	}
 	
-	public List<Producto> getListaProductos() {
+	public List<Product> getListaProductos() {
 		return listaProductos;
 	}
 	
-	public void setListaProductos(List<Producto> listaProductos) {
+	public void setListaProductos(List<Product> listaProductos) {
 		this.listaProductos = listaProductos;
 	}
 	

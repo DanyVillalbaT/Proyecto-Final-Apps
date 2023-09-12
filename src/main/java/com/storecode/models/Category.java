@@ -6,17 +6,17 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Categoria {
+public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String nombre;
-	public Categoria(long id,String nombre) {
+	public Category(long id,String nombre) {
 		// TODO Auto-generated constructor stub
 		this.id = id;
 		this.nombre = nombre;
 	}
-	public Categoria() {
+	public Category() {
 		// TODO Auto-generated constructor stub
 		super();
 	}

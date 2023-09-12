@@ -25,7 +25,7 @@ public class Purchase {
 	@Column(name = "purchase_total_value" )
 	private double totalValue;
 	
-	private DetalleCompra detalleCompra;
+	private PurchaseDetail purchaseDetail;
 	
 	@OneToOne
 	@JoinColumn(name = "purchase_user")
@@ -35,13 +35,13 @@ public class Purchase {
 		super();
 	}
 
-	public Purchase(long id, String status, String date, double totalValue, DetalleCompra detalleCompra, User user) {
+	public Purchase(long id, String status, String date, double totalValue, PurchaseDetail purchaseDetail, User user) {
 		super();
 		this.id = id;
 		this.status = status;
 		this.date = date;
-		this.totalValue = totalValue;
-		this.detalleCompra = detalleCompra;
+		this.totalValue = calculateTotalValue();
+		this.purchaseDetail = purchaseDetail;
 		this.user = user;
 	}
 
@@ -77,12 +77,12 @@ public class Purchase {
 		this.totalValue = totalValue;
 	}
 
-	public DetalleCompra getDetalleCompra() {
-		return detalleCompra;
+	public PurchaseDetail getPurchaseDetail() {
+		return purchaseDetail;
 	}
 
-	public void setDetalleCompra(DetalleCompra detalleCompra) {
-		this.detalleCompra = detalleCompra;
+	public void setPurchaseDetail(PurchaseDetail purchaseDetail) {
+		this.purchaseDetail = purchaseDetail;
 	}
 
 	public User getUser() {
@@ -91,6 +91,12 @@ public class Purchase {
 
 	public void setUser(User user) {
 		this.user = user;
+	}
+	
+	public double calculateTotalValue() {
+		double tax = 0;
+		double deliveryCost = 0;
+		return totalValue = purchaseDetail.getAccumulatedValue() + tax + deliveryCost;
 	}
 	
 }

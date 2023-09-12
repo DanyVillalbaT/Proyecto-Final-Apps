@@ -18,7 +18,7 @@ public class ItemCart {
 	
 	@OneToOne
 	@JoinColumn(name = "item_product")
-	Producto product;
+	Product product;
 	
 	@Column(name = "item_quantity")
 	private int quantityItems;
@@ -30,7 +30,7 @@ public class ItemCart {
 		super();
 	}
 
-	public ItemCart(long id, Producto product, int quantityItems, double accumulatedValue) {
+	public ItemCart(long id, Product product, int quantityItems, double accumulatedValue) {
 		super();
 		this.id = id;
 		this.product = product;
@@ -46,11 +46,11 @@ public class ItemCart {
 		this.id = id;
 	}
 
-	public Producto getProduct() {
+	public Product getProduct() {
 		return product;
 	}
 
-	public void setProduct(Producto product) {
+	public void setProduct(Product product) {
 		this.product = product;
 	}
 
@@ -71,7 +71,7 @@ public class ItemCart {
 	}
 
 	public double calculateAccumulatedValue() {
-		return accumulatedValue = quantityItems * product.getPrecioActual();
+		return accumulatedValue = quantityItems * product.getPrice();
 	}
 
 }

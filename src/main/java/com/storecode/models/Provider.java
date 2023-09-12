@@ -13,7 +13,7 @@ public class Provider {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private long id;
 
 	@Column(name = "prov_name")
 	private String name;
@@ -34,7 +34,7 @@ public class Provider {
 		super();
 	}
 
-	public Provider(int id, String name, String ubication, int phone, List<Product> listaProductos) {
+	public Provider(long id, String name, String ubication, int phone, List<Product> listaProductos) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -43,11 +43,11 @@ public class Provider {
 		this.listaProductos = listaProductos;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 import java.util.List;
 
 
-@Entity
+@Entity(name = "providers")
 public class Provider {
 	
 	@Id

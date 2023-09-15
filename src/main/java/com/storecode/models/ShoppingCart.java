@@ -1,6 +1,5 @@
 package com.storecode.models;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.Column;
@@ -9,6 +8,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 
 @Entity(name = "shopping_carts")
@@ -19,6 +19,7 @@ public class ShoppingCart {
 	@Column(name = "cart_id")
 	private long id;
 	
+	@OneToMany(mappedBy = "shoppingCart")
 	private List<ItemCart> itemsCartList;
 	
 	@Column(name = "cart_total_value")
@@ -31,12 +32,11 @@ public class ShoppingCart {
 	public ShoppingCart() {
 		super();
 	}
-	
-	public ShoppingCart(long id, List<ItemCart> itemsCartList, double totalValueItems, User user) {
+
+	public ShoppingCart(long id, double totalValueItems, User user) {
 		super();
 		this.id = id;
-		this.itemsCartList = new ArrayList<>();
-		this.totalValueItems = calculateTotalValueItems();
+		this.totalValueItems = totalValueItems;
 		this.user = user;
 	}
 
@@ -71,6 +71,8 @@ public class ShoppingCart {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	
 
 	public double calculateTotalValueItems() {
 		totalValueItems = 0;

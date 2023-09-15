@@ -18,7 +18,7 @@ public class ItemCart {
 	
 	@OneToOne
 	@JoinColumn(name = "item_product")
-	Producto product;
+	Product product;
 	
 	@Column(name = "item_quantity")
 	private int quantityItems;

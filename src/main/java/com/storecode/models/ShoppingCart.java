@@ -19,7 +19,7 @@ public class ShoppingCart {
 	@Column(name = "cart_id")
 	private long id;
 	
-	private List<ItemCart> itemsCartList;
+	
 	
 	@Column(name = "cart_total_value")
 	private double totalValueItems;
@@ -32,10 +32,10 @@ public class ShoppingCart {
 		super();
 	}
 	
-	public ShoppingCart(long id, List<ItemCart> itemsCartList, double totalValueItems, User user) {
+	public ShoppingCart(long id, double totalValueItems, User user) {
 		super();
 		this.id = id;
-		this.itemsCartList = new ArrayList<>();
+	
 		this.totalValueItems = calculateTotalValueItems();
 		this.user = user;
 	}
@@ -48,13 +48,7 @@ public class ShoppingCart {
 		this.id = id;
 	}
 
-	public List<ItemCart> getItemsCartList() {
-		return itemsCartList;
-	}
-
-	public void setItemsCartList(List<ItemCart> itemsCartList) {
-		this.itemsCartList = itemsCartList;
-	}
+	
 
 	public double getTotalValueItems() {
 		return totalValueItems;

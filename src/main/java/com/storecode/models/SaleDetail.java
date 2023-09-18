@@ -2,6 +2,7 @@ package com.storecode.models;
 
 import java.util.List;
 
+
 public class SaleDetail {
 	
 	private long id;

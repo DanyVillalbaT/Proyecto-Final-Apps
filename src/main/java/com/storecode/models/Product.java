@@ -8,24 +8,22 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-@Entity
+@Entity(name = "products")
 public class Product {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "product_id")
 	private long id;
 	
 	@Column(name = "product_name")
 	private String name;
 	
-
 	@Column(name = "product_description")
-	private String ddescription;
-	
+	private String description;
 
 	@Column(name = "product_stock")
 	private int stock;
-	
 
 	@Column(name = "product_price")
 	private double price;
@@ -47,7 +45,7 @@ public class Product {
 		super();
 		this.id = id;
 		this.name = name;
-		this.ddescription = ddescription;
+		this.description = ddescription;
 		this.stock = stock;
 		this.price = price;
 		this.provider = provider;
@@ -71,11 +69,11 @@ public class Product {
 	}
 
 	public String getDdescription() {
-		return ddescription;
+		return description;
 	}
 
 	public void setDdescription(String ddescription) {
-		this.ddescription = ddescription;
+		this.description = ddescription;
 	}
 
 	public int getStock() {

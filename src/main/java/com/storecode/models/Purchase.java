@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Transient;
 
 @Entity(name = "purchases")
 public class Purchase {
@@ -25,6 +26,7 @@ public class Purchase {
 	@Column(name = "purchase_total_value" )
 	private double totalValue;
 	
+	@Transient
 	private PurchaseDetail purchaseDetail;
 	
 	@OneToOne

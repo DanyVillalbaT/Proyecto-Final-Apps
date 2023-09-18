@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Productos</title>
+</head>
+<body>
+    <h1>Lista de Productos</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Precio</th>
+                <th>Imagen</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí iteramos sobre la lista de productos y generamos filas para cada uno -->
+            <tr th:each="product : ${listProducts}">
+                <td th:text="${product.name}"></td>
+                <td th:text="${producto.description}"></td>
+                <td th:text="${producto.price}"></td>
+              
+            </tr>
+        </tbody>
+    </table>
+    
+</body>
+</html>

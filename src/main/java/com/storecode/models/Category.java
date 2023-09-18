@@ -8,32 +8,27 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
+@Entity(name = "categories")
 public class Category {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "cate_id")
 	private long id;
 	
 	@Column(name = "cate_name")
 	private String name;
-	
-	@Column(name = "product_list")
-	private List<Product> listaProductos;
-	
 	
 	public Category() {
 		// TODO Auto-generated constructor stub
 		super();
 	}
 
-
-	public Category(long id, String name, List<Product> listaProductos) {
+	public Category(long id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.listaProductos = listaProductos;
+		
 	}
-
 
 	public long getId() {
 		return id;
@@ -55,13 +50,5 @@ public class Category {
 	}
 
 
-	public List<Product> getListaProductos() {
-		return listaProductos;
-	}
-
-
-	public void setListaProductos(List<Product> listaProductos) {
-		this.listaProductos = listaProductos;
-	}
 
 }

@@ -8,11 +8,12 @@ import jakarta.persistence.Id;
 import java.util.List;
 
 
-@Entity
+@Entity(name = "providers")
 public class Provider {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "prov_id")
 	private long id;
 
 	@Column(name = "prov_name")
@@ -27,20 +28,18 @@ public class Provider {
 	private int phone;
 	
 
-	@Column(name = "prov_product_list")
-	private List<Product> listaProductos;
 	
 	public Provider() {
 		super();
 	}
 
-	public Provider(long id, String name, String ubication, int phone, List<Product> listaProductos) {
+	public Provider(long id, String name, String ubication, int phone) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.ubication = ubication;
 		this.phone = phone;
-		this.listaProductos = listaProductos;
+		
 	}
 
 	public long getId() {
@@ -75,13 +74,6 @@ public class Provider {
 		this.phone = phone;
 	}
 
-	public List<Product> getListaProductos() {
-		return listaProductos;
-	}
-
-	public void setListaProductos(List<Product> listaProductos) {
-		this.listaProductos = listaProductos;
-	}
 	
 	
 }

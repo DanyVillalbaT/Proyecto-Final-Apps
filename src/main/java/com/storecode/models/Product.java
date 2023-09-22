@@ -27,6 +27,9 @@ public class Product {
 
 	@Column(name = "product_price")
 	private double price;
+	
+	@Column(name = "img_url")
+	private String img;
 
 	@ManyToOne
 	@JoinColumn(name = "product_provider")
@@ -41,7 +44,7 @@ public class Product {
 	}
 
 	public Product(long id, String name, String ddescription, int stock, double price, Provider provider,
-			Category category) {
+			Category category,String img) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -50,6 +53,15 @@ public class Product {
 		this.price = price;
 		this.provider = provider;
 		this.category = category;
+		this.img = img;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 	public long getId() {

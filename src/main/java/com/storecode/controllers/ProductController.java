@@ -24,10 +24,11 @@ public class ProductController {
 	    }
 
 	    @GetMapping("/productdetail/{idProduct}")
-	   	public String viewDetail(@PathVariable("idProducto") long idProduct, Model model) {
+	   	public String viewDetail(@PathVariable("idProduct") long idProduct, Model model) {
+	    	System.out.println("variable "+idProduct);
 	   		Product product = productService.getByiId(idProduct);
 	   		model.addAttribute("product", product);
-	   		return "product/detail-product";
+	   		return "product/detailProduct";
 	   	}
 	   
 }

@@ -18,6 +18,7 @@ public class ProductService {
 	}
 
 	public Product getByiId(Long id) {
+		System.out.println(productRepository.findById(id).orElse(null));
 		return productRepository.findById(id).orElse(null);
 	}
 

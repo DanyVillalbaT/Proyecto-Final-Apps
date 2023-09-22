@@ -2,10 +2,11 @@ package com.storecode.models;
 
 import java.util.List;
 
+
 public class PurchaseDetail {
 	
 	private long id;
-	private List<ItemCart> itemsList;
+	
 	private double accumulatedValue;
 	private String deliveryAddress;
 	private String paymentMethod;
@@ -14,11 +15,11 @@ public class PurchaseDetail {
 		super();
 	}
 
-	public PurchaseDetail(long id, List<ItemCart> itemsList, double accumulatedValue, String deliveryAddress,
+	public PurchaseDetail(long id, double accumulatedValue, String deliveryAddress,
 			String paymentMethod) {
 		super();
 		this.id = id;
-		this.itemsList = itemsList;
+		
 		this.accumulatedValue = accumulatedValue;
 		this.deliveryAddress = deliveryAddress;
 		this.paymentMethod = paymentMethod;
@@ -32,13 +33,7 @@ public class PurchaseDetail {
 		this.id = id;
 	}
 
-	public List<ItemCart> getItemsList() {
-		return itemsList;
-	}
-
-	public void setItemsList(List<ItemCart> itemsList) {
-		this.itemsList = itemsList;
-	}
+	
 
 	public double getAccumulatedValue() {
 		return accumulatedValue;

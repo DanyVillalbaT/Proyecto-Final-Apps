@@ -1,0 +1,39 @@
+h1{
+text-align: center;
+}
+
+.card {
+
+  /*width: 250px;
+  height: 600px;*/
+  height: 222px;
+  /*height: 363px;*/
+  
+  
+  /*background-color: rgba(100, 99, 99, 0.279);*/
+}
+.card:hover {
+  background-color: #f8f8f8; /* Cambia el fondo en hover */
+  border-color: #007bff; /* Cambia el borde en hover */
+}
+.card-title {
+  color: rgb(255, 187, 0);
+  font-weight: bold;
+  text-align: center;
+}
+p{
+  text-align: center;
+}
+.card-img-top{
+	 max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+
+.text{
+    background-color: rgba(128, 128, 128, 0.283);
+    border-radius: 5%;
+
+}

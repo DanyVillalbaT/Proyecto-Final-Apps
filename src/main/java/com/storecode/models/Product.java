@@ -68,11 +68,11 @@ public class Product {
 		this.name = name;
 	}
 
-	public String getDdescription() {
+	public String getDescription() {
 		return description;
 	}
 
-	public void setDdescription(String ddescription) {
+	public void setDescription(String ddescription) {
 		this.description = ddescription;
 	}
 

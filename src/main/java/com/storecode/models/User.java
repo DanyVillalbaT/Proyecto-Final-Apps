@@ -1,42 +1,59 @@
 package com.storecode.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-@Entity
+@Entity(name = "users")
 public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "user_id")
 	private int id;
 	
-	private String nombre;
+	@Column(name = "user_name")
+	private String name;
+	
+	@Column(name = "user_email")
 	private String correo;
+	
+	@Column(name = "user_password")
 	private String password;
-	private String cedula;
-	private String direccion;
+	
+	@Column(name = "user_document")
+	private String document;
+	
+	@Column(name = "user_address")
+	private String address;
+	
+	@Column(name = "user_rol")
 	private String rol;
-	private int telefono;
-	private int codigoPostal;
+	
+	@Column(name = "user_telephone")
+	private int telephone;
+	
+	@Column(name = "user_zip")
+	private int zipCode;
 	
 	public User() {
 		super();
 	}
 
-	public User(int id, String nombre, String correo, String password, String cedula, String direccion, String rol,
-			int telefono, int codigoPostal) {
+	public User(int id, String name, String correo, String password, String document, String address, String rol,
+			int telephone, int zipCode) {
 		super();
 		this.id = id;
-		this.nombre = nombre;
+		this.name = name;
 		this.correo = correo;
 		this.password = password;
-		this.cedula = cedula;
-		this.direccion = direccion;
+		this.document = document;
+		this.address = address;
 		this.rol = rol;
-		this.telefono = telefono;
-		this.codigoPostal = codigoPostal;
+		this.telephone = telephone;
+		this.zipCode = zipCode;
 	}
 
 	public int getId() {
@@ -47,12 +64,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getName() {
+		return name;
 	}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getCorreo() {
@@ -71,20 +88,20 @@ public class User {
 		this.password = password;
 	}
 
-	public String getCedula() {
-		return cedula;
+	public String getDocument() {
+		return document;
 	}
 
-	public void setCedula(String cedula) {
-		this.cedula = cedula;
+	public void setDocument(String document) {
+		this.document = document;
 	}
 
-	public String getDireccion() {
-		return direccion;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setDireccion(String direccion) {
-		this.direccion = direccion;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getRol() {
@@ -95,22 +112,20 @@ public class User {
 		this.rol = rol;
 	}
 
-	public int getTelefono() {
-		return telefono;
+	public int getTelephone() {
+		return telephone;
 	}
 
-	public void setTelefono(int telefono) {
-		this.telefono = telefono;
+	public void setTelephone(int telephone) {
+		this.telephone = telephone;
 	}
 
-	public int getCodigoPostal() {
-		return codigoPostal;
+	public int getZipCode() {
+		return zipCode;
 	}
 
-	public void setCodigoPostal(int codigoPostal) {
-		this.codigoPostal = codigoPostal;
-	}
-	
-	
+	public void setZipCode(int zipCode) {
+		this.zipCode = zipCode;
+	}	
 	
 }

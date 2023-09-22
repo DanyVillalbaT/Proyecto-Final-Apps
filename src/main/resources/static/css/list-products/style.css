@@ -9,7 +9,12 @@ text-align: center;
   height: 222px;
   /*height: 363px;*/
   
+  
   /*background-color: rgba(100, 99, 99, 0.279);*/
+}
+.card:hover {
+  background-color: #f8f8f8; /* Cambia el fondo en hover */
+  border-color: #007bff; /* Cambia el borde en hover */
 }
 .card-title {
   color: rgb(255, 187, 0);

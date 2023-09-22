@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
 @Entity(name = "item_carts")
@@ -26,16 +27,21 @@ public class ItemCart {
 	@Column(name = "item_accumulated_value")
 	private double accumulatedValue;
 	
+	@ManyToOne
+	@JoinColumn(name = "item_cart_id")
+	private ShoppingCart shoppingCart;
+	
 	public ItemCart() {
 		super();
 	}
 
-	public ItemCart(long id, Product product, int quantityItems, double accumulatedValue) {
+	public ItemCart(long id, Product product, int quantityItems, double accumulatedValue, ShoppingCart shoppingCart) {
 		super();
 		this.id = id;
 		this.product = product;
 		this.quantityItems = quantityItems;
-		this.accumulatedValue = calculateAccumulatedValue();
+		this.accumulatedValue = accumulatedValue;
+		this.shoppingCart = shoppingCart;
 	}
 
 	public long getId() {
@@ -73,5 +79,15 @@ public class ItemCart {
 	public double calculateAccumulatedValue() {
 		return accumulatedValue = quantityItems * product.getPrice();
 	}
+
+	public ShoppingCart getShoppingCart() {
+		return shoppingCart;
+	}
+
+	public void setShoppingCart(ShoppingCart shoppingCart) {
+		this.shoppingCart = shoppingCart;
+	}
+	
+	
 
 }

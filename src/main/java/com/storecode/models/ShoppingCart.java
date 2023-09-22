@@ -1,8 +1,5 @@
 package com.storecode.models;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,8 +16,6 @@ public class ShoppingCart {
 	@Column(name = "cart_id")
 	private long id;
 	
-	
-	
 	@Column(name = "cart_total_value")
 	private double totalValueItems;
 	
@@ -35,7 +30,6 @@ public class ShoppingCart {
 	public ShoppingCart(long id, double totalValueItems, User user) {
 		super();
 		this.id = id;
-	
 		this.totalValueItems = calculateTotalValueItems();
 		this.user = user;
 	}
@@ -47,8 +41,6 @@ public class ShoppingCart {
 	public void setId(long id) {
 		this.id = id;
 	}
-
-	
 
 	public double getTotalValueItems() {
 		return totalValueItems;

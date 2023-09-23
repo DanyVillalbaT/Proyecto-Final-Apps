@@ -21,15 +21,38 @@
 	<div th:replace="partials/header :: header"></div>
 	<div class="container">
 		 <h1>Lista de Categorias</h1>
-    <table>
+		 <select id="selectCategories" option:each="category : ${listCategories}">
+			 <option value="0">Seleccione una Categoria</option>
+			 <option value="-1">Todos</option>
+			 <option value="{category.id}">Todos</option>
+		 </select>
+    <table id="listProducts">
         <tr>
-            <th>Nombre</th>
-        </tr>
-        <tr th:each="category : ${listCategories}">
-            <td th:text="${category.nombre}"></td>
+            <th>Productos</th>
         </tr>
     </table>
 	</div>
+	
+	<script>
+		const categories = document.getElementById("selectCategories");
+		const products = document.getElementById("listProducts");
+		
+		categories.addEventListener("change", ()=>{
+			let var_categorie = categories.value
+			
+			$.getJSON("consultaCategories", {"parametro": var_categorie}, function(data){
+				$.each(data, function(index, item){
+					products.innerHTML += `<tr><td> {item.name}<td><tr>`
+				})
+			})
+		})
+		
+		//$.getJSON("list-categories",{}, function(data){
+			//$.each(data, function(i,obj){
+				//categories.innerHTML += `<option value = {obj.id}>{obj.name}</option>` 
+			//})
+		//})
+	</script>
 
 </body>
 

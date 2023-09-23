@@ -3,6 +3,7 @@ package com.storecode.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import com.storecode.models.Product;
@@ -28,5 +29,9 @@ public class ProductService {
 
 	public void delete(Long id) {
 		productRepository.deleteById(id);
+	}
+	
+	public List<Product> getProductsByCategory(@Param(value = "param") int  idCategory){
+		return productRepository.getProductsByCategory(idCategory);
 	}
 }

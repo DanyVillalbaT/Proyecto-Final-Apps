@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.storecode.models.Category;
+import com.storecode.models.Product;
 import com.storecode.repositories.ICategoryRepository;
 
 @Service
@@ -29,4 +30,5 @@ public class CategoryService {
 	public void delete(Long id) {
 		categoryRepository.deleteById(id);
 	}
+	
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
+import com.storecode.models.Category;
 import com.storecode.models.Product;
 import com.storecode.repositories.IProductRepository;
 
@@ -32,6 +33,8 @@ public class ProductService {
 	}
 	
 	public List<Product> getProductsByCategory(@Param(value = "param") int  idCategory){
-		return productRepository.getProductsByCategory(idCategory);
+		Category category = new Category();
+		category.setId(idCategory);
+		return productRepository.findByCategory(category);
 	}
 }

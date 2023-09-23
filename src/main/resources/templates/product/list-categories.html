@@ -21,7 +21,8 @@
 	<div th:replace="partials/header :: header"></div>
 	<div class="container">
 		 <h1>Lista de Categorias</h1>
-		 <select id="selectCategories" option:each="category : ${listCategories}">
+		 <select id="selectCategories">
+			 <option th:each="category : ${listCategories}"></option>
 			 <option value="0">Seleccione una Categoria</option>
 			 <option value="-1">Todos</option>
 			 <option value="{category.id}">Todos</option>

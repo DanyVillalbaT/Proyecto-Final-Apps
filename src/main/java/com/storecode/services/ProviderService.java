@@ -33,11 +33,11 @@ public class ProviderService {
 		providerRepository.deleteById(id);
 	}
 	
-	public List<Product> getProductsByProvider(@PathVariable("idProvider") long idProvider){
+	/*public List<Product> getProductsByProvider(@PathVariable("idProvider") long idProvider){
 		Provider provider = new Provider();
 		provider.setId(idProvider);
 		return providerRepository.findByProvider(provider);
-	}
+	}*/
 
 	
 }

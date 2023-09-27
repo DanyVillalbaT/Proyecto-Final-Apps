@@ -12,6 +12,6 @@ import com.storecode.models.Provider;
 public interface IProviderRepository extends JpaRepository<Provider, Long>{
 	
 	//List to find the products by the provider
-	List<Product> findByProvider(Provider provider);
+	//List<Product> findByProvider(Provider provider);
 
 }

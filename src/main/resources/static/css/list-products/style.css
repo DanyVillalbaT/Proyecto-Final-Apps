@@ -15,8 +15,8 @@ margin-bottom: 30px;
   /*background-color: rgba(100, 99, 99, 0.279);*/
 }
 .card:hover {
-  background-color: #f8f8f8; /* Cambia el fondo en hover */
-  border-color: #007bff; /* Cambia el borde en hover */
+ /* background-color: #f8f8f8; /* Cambia el fondo en hover */
+ /* border-color: #007bff;*/ /* Cambia el borde en hover */
 }
 .card-title {
   color: rgb(255, 187, 0);
@@ -41,10 +41,16 @@ p{
   object-fit: cover;
  
 }
+.custom-card {
+  border: none; /* Elimina todos los bordes */
+}
 
 
 .text{
    /* background-color: rgba(128, 128, 128, 0.283);*/
     border-radius: 5%;
 
+}
+.no-overflow {
+  overflow: visible !important; /* Anula overflow: hidden y usa !important para prioridad */
 }

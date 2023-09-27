@@ -20,7 +20,7 @@ import com.storecode.services.ProviderService;
 public class ProviderController {
 
 	@Autowired
-	public ProviderService providerService;
+	private ProviderService providerService;
 	
 	@GetMapping("/addProvider")
 	public String showProviderForm(Provider provider){

@@ -22,30 +22,30 @@
         <hr>
     </div>
     <br>
-    <div class="container">
+    <div class="container d-flex justify-content-center align-items-center">
         <form action="#" th:action="@{/addProvider}" th:object="${provider}" method="post">
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label for="nameProvider" class="col-form-label">Nombre del proveedor</label>
-                    <input type="text" th:field="*{nameProvider}" class="form-control" id="nameProvider"
-                        placeholder="..." required="required">
-                    <span th:if="${#fields.hasErrors('nameProvider')}" th:errors="*{nameProvider}" class="text-danger"></span>
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="form-group col-md-8">
+                    <label for="name" class="col-form-label">Nombre del proveedor</label>
+                    <input type="text" th:field="*{name}" class="form-control" id="nameProvider"
+                        placeholder="nombre" required>
+                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="ubicationProvider" class="col-form-label">Direccion del proveedor</label>
-                    <input type="text" th:field="*{ubicationProvider}" class="form-control" id="ubicationProvider"
-                        placeholder="..." required="required">
-                    <span th:if="${#fields.hasErrors('ubicationProvider')}" th:errors="*{ubicationProvider}" class="text-danger"></span>
+                <div class="form-group col-md-8">
+                    <label for="ubication" class="col-form-label">Direccion del proveedor</label>
+                    <input type="text" th:field="*{ubication}" class="form-control" id="ubication"
+                        placeholder="dirección" required>
+                    <span th:if="${#fields.hasErrors('ubication')}" th:errors="*{ubication}" class="text-danger"></span>
                 </div>
-                <div class="form-group col-md-6">
-                    <label for="phoneProvider" class="col-form-label">Teléfono del proveedor</label>
-                    <input type="number" th:field="*{phoneProvider}" class="form-control" id="phoneProvider"
-                        placeholder="..." required="required">
-                    <span th:if="${#fields.hasErrors('phoneProvider')}" th:errors="*{phoneProvider}" class="text-danger"></span>
+                <div class="form-group col-md-8">
+                    <label for="phone" class="col-form-label">Teléfono del proveedor</label>
+                    <input type="number" th:field="*{phone}" class="form-control" id="phone"
+                        placeholder="teléfono" required>
+                    <span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="text-danger"></span>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6 mt-5">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-md-7 mt-5 d-flex justify-content-center align-items-center">
                     <input type="submit" class="btn btn-primary" >
                 </div>
             </div>    

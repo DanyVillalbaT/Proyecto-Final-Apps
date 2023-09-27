@@ -9,7 +9,7 @@ import com.storecode.models.Product;
 import com.storecode.models.Provider;
 
 @Repository
-public interface IProviderRepository extends JpaRepository<Provider, Integer>{
+public interface IProviderRepository extends JpaRepository<Provider, Long>{
 	
 	//List to find the products by the provider
 	List<Product> findByProvider(Provider provider);

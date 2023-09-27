@@ -5,7 +5,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import java.util.List;
+
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 
 @Entity(name = "providers")
@@ -16,14 +18,16 @@ public class Provider {
 	@Column(name = "prov_id")
 	private long id;
 
+	@NotBlank(message = "El nombre del proveedor es obligatorio")
 	@Column(name = "prov_name")
 	private String name;
 	
-
+	@NotBlank(message = "La dirección del proveedor es obligatoria")
 	@Column(name = "prov_ubication")
 	private String ubication;
 	
-
+	@NotBlank(message = "El teléfono es obligatorio")
+	@Size(min= 7, max=15, message="El teléfono debe tener entre 7 y 15 caracteres")
 	@Column(name = "prov_phone")
 	private int phone;
 	

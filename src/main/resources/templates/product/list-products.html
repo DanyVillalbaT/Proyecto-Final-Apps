@@ -20,8 +20,35 @@
 <body>
 	<div th:replace="partials/header :: header"></div>
 	<div class="container">
+		<div class="p-2">
+			<h1>Lista de Categorias</h1>
+		<table class="table tabla-categorias">
+			  <thead class="thead-dark">
+			    <tr>
+			      <th scope="col">#</th>
+			      <th scope="col">Nombre</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+				 <tr>
+				      <th scope="row">0</th>
+				      <td>Todos</td>
+			    </tr>
+			    <tr th:each="category : ${listCategories}">
+			      <th th:text="${category.id}" scope="row"></th>
+			      <td th:text="${category.name}"></td>
+			    </tr>
+			  </tbody>
+		</table>
+		 <!--select id="selectCategories">
+			 <option value="0">Seleccione una Categoria</option>
+			 <option value="-1" selected>Todos</option>
+			 <option  th:each="category : ${listCategories}" value="${category.id}" th:text="${category.name}"></option>			 
+		 </select-->
+		</div>	
     
-		<h1>Lista de Productos</h1>
+		<div class="p-2">
+			<h1>Lista de Productos</h1>
 		<div class="row">
 			<div class="col-3" th:each="product : ${listProducts}">
 				<div class="card" >
@@ -45,7 +72,30 @@
 				</div>
 			</div>
 		</div>
+		</div>
 	</div>
+	
+	
+	<!--script>
+		const categories = document.getElementById("selectCategories");
+		const products = document.getElementById("listProducts");
+		
+		categories.addEventListener("change", ()=>{
+			let var_categorie = categories.value
+			
+			$.getJSON("consultaCategories", {"parametro": var_categorie}, function(data){
+				$.each(data, function(index, item){
+					products.innerHTML += `<tr><td> {item.name}<td><tr>`
+				})
+			})
+		})
+		
+		//$.getJSON("list-categories",{}, function(data){
+			//$.each(data, function(i,obj){
+				//categories.innerHTML += `<option value = {obj.id}>{obj.name}</option>` 
+			//})
+		//})
+	</script-->
 
 </body>
 

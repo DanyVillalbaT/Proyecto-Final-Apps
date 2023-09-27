@@ -9,17 +9,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.storecode.models.Product;
 import com.storecode.services.ProductService;
+import com.storecode.services.CategoryService;
 
 @Controller
 @RequestMapping("/products")
 public class ProductController {
 
-	 @Autowired
+	 	@Autowired
 	    private ProductService productService;
+	 	
+	 	@Autowired
+	    private CategoryService categoryService;
 	
 	    @GetMapping("/list-products")
 	    public String listProducts(Model model) {
 	    	model.addAttribute("listProducts", productService.getAll());
+	    	model.addAttribute("listCategories", categoryService.getAll());
 	        return "product/list-products";
 	    }
 

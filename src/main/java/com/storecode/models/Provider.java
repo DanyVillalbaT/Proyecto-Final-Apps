@@ -37,7 +37,10 @@ public class Provider {
 		super();
 	}
 
-	public Provider(long id, String name, String ubication, int phone) {
+	public Provider(long id, @NotBlank(message = "El nombre del proveedor es obligatorio")String name, 
+			@NotBlank(message = "La dirección del proveedor es obligatoria") String ubication, 
+			@NotBlank(message = "El teléfono es obligatorio")
+			@Size(min= 7, max=15, message="El teléfono debe tener entre 7 y 15 caracteres") int phone) {
 		super();
 		this.id = id;
 		this.name = name;

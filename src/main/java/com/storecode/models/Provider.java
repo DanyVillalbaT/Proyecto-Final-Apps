@@ -5,9 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 
 @Entity(name = "providers")
@@ -40,7 +39,7 @@ public class Provider {
 	public Provider(long id, @NotBlank(message = "El nombre del proveedor es obligatorio")String name, 
 			@NotBlank(message = "La dirección del proveedor es obligatoria") String ubication, 
 			@NotBlank(message = "El teléfono es obligatorio")
-			@Size(min= 10, max=10, message="El teléfono debe tener 10 caracteres") String phone) {
+			@Size(min= 10, max=10, message="El teléfono debe tener 10 caracteres")String phone) {
 		super();
 		this.id = id;
 		this.name = name;

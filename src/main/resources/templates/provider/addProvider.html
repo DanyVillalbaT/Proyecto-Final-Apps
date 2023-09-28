@@ -29,19 +29,19 @@
                     <label for="name" class="col-form-label">Nombre del proveedor</label>
                     <input type="text" th:field="*{name}" class="form-control" id="nameProvider"
                         placeholder="nombre" required>
-                    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></span>
+                    <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">Mensaje de error</small>
                 </div>
                 <div class="form-group col-md-8 mb-3">
                     <label for="ubication" class="col-form-label">Direccion del proveedor</label>
                     <input type="text" th:field="*{ubication}" class="form-control" id="ubication"
                         placeholder="dirección" required>
-                    <span th:if="${#fields.hasErrors('ubication')}" th:errors="*{ubication}" class="text-danger"></span>
+                    <small th:if="${#fields.hasErrors('ubication')}" th:errors="*{ubication}" class="text-danger">Mensaje de error</small>
                 </div>
                 <div class="form-group col-md-8 mb-3">
                     <label for="phone" class="col-form-label">Teléfono del proveedor</label>
                     <input type="text" th:field="*{phone}" class="form-control" id="phone"
                         placeholder="teléfono" required>
-                    <span th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="text-danger"></span>
+                    <small th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="text-danger">Mensaje de error</small>
                 </div>
             </div>
             <div class="row d-flex justify-content-center align-items-center">

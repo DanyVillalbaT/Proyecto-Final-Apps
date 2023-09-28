@@ -1,7 +1,5 @@
 package com.storecode.controllers;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.storecode.models.Provider;
 import com.storecode.services.ProviderService;
 
+import jakarta.validation.Valid;
+
 @Controller
 @RequestMapping("/providers")
 public class ProviderController {
@@ -23,12 +23,13 @@ public class ProviderController {
 	private ProviderService providerService;
 	
 	@GetMapping("/addProvider")
-	public String showProviderForm(Provider provider){
+	public String showProviderForm(Model model){
+		model.addAttribute("provider", new Provider());
 		return "provider/addProvider";
 	}
 	
 	@PostMapping("/saveProvider")
-	public String saveProvider(@Valid @ModelAttribute Provider provider, BindingResult fields, Model model){
+	public String saveProvider(@ModelAttribute("provider") @Valid Provider provider, BindingResult fields, Model model){
 		if (fields.hasErrors()) {
 			return "provider/addProvider";
 		}else {

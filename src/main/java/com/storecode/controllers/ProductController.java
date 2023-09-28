@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-
 import com.storecode.models.Product;
 import com.storecode.services.CategoryService;
 import com.storecode.services.ProductService;
@@ -29,7 +28,7 @@ public class ProductController {
 	    	Product pro =  new Product();
 	    	pro.setId(1);
 	    	System.out.println("Precio" + productService.getByiId(pro.getId()).getPrice());
-	        return "product/list-products";
+	        return "product/listProducts";
 	    }
 
 	    @GetMapping("/productdetail/{idProduct}")
@@ -50,12 +49,21 @@ public class ProductController {
 	    public String saveProduct(@ModelAttribute Product product, Model model) {
 	    	productService.save(product);
 	        System.out.println("Producto guardado: " + product.getName());
-	        return "redirect:/products/listProducts"; // Redirecciona al formulario después de guardar
+	        return "redirect:/products/productsTable"; // Redirecciona al formulario después de guardar
 	    }
 	    @GetMapping("/productsTable")
 	    public String showProductsTable(Model model) {
 	    	model.addAttribute("products", productService.getAll());
 	        return "product/productsTable";
 	    }
+	    
+	    @GetMapping("/deleteProducto/{idProducto}")
+	    public String deleteProducto(@PathVariable("idProducto") long idProducto, Model model) {
+	    	Product producto = productService.getByiId(idProducto);
+	    	productService.delete(idProducto);
+	        model.addAttribute("productos", productService.getAll());
+	        return "redirect:/products/productsTable";
+	    }
+	    
 	    
 }

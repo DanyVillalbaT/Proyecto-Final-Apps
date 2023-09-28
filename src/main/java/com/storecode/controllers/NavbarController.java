@@ -15,7 +15,7 @@ public class NavbarController {
 	    }
 	 @GetMapping("/product")
 	    public String products() {
-	        return "product/list-products";
+	        return "product/listProducts";
 	    }
 
 

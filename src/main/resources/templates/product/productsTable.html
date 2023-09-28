@@ -32,6 +32,7 @@
 				<hr>
 			</div>
 		</div>
+		<a th:href="@{/products/addProduct}" class="btn btn-success">NUEVO REGISTRO <i class="bi bi-file-earmark-plus"></i></a>
 		<div th:switch="${productos}" class="my-5 text-center">
 			<div class="row">
 				<div class="col-md-12 text-center">
@@ -67,12 +68,9 @@
 										th:href="@{/admin/editProducto/{idProducto}(idProducto=${product.id})}"
 										class="btn btn-primary"><i class="fas fa-edit ml-2 mr-1"></i></a></td>
 									<td><a
-										th:href="@{/admin/deleteProducto/{idProducto}(idProducto=${product.id})}"
-										class="btn btn-danger"><i class="fas fa-times ml-2 mr-2"></i></a></td>
+										th:href="@{deleteProducto/{idProducto}(idProducto=${product.id})}"
+										class="btn btn-danger"><i class="bi bi-file-earmark-minus"></i></a></td>
 									<td><a
-										th:href="@{/admin/updateMercanciaProducto/{idProducto}(idProducto=${product.id})}"
-										class="btn btn-success"><i class="fas fa-plus ml-2 mr-2"></i></a></td>
-										<td><a
 										th:href="@{/admin/updateMercanciaProducto/{idProducto}(idProducto=${product.id})}"
 										class="btn btn-success"><i class="fas fa-plus ml-2 mr-2"></i></a></td>
 								</tr>
@@ -84,12 +82,13 @@
 				</div>
 			</div>
 		</div>
+		<hr>
 	</div>
 
 	<br>
 	<br>
 	<br>
-
+	
 	<!-- Footer -->
 	<div th:replace="partials/footer :: footer"></div>
 

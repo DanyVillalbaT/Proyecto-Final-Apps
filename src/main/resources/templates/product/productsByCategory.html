@@ -30,18 +30,18 @@
 			    </tr>
 			  </thead>
 			  <tbody>
+				 <a th:href="@{/products/category/{idcategory}(idCategory=${category.id})}">
 					 <tr>
-				 <a th:href="@{/products/category/{idCategory}(idCategory=${category.id})}">
 				      	<th id="category-0" scope="row">0</th>
 				      	<td>Todos</td>
-				 </a>
 			    	</tr>
+				 </a>
+			    <a th:href="@{/products/category/{idcategory}(idCategory=${category.id})}">
 					<tr  th:each="category : ${listCategories}">
-			    <a th:href="@{/products/category/{idCategory}(idCategory=${category.id})}">
 					  <th th:text="${category.id}" scope="row"></th>
 			      		<td th:text="${category.name}"></td>
-				</a>
 			    </tr>
+				</a>
 			  </tbody>
 		</table>
 		</div>	

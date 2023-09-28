@@ -1,5 +1,7 @@
 package com.storecode.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +29,13 @@ public class ProductController {
 	    	model.addAttribute("listCategories", categoryService.getAll());
 	        return "product/list-products";
 	    }
+	    
+	    @GetMapping("/category/{idCategory}")
+	   	public String viewByCategory(@PathVariable("idCategory") int idCategory, Model model) {
+	   		List<Product> products = productService.getProductsByCategory(idCategory);
+	   		model.addAttribute("listProducts", products);
+	   		return "product/productByCategory";
+	   	}
 
 	    @GetMapping("/productdetail/{idProduct}")
 	   	public String viewDetail(@PathVariable("idProduct") long idProduct, Model model) {

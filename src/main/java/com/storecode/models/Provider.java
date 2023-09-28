@@ -27,9 +27,9 @@ public class Provider {
 	private String ubication;
 	
 	@NotBlank(message = "El teléfono es obligatorio")
-	@Size(min= 7, max=15, message="El teléfono debe tener entre 7 y 15 caracteres")
-	@Column(name = "prov_phone")
-	private int phone;
+	@Size(min= 10, max=10, message="El teléfono debe tener 10 caracteres")
+	@Column(name = "prov_phone", columnDefinition = "char(10)")
+	private String phone;
 	
 
 	
@@ -40,7 +40,7 @@ public class Provider {
 	public Provider(long id, @NotBlank(message = "El nombre del proveedor es obligatorio")String name, 
 			@NotBlank(message = "La dirección del proveedor es obligatoria") String ubication, 
 			@NotBlank(message = "El teléfono es obligatorio")
-			@Size(min= 7, max=15, message="El teléfono debe tener entre 7 y 15 caracteres") int phone) {
+			@Size(min= 10, max=10, message="El teléfono debe tener 10 caracteres") String phone) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -73,11 +73,11 @@ public class Provider {
 		this.ubication = ubication;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

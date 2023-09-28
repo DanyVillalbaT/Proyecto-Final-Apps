@@ -33,8 +33,9 @@ public class ProviderController {
 			return "provider/addProvider";
 		}else {
 			providerService.save(provider);
+			System.out.println("El proveedor fue registrado correctamente: " + provider.getName());
 			model.addAttribute("providers", providerService.getAll());
-			return "redirect:/provider/listProviders";
+			return "redirect:/providers/listProviders";
 		}
 		
 	}
@@ -55,7 +56,7 @@ public class ProviderController {
 		}else {
 			providerService.save(provider);
 			model.addAttribute("listProviders", providerService.getAll());
-			return "redirect:/provider/listProviders";
+			return "redirect:/providers/listProviders";
 		}
 	}
 	
@@ -63,7 +64,7 @@ public class ProviderController {
     public String deleteProvider(@PathVariable("idProvider") long idProvider, Model model) {
         providerService.deleteById(idProvider);
         model.addAttribute("providers", providerService.getAll());
-        return "redirect:/provider/listProviders";
+        return "redirect:/providers/listProviders";
     }
 	
 	@GetMapping("/listProviders")

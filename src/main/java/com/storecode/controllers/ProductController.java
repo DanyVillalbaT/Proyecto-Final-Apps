@@ -29,9 +29,9 @@ public class ProductController {
 	    @GetMapping("/listProducts")
 	    public String listProducts(Model model) {
 	    	model.addAttribute("listProducts", productService.getAll());
-	    	Product pro =  new Product();
+	    	/*Product pro =  new Product();
 	    	pro.setId(1);
-	    	System.out.println("Precio" + productService.getByiId(pro.getId()).getPrice());
+	    	System.out.println("Precio" + productService.getByiId(pro.getId()).getPrice());*/
 	        return "product/listProducts";
 	    }
 
@@ -79,17 +79,21 @@ public class ProductController {
 	    
 	    
 	    @PostMapping("/updateProduct/{idProduct}")
-	    public String updateProduct(@PathVariable("idProduct") int idProduct,  Product product, BindingResult result, Model model) {
-	        if (result.hasErrors()) {
-	        	product.setId(idProduct);
-	        	model.addAttribute("categories",categoryService.getAll());
-	            return "product/updateProducto";
-	        }else {
-	            
-		        productService.save(product);
+	    public String updateProduct(@PathVariable("idProduct") long idProduct,  Product product, BindingResult result, Model model) {
+		        //productService.save(product);
+		        Product productOldProduct = productService.getByiId(idProduct);
+		        
+		        productOldProduct.setName(product.getName());
+		        productOldProduct.setDescription(product.getDescription());
+		        productOldProduct.setPrice(product.getPrice());
+		        productOldProduct.setCategory(product.getCategory());	       
+		        productOldProduct.setStock(product.getStock());      
+		        productOldProduct.setProvider(product.getProvider());
+		        productOldProduct.setImg(product.getImg());
+		        
+		        productService.save(productOldProduct);
 		        model.addAttribute("products",productService.getAll());
 		        return "redirect:/products/productsTable";
-	        }
 	    
 	    }
 	    

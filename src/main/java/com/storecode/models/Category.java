@@ -31,7 +31,7 @@ public class Category {
 	}
 
 	public long getId() {
-		return id;
+		return this.id;
 	}
 
 

@@ -1,14 +1,18 @@
 package com.storecode.controllers;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import com.storecode.models.Product;
 import com.storecode.services.CategoryService;
 import com.storecode.services.ProductService;
@@ -57,12 +61,36 @@ public class ProductController {
 	        return "product/productsTable";
 	    }
 	    
-	    @GetMapping("/deleteProducto/{idProducto}")
-	    public String deleteProducto(@PathVariable("idProducto") long idProducto, Model model) {
+	    @GetMapping("/deleteProduct/{idProduct}")
+	    public String deleteProduct(@PathVariable("idProduct") long idProducto, Model model) {
 	    	Product producto = productService.getByiId(idProducto);
 	    	productService.delete(idProducto);
 	        model.addAttribute("productos", productService.getAll());
 	        return "redirect:/products/productsTable";
+	    }
+	    
+	    @GetMapping("editProduct/{idProduct}")
+	    public String showUpdateForm(@PathVariable("idProduct") long idProduct, Model model) {
+	    	Product product = productService.getByiId(idProduct);
+	        model.addAttribute("product", product);
+	    	model.addAttribute("categories",categoryService.getAll());
+	        return "product/updateProduct";
+	    }
+	    
+	    
+	    @PostMapping("/updateProduct/{idProduct}")
+	    public String updateProduct(@PathVariable("idProduct") int idProduct,  Product product, BindingResult result, Model model) {
+	        if (result.hasErrors()) {
+	        	product.setId(idProduct);
+	        	model.addAttribute("categories",categoryService.getAll());
+	            return "product/updateProducto";
+	        }else {
+	            
+		        productService.save(product);
+		        model.addAttribute("products",productService.getAll());
+		        return "redirect:/products/productsTable";
+	        }
+	    
 	    }
 	    
 	    

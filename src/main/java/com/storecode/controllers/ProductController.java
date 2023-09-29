@@ -34,7 +34,8 @@ public class ProductController {
 	   	public String viewByCategory(@PathVariable("idCategory") int idCategory, Model model) {
 	   		List<Product> products = productService.getProductsByCategory(idCategory);
 	   		model.addAttribute("listProducts", products);
-	   		return "product/productByCategory";
+	    	model.addAttribute("listCategories", categoryService.getAll());
+	   		return "product/productsByCategory";
 	   	}
 
 	    @GetMapping("/productdetail/{idProduct}")

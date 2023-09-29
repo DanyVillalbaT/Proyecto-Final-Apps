@@ -29,9 +29,7 @@ public class ProductController {
 	    @GetMapping("/listProducts")
 	    public String listProducts(Model model) {
 	    	model.addAttribute("listProducts", productService.getAll());
-	    	/*Product pro =  new Product();
-	    	pro.setId(1);
-	    	System.out.println("Precio" + productService.getByiId(pro.getId()).getPrice());*/
+
 	        return "product/listProducts";
 	    }
 

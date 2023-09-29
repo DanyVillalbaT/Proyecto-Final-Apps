@@ -1,5 +1,7 @@
 package com.storecode.models;
 
+import java.math.BigDecimal;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,7 +28,7 @@ public class Product {
 	private int stock;
 
 	@Column(name = "product_price")
-	private double price;
+	private int price;
 	
 	@Column(name = "img_url")
 	private String img;
@@ -43,7 +45,7 @@ public class Product {
 		super();
 	}
 
-	public Product(long id, String name, String ddescription, int stock, double price, Provider provider,
+	public Product(long id, String name, String ddescription, int stock, int price, Provider provider,
 			Category category,String img) {
 		super();
 		this.id = id;
@@ -96,11 +98,11 @@ public class Product {
 		this.stock = stock;
 	}
 
-	public double getPrice() {
+	public int getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 

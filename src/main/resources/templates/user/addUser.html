@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Formulario de Producto</title>
+    <title>Formulario de Usuario</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -37,22 +37,29 @@
         <input class="form-control" type="number" id="document" th:field="*{document}" required><br>
         </div>
 
- 		<div class="form-group col-4">
-                <label for="opcionSeleccionada">Seleccione un rol:</label>
-                <select class="form-control" id="opcionSeleccionada" name="opcionSeleccionada" th:field="*{rol}" >
-                    <option value="0" id="admin" >Administrador</option>
-                    <option value="1" id="client" >Cliente</option>
-                </select>
-            </div>
-
  		 <div class="form-outline col-4">
            <label class="form-label" for="address">Direccion:</label>
         <input class="form-control" type="text" id="address" th:field="*{address}" required><br>
         </div>
+        
+ 		<div class="form-group col-4">
+                <label for="opcionSeleccionada">Seleccione un rol:</label>
+                <select class="form-control" id="opcionSeleccionada" name="opcionSeleccionada" th:field="*{rol}" >
+                    <option value="Admin" id="admin" >Administrador</option>
+                    <option value="Client" id="client" >Cliente</option>
+		            <option value="Employee" id="empleado" >Empleado</option>
+                </select>
+            </div>
+
+        <div class="form-outline col-4">
+          <label class="form-label"  for="telephone">Telefono:</label>
+        <input class="form-control" type="number" id="telephone" th:field="*{telephone}"  required><br>
+        </div>
+        
             
         <div class="form-outline col-4">
-          <label class="form-label"  for="precio">ZipCode:</label>
-        <input class="form-control" type="number" id="precio" th:field="*{zipcode}"  required><br>
+          <label class="form-label"  for="zipCode">ZipCode:</label>
+        <input class="form-control" type="number" id="zipCode" th:field="*{zipCode}"  required><br>
         </div>
      
 		<button type="submit" name="button" id="button" class="btn btn-success btn-block mb-2">Guardar</button>

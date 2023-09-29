@@ -30,7 +30,7 @@ public class Category {
 	}
 
 	public long getId() {
-		return id;
+		return this.id;
 	}
 
 
@@ -40,7 +40,7 @@ public class Category {
 
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 

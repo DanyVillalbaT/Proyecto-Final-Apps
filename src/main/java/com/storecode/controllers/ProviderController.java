@@ -69,8 +69,7 @@ public class ProviderController {
     public String deleteProvider(@PathVariable("idProvider") long idProvider, Model model) {
 		Provider provider = providerService.getById(idProvider);
 		if(providerService.existsProductByProvider(provider)){
-			model.addAttribute("error", "El proveedor no puede ser eliminado porque se encuentra con productos a cargo");
-			return "redirect:/providers/listProviders";
+			return "redirect:/providers/listProvidersError";
 		}else {
 			providerService.deleteById(idProvider);
 	        model.addAttribute("providers", providerService.getAll());
@@ -79,8 +78,15 @@ public class ProviderController {
     }
 	
 	@GetMapping("/listProviders")
-  	public String list(Provider provider, Model model) {
+  	public String listProviders(Provider provider, Model model) {
   		model.addAttribute("providers", providerService.getAll());
+        return "/provider/listProviders";
+  	}
+	
+	@GetMapping("/listProvidersError")
+  	public String listProvidersError(Provider provider, Model model) {
+  		model.addAttribute("providers", providerService.getAll());
+  		model.addAttribute("error", "El proveedor no puede ser eliminado porque se encuentra con productos a cargo");
         return "/provider/listProviders";
   	}
 }

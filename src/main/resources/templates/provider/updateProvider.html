@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+	<title>Actualización de Proveedor</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	 
+ 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7Rxnatzj
+ 	cDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	   <link rel="stylesheet" type="text/css" href="static/css/partials/style.css"
+	th:href="@{/css/partials/style.css}">
+</head>
+
+<body>
+    <div th:replace="partials/header :: header"></div>
+    <br>
+    <div class="container text-center">
+        <h1>Actualización de Proveedor</h1>
+        <hr>
+    </div>
+    <br>
+    <div class="container d-flex justify-content-center align-items-center">
+        <form action="#" th:action="@{/providers/updateProvider/{idProvider}(idProvider=${provider.id})}" th:object="${provider}" method="post">
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="form-group col-md-8 mb-3">
+                    <label for="name" class="col-form-label">Nombre del proveedor</label>
+                    <input type="text" th:field="*{name}" class="form-control" id="nameProvider"
+                        placeholder="nombre" required>
+                    <small th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger">Mensaje de error</small>
+                </div>
+                <div class="form-group col-md-8 mb-3">
+                    <label for="ubication" class="col-form-label">Direccion del proveedor</label>
+                    <input type="text" th:field="*{ubication}" class="form-control" id="ubication"
+                        placeholder="dirección" required>
+                    <small th:if="${#fields.hasErrors('ubication')}" th:errors="*{ubication}" class="text-danger">Mensaje de error</small>
+                </div>
+                <div class="form-group col-md-8 mb-3">
+                    <label for="phone" class="col-form-label">Teléfono del proveedor</label>
+                    <input type="text" th:field="*{phone}" class="form-control" id="phone"
+                        placeholder="teléfono" required>
+                    <small th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="text-danger">Mensaje de error</small>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center align-items-center">
+                <div class="col-md-7 mt-5 d-flex justify-content-center align-items-center">
+                    <button type="submit" class="btn btn-success btn-block mb-2" th:value="#{updateProvider-btn-update}">Actualizar Proveedor</button>
+                </div>
+            </div>    
+        </form>
+
+    </div>
+
+</body>
+
+</html>

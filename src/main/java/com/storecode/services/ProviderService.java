@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.storecode.models.Product;
 import com.storecode.models.Provider;
+import com.storecode.repositories.IProductRepository;
 import com.storecode.repositories.IProviderRepository;
 
 @Service
@@ -16,6 +17,9 @@ public class ProviderService {
 
 	@Autowired
 	private IProviderRepository providerRepository;
+	
+	@Autowired
+	private IProductRepository productRepository;
 	
 	public List<Provider> getAll(){
 		return providerRepository.findAll();
@@ -31,6 +35,10 @@ public class ProviderService {
 	
 	public void deleteById(Long id) {
 		providerRepository.deleteById(id);
+	}
+	
+	public boolean existsProductByProvider(Provider provider) {
+		return productRepository.existsByProvider(provider);
 	}
 	
 	/*public List<Product> getProductsByProvider(@PathVariable("idProvider") long idProvider){

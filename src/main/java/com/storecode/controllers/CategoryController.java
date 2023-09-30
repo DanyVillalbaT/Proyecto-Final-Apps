@@ -13,12 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.storecode.models.Category;
 import com.storecode.models.Product;
 import com.storecode.services.CategoryService;
+import com.storecode.services.ProductService;
 
 @Controller
 @RequestMapping("/categories")
 public class CategoryController {
 	@Autowired
 	private CategoryService categoryService;
+	@Autowired
+    private ProductService productService;
 
 	@GetMapping("/categoriesTable")
 	public String showProductsTable(Model model) {
@@ -29,6 +32,11 @@ public class CategoryController {
 	@GetMapping("/deleteCategory/{idCategory}")
 	public String deleteProduct(@PathVariable("idCategory") long idCategory, Model model) {
 		Category category = categoryService.getByiId(idCategory);
+		 if (productService.existsByCategory(category)) {
+	            model.addAttribute("mensajeError", "No se puede eliminar la categoría porque está siendo utilizada en productos.");
+	            System.out.println("CATEGORIA SIENDO USADA");
+	            return "error";
+	        }
 		categoryService.delete(idCategory);
 		model.addAttribute("categories", categoryService.getAll());
 		return "redirect:/categories/categoriesTable";

@@ -5,7 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import java.util.List;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 
 
 @Entity(name = "providers")
@@ -16,16 +17,18 @@ public class Provider {
 	@Column(name = "prov_id")
 	private long id;
 
+	@NotBlank(message = "El nombre del proveedor es obligatorio")
 	@Column(name = "prov_name")
 	private String name;
 	
-
+	@NotBlank(message = "La dirección del proveedor es obligatoria")
 	@Column(name = "prov_ubication")
 	private String ubication;
 	
-
-	@Column(name = "prov_phone")
-	private int phone;
+	@NotBlank(message = "El teléfono es obligatorio")
+	@Size(min= 10, max=10, message="El teléfono debe tener 10 caracteres")
+	@Column(name = "prov_phone", columnDefinition = "char(10)")
+	private String phone;
 	
 
 	
@@ -33,7 +36,10 @@ public class Provider {
 		super();
 	}
 
-	public Provider(long id, String name, String ubication, int phone) {
+	public Provider(long id, @NotBlank(message = "El nombre del proveedor es obligatorio")String name, 
+			@NotBlank(message = "La dirección del proveedor es obligatoria") String ubication, 
+			@NotBlank(message = "El teléfono es obligatorio")
+			@Size(min= 10, max=10, message="El teléfono debe tener 10 caracteres")String phone) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -66,11 +72,11 @@ public class Provider {
 		this.ubication = ubication;
 	}
 
-	public int getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(int phone) {
+	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 

@@ -20,6 +20,7 @@
 <body>
 	<div th:replace="partials/header :: header"></div>
 	<div class="container">
+
 		<div class="p-2">
 			<h1>Lista de Categorias</h1>
 			<div class="d-flex flex-column">
@@ -46,10 +47,11 @@
 		<div class="p-2">
 			<h1>Lista de Productos</h1>
 		<div class="row">
-			<div class="col-3" th:each="product : ${listProducts}">
-				<div class="card custom-card" >
+			<div class="col-3" th:each="product, i : ${listProducts}">
+				<div class="card custom-card text-center" >
 
-					<img class="card-img-top" th:src="${product.img}"alt="" />
+			<a th:href="@{/products/productdetail/{idProduct}(idProduct=${product.id})}"><img class="card-img-top mx-auto" th:src="${product.img} " th:href="@{/products/productdetail/{idProduct}(idProduct=${product.id})}"alt="" /></a>
+					
 					<div class="card-body">
 						<h5 class="card-title">
 							<a
@@ -58,8 +60,8 @@
 						</h5>
 
 							<div class="text">
-								<p class="price">$ <strong th:text="${product.price}"></strong> </p>
-								<p class="card-text"><strong th:text="${product.description}"></strong></p>
+								<p class="price">$ <strong  th:text="${#numbers.formatDecimal(product.price, 0, 'COMMA', 2, 'POINT')}"></strong> </p>
+								<p class="card-text" id="description"><strong th:text="${product.description}"></strong></p>
 								<p>Stock : <strong th:text="${product.stock}"></strong></p>
 							</div>
 						<div class="d-flex justify-content-center">
@@ -68,7 +70,11 @@
 				</div>
 			</div>
 		</div>
+
 		</div>
+
+		<hr>
+
 	</div>
 	
 <div th:replace="partials/footer :: footer"></div>

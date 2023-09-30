@@ -17,45 +17,14 @@
 <body>
  
      <div class="container">
-    <h1>Form</h1>
-    <form th:object="${product}" th:action="@{/products/saveProduct}" method="post">
+    <h1>Agregar nueva categoria</h1>
+    <form th:object="${category}" th:action="@{/categories/saveCategory}" method="post">
       <div class="row">
         <div class="form-outline col-4 ">             
-   		<label class="form-label" for="nombre">Nombre:</label>
+   		<label class="form-label" for="nombre">Nombre de categoria:</label>
         <input class="form-control" type="text" id="nombre" th:field="*{name}" required><br>
         </div>
-        <div class="form-outline col-4 ">
-           <label class="form-label" for="descripcion">Descripción:</label>
-        <input class="form-control" type="text" id="descripcion" th:field="*{description}" required><br>
-        </div>
-
-        <div class="form-outline col-4">
-          <label class="form-label"  for="precio">Precio:</label>
-        <input class="form-control" type="number" id="precio" th:field="*{price}" step="0.01" required><br>
-        </div>
-
-        <div class="form-outline col-4">
-           <label class="form-label" for="imagenUrl">URL de la Imagen:</label>
-        <input class="form-control" type="text" id="imagenUrl" th:field="*{img}" required><br>
-        </div>
-         <div class="form-outline col-4">
-           <label class="form-label" for="imagenUrl">Stock:</label>
-        <input class="form-control" type="text" id="stock" th:field="*{stock}" required><br>
-        </div>
-
- 		<div class="form-group col-4">
-                <label for="opcionSeleccionada">Selecciona una categoria:</label>
-                <select class="form-control" id="opcionSeleccionada" name="opcionSeleccionada" th:field="*{category}" >
-                    <option th:each="opcion : ${categories}" th:value="${opcion.id}" th:text="${opcion.name}"></option>
-                </select>
-            </div>
-
- 		<div class="form-group col-4">
-                <label for="opcionSeleccionada">Selecciona una opción:</label>
-                <select class="form-control" id="opcionSeleccionada" name="opcionSeleccionada"  th:field="*{provider}">
-                    <option th:each="opcion : ${providers}" th:value="${opcion.id}" th:text="${opcion.name}"></option>
-                </select>
-            </div>
+        
      
 <button type="submit" name="button" id="button" class="btn btn-success btn-block mb-2">Guardar</button>
 

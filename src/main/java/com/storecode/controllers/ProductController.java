@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.storecode.models.Product;
 import com.storecode.services.CategoryService;
 import com.storecode.services.ProductService;
+import com.storecode.services.ProviderService;
 
 @Controller
 @RequestMapping("/products")
@@ -21,14 +22,16 @@ public class ProductController {
 
 	 	@Autowired
 	    private ProductService productService;
-	 	
-	 	@Autowired
-	    private CategoryService categoryService;
-	
+	 @Autowired
+	 	private CategoryService categoryService;
+	 @Autowired
+	 	private ProviderService providerService;
+	 
 	    @GetMapping("/listProducts")
 	    public String listProducts(Model model) {
 	    	model.addAttribute("listProducts", productService.getAll());
-	    	model.addAttribute("listCategories", categoryService.getAll());
+        model.addAttribute("listCategories", categoryService.getAll());
+
 	        return "product/listProducts";
 	    }
 	    
@@ -49,6 +52,7 @@ public class ProductController {
 	   	}
 	    @GetMapping("/addProduct")
 	    public String showProductForm(Model model) {
+	    	model.addAttribute("providers",providerService.getAll());
 	    	model.addAttribute("categories",categoryService.getAll());
 	        model.addAttribute("product", new Product());
 	        return "product/addProduct";
@@ -78,6 +82,7 @@ public class ProductController {
 	    public String showUpdateForm(@PathVariable("idProduct") long idProduct, Model model) {
 	    	Product product = productService.getByiId(idProduct);
 	        model.addAttribute("product", product);
+	        model.addAttribute("providers",providerService.getAll());
 	    	model.addAttribute("categories",categoryService.getAll());
 	        return "product/updateProduct";
 	    }

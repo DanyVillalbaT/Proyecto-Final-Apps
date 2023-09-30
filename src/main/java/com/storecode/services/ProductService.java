@@ -31,10 +31,15 @@ public class ProductService {
 	public void delete(Long id) {
 		productRepository.deleteById(id);
 	}
-	
+
 	public List<Product> getProductsByCategory(@Param(value = "param") int  idCategory){
 		Category category = new Category();
 		category.setId(idCategory);
 		return productRepository.findByCategory(category);
 	}
+
+	  public boolean existsByCategory(Category category) {
+	        return productRepository.existsByCategory(category);
+	    }
+
 }

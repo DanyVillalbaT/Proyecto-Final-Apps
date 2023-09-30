@@ -65,7 +65,7 @@
 				<div class="form-group col-md-6">
 					<label for="proveedor">Proveedor</label>
 					<select th:field="*{provider.id}" class="custom-select" id="proveedor">
-						<option th:each="provider : ${categories}" th:value="${provider.id}" th:text="${provider.name}"
+						<option th:each="provider : ${providers}" th:value="${provider.id}" th:text="${provider.name}"
 							th:selected="false" />
 					</select>
 					<!--span th:if="${#fields.hasErrors('proveedor.idProveedor')}" th:errors="*{proveedor.idProveedor}" class="text-danger"></span-->

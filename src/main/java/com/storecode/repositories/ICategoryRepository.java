@@ -11,4 +11,5 @@ public interface ICategoryRepository extends JpaRepository<Category, Long> {
 	
 	//public List<Category> listaCategory();
 
+	
 }

@@ -1,6 +1,6 @@
 package com.storecode.controllers;
 
-import java.util.Map;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 import com.storecode.models.Product;
 import com.storecode.services.CategoryService;
 import com.storecode.services.ProductService;
@@ -22,7 +20,7 @@ import com.storecode.services.ProviderService;
 @RequestMapping("/products")
 public class ProductController {
 
-	 @Autowired
+	 	@Autowired
 	    private ProductService productService;
 	 @Autowired
 	 	private CategoryService categoryService;
@@ -32,9 +30,18 @@ public class ProductController {
 	    @GetMapping("/listProducts")
 	    public String listProducts(Model model) {
 	    	model.addAttribute("listProducts", productService.getAll());
+        model.addAttribute("listCategories", categoryService.getAll());
 
 	        return "product/listProducts";
 	    }
+	    
+	    @GetMapping("/category/{idCategory}")
+	   	public String viewByCategory(@PathVariable("idCategory") int idCategory, Model model) {
+	   		List<Product> products = productService.getProductsByCategory(idCategory);
+	   		model.addAttribute("listProducts", products);
+	    	model.addAttribute("listCategories", categoryService.getAll());
+	   		return "product/productsByCategory";
+	   	}
 
 	    @GetMapping("/productdetail/{idProduct}")
 	   	public String viewDetail(@PathVariable("idProduct") long idProduct, Model model) {

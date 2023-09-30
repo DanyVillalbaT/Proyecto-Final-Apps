@@ -81,8 +81,7 @@ header {
   font-weight: bold;
 }
 .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
-    color: rgb(255, 187, 0);
-  
+    color: rgb(255, 187, 0);  
  
 }
 

@@ -24,14 +24,14 @@
 		<div class="p-2">
 			<h1>Lista de Categorias</h1>
 			<div class="d-flex flex-column">
-				<div class=" d-flex flex-row">
+				<!--div class=" d-flex flex-row">
 					<div>
 						#
 					</div>
 					<div>
 						Nombre
 					</div>
-				</div>
+				</div-->
 				<div class="d-flex flex-column">
 					<a th:href="@{/products/listProducts}">
 			      		<span>Todos</span>
@@ -48,9 +48,9 @@
 			<h1>Lista de Productos</h1>
 		<div class="row">
 			<div class="col-3" th:each="product, i : ${listProducts}">
-				<div class="card custom-card text-center" >
+				<div class="card custom-card text-center"  >
 
-			<a th:href="@{/products/productdetail/{idProduct}(idProduct=${product.id})}"><img class="card-img-top mx-auto" th:src="${product.img} " th:href="@{/products/productdetail/{idProduct}(idProduct=${product.id})}"alt="" /></a>
+						<a th:href="@{/products/productdetail/{idProduct}(idProduct=${product.id})}"><img class="card-img-top mx-auto" th:src="${product.img} " th:href="@{/products/productdetail/{idProduct}(idProduct=${product.id})}"alt="" /></a>
 					
 					<div class="card-body">
 						<h5 class="card-title">

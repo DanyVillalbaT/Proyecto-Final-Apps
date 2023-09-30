@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.storecode.services.CategoryService;
 import com.storecode.services.ProductService;
 
 @Controller
@@ -14,6 +15,8 @@ public class NavbarController {
 	
 	@Autowired
     private ProductService productService;
+	 @Autowired
+	 	private CategoryService categoryService;
 	
 	 @GetMapping("/home")
 	    public String home() {
@@ -22,7 +25,9 @@ public class NavbarController {
 	 @GetMapping("/product")
 	    public String products(Model model) {
 		 model.addAttribute("listProducts", productService.getAll());
+		 model.addAttribute("listCategories", categoryService.getAll());
 	        return "product/listProducts";
+	        
 	    }
 
 

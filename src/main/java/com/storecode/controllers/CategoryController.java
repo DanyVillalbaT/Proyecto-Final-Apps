@@ -78,12 +78,6 @@ public class CategoryController {
 
 	}
 
-	 @Autowired
-	 private CategoryService categoryService;
-
-	 @Autowired
-	 private ProductService productService;
-	 
 	@GetMapping("/list-categories")
 	@ResponseBody
     public String listCategories(Model model) {

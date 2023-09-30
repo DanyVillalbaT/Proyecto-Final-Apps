@@ -53,7 +53,7 @@
  		<div class="form-group col-4">
                 <label for="opcionSeleccionada">Selecciona una opción:</label>
                 <select class="form-control" id="opcionSeleccionada" name="opcionSeleccionada"  th:field="*{provider}">
-                    <option th:each="opcion : ${categories}" th:value="${opcion.id}" th:text="${opcion.name}"></option>
+                    <option th:each="opcion : ${providers}" th:value="${opcion.id}" th:text="${opcion.name}"></option>
                 </select>
             </div>
      

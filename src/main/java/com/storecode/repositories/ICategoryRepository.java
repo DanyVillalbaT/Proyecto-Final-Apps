@@ -6,4 +6,5 @@ import com.storecode.models.Category;
 
 public interface ICategoryRepository extends JpaRepository<Category, Long> {
 
+	
 }

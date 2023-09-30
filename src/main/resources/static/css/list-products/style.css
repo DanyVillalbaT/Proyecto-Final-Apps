@@ -15,8 +15,8 @@ margin-bottom: 30px;
   /*background-color: rgba(100, 99, 99, 0.279);*/
 }
 .card:hover {
-  background-color: #f8f8f8; /* Cambia el fondo en hover */
-  border-color: #007bff; /* Cambia el borde en hover */
+ /* background-color: #f8f8f8; /* Cambia el fondo en hover */
+ /* border-color: #007bff;*/ /* Cambia el borde en hover */
 }
 .card-title {
   color: rgb(255, 187, 0);
@@ -36,10 +36,22 @@ p{
 }
 .card-img-top{
 	
-  width: 100%;
-  height: 100%;
+ /* width: 100%;
+  height: 100%;*/
+   width: 216px;
+  height: 216px;
   object-fit: cover;
  
+}
+#description{
+	 white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*width:10px; /* Ajusta el ancho máximo deseado */
+    height: 30px;
+}
+.custom-card {
+  border: none; /* Elimina todos los bordes */
 }
 
 
@@ -47,4 +59,55 @@ p{
    /* background-color: rgba(128, 128, 128, 0.283);*/
     border-radius: 5%;
 
+}
+.no-overflow {
+  overflow: visible !important; /* Anula overflow: hidden y usa !important para prioridad */
+}
+
+/*
+a {
+position: relative;
+overflow: hidden;
+display: inline-block;
+text-decoration: none;
+color: #333;
+}
+a:before,
+a:after {
+content: "";
+position: absolute;
+top: 0;
+left: -100%;
+width: 100%;
+height: 2px;
+background: #333;
+transition: left .8s;
+}
+a:hover:before {
+left: 0;
+}
+a:after {
+top: auto;
+bottom: 0;
+left: auto;
+right: -100%;
+background: #333;
+transition: right .8s;
+}
+a:hover:after {
+right: 0;
+}
+*/
+a:hover{
+   font-weight: bold;
+   font-size: 25px;
+	color: darkorange;
+	transition: 0.7s;
+}
+
+.card:hover a {
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  transition: 0.75s;
+  filter: grayscale(70%);
 }

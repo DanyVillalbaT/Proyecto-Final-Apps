@@ -41,7 +41,7 @@ public class UserController {
 	    }
 	    
 	    @GetMapping("/deleteUser/{idUser}")
-	    public String deleteUser(@PathVariable("idUser") int idUser, Model model) {
+	    public String deleteUser(@PathVariable("idUser") long idUser, Model model) {
 	    	User user = userService.getByiId(idUser);
 	    	userService.delete(idUser);
 	        model.addAttribute("users", userService.getAll());
@@ -49,7 +49,7 @@ public class UserController {
 	    }
 	    
 	    @GetMapping("editUser/{idUser}")
-	    public String showUpdateForm(@PathVariable("idUser") int idUser, Model model) {
+	    public String showUpdateForm(@PathVariable("idUser") long idUser, Model model) {
 	    	User user = userService.getByiId(idUser);
 	        model.addAttribute("user", user);
 	        return "user/updateUser";
@@ -57,7 +57,7 @@ public class UserController {
 	    
 	    
 	    @PostMapping("/updateUser/{idUser}")
-	    public String updateProduct(@PathVariable("idUser") int idUser,  User user, BindingResult result, Model model) {
+	    public String updateProduct(@PathVariable("idUser") long idUser,  User user, BindingResult result, Model model) {
 		        //productService.save(product);
 		        User oldUSer = userService.getByiId(idUser);
 		        

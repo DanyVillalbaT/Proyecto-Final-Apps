@@ -31,7 +31,7 @@
 
 			<div class="row">
 				<div class="form-group col-md-6">
-					<label for="nombreProducto" class="col-form-label">Nombre Del Usuario</label> 
+					<label for="nombreUsuario" class="col-form-label">Nombre Del Usuario</label> 
 						<input type="text" th:field="*{name}" class="form-control" id="name"
 						placeholder="..." required="required"> <span th:if="${#fields.hasErrors('name')}"
 						th:errors="*{name}" class="text-danger"></span>
@@ -50,24 +50,30 @@
 		           <label class="form-label" for="document">Documento:</label>
 		        <input class="form-control" type="number" id="document" th:field="*{document}" required><br>
 		        </div>
+		        
+		        <div class="form-outline col-4">
+		           <label class="form-label" for="address">Direccion:</label>
+		        <input class="form-control" type="text" id="address" th:field="*{address}" required><br>
+		        </div>
 		
 		 		<div class="form-group col-4">
 		                <label for="opcionSeleccionada">Seleccione un rol:</label>
 		                <select class="form-control" id="opcionSeleccionada" name="opcionSeleccionada" th:field="*{rol}" >
-		                    <option value="0" id="admin" >Administrador</option>
-		                    <option value="1" id="client" >Cliente</option>
-		                    <option value="2" id="empleado" >Empleado</option>
+		                    <option value="Administrador" id="admin" >Administrador</option>
+		                    <option value="Cliente" id="client" >Cliente</option>
+		                    <option value="Empleado" id="empleado" >Empleado</option>
 		                </select>
 		            </div>
 		
-		 		 <div class="form-outline col-4">
-		           <label class="form-label" for="address">Direccion:</label>
-		        <input class="form-control" type="text" id="address" th:field="*{address}" required><br>
-		        </div>
+		        
+		        <div class="form-outline col-4">
+          <label class="form-label"  for="telephone">Telefono:</label>
+        <input class="form-control" type="number" id="telephone" th:field="*{telephone}"  required><br>
+        </div>
 		            
 		        <div class="form-outline col-4">
-		          <label class="form-label"  for="precio">ZipCode:</label>
-		        <input class="form-control" type="number" id="precio" th:field="*{zipcode}"  required><br>
+		          <label class="form-label"  for="zipCode">ZipCode:</label>
+		        <input class="form-control" type="number" id="zipCode" th:field="*{zipCode}"  required><br>
 		        </div>
 
 				<!--div class="form-group ">

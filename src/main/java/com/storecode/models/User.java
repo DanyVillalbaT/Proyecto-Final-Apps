@@ -12,7 +12,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "user_id")
-	private int id;
+	private long id;
 	
 	@Column(name = "user_name")
 	private String name;
@@ -33,7 +33,7 @@ public class User {
 	private String rol;
 	
 	@Column(name = "user_telephone")
-	private int telephone;
+	private String telephone;
 	
 	@Column(name = "user_zip")
 	private int zipCode;
@@ -42,8 +42,8 @@ public class User {
 		super();
 	}
 
-	public User(int id, String name, String email, String password, String document, String address, String rol,
-			int telephone, int zipCode) {
+	public User(long id, String name, String email, String password, String document, String address, String rol,
+			String telephone, int zipCode) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -56,11 +56,11 @@ public class User {
 		this.zipCode = zipCode;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -112,11 +112,11 @@ public class User {
 		this.rol = rol;
 	}
 
-	public int getTelephone() {
+	public String getTelephone() {
 		return telephone;
 	}
 
-	public void setTelephone(int telephone) {
+	public void setTelephone(String telephone) {
 		this.telephone = telephone;
 	}
 

@@ -36,10 +36,19 @@ p{
 }
 .card-img-top{
 	
-  width: 100%;
-  height: 100%;
+ /* width: 100%;
+  height: 100%;*/
+   width: 216px;
+  height: 216px;
   object-fit: cover;
  
+}
+#description{
+	 white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*width:10px; /* Ajusta el ancho máximo deseado */
+    height: 30px;
 }
 .custom-card {
   border: none; /* Elimina todos los bordes */
@@ -52,4 +61,19 @@ p{
 }
 .no-overflow {
   overflow: visible !important; /* Anula overflow: hidden y usa !important para prioridad */
+}
+
+
+a:hover{
+   font-weight: bold;
+   /*font-size: 25px;*/
+	color: darkorange;
+	transition: 0.7s;
+}
+
+.card:hover a {
+  -webkit-transform: scale(0.8);
+  transform: scale(0.8);
+  transition: 0.75s;
+  filter: grayscale(70%);
 }

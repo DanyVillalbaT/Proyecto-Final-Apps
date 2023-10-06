@@ -32,6 +32,8 @@ public class ShoppingCartController {
 	
 	private User user;
 	
+	
+	//Method to add a product to the shopping cart
 	@PostMapping("/user/addProductCart")
 	public String addProducts(@RequestParam(value = "idProduct") long idProduct, 
 			@RequestParam(value = "quantity") int quantity, Model model) {
@@ -44,23 +46,33 @@ public class ShoppingCartController {
 		}
 		
 		Product product = productService.getByiId(idProduct);
-		String mensaje = null;
+		String message = null;
 		ItemCart itemCart = null;
 		if(itemCartService.existsByShoppingCartAndProduct(shoppingCart, product)) {
-			mensaje = "El producto seleccionado ya se encuentra en el carrito de compras";
+			message = "El producto seleccionado ya se encuentra en el carrito de compras";
+			model.addAttribute("product", product);
+			model.addAttribute("mensaje", message);
+			return "product/detailProduct";
 		}else {
-			itemCart = new ItemCart();
-			itemCart.setProduct(product);
-			itemCart.setQuantityItems(quantity);
-			double accumulatedValue = itemCart.getQuantityItems() * itemCart.getProduct().getPrice();
-			itemCart.setAccumulatedValue(accumulatedValue);
-			itemCart.setShoppingCart(shoppingCart);
+			if (quantity > product.getStock()) {
+				message = "La cantidad escogida sobrepasa el stock disponible del producto";
+				model.addAttribute("product", product);
+				model.addAttribute("mensaje", message);
+				return "product/detailProduct";
+			}else {
+				itemCart = new ItemCart();
+				itemCart.setProduct(product);
+				itemCart.setQuantityItems(quantity);
+				double accumulatedValue = itemCart.getQuantityItems() * itemCart.getProduct().getPrice();
+				itemCart.setAccumulatedValue(accumulatedValue);
+				itemCart.setShoppingCart(shoppingCart);
+				
+				model.addAttribute("product", product);
+				model.addAttribute("itemCart", itemCart);
+				
+				return "shoppingCart/addProductCart";
+			}
 		}
-		
-		model.addAttribute("mensaje", mensaje);
-		model.addAttribute("itemCart", itemCart);
-		
-		return "ShoppingCart/addProductCart";
 		
 	}
 }

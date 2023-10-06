@@ -21,17 +21,18 @@ public class UserController {
 	 	@Autowired
 	    private UserService userService;
 	 	
-	    @GetMapping("/addUser")
+	    @GetMapping("/login")
 	    public String showUserForm(Model model) {
 	        model.addAttribute("user", new User());
-	        return "user/addUser";
+	    	model.addAttribute("users", userService.getAll());
+	        return "user/login";
 	    }
 
 	    @PostMapping("/saveUser")
 	    public String saveUser(@ModelAttribute User user, Model model) {
 	    	userService.save(user);
 	        System.out.println("Usuario guardado: " + user.getName());
-	        return "redirect:/users/usersTable"; // Redirecciona al formulario después de guardar
+	        return "redirect:/users/login"; // Redirecciona al formulario después de guardar
 	    }
 	    
 	    @GetMapping("/usersTable")
@@ -45,7 +46,7 @@ public class UserController {
 	    	User user = userService.getByiId(idUser);
 	    	userService.delete(idUser);
 	        model.addAttribute("users", userService.getAll());
-	        return "redirect:/users/usersTable";
+	        return "redirect:/users/login";
 	    }
 	    
 	    @GetMapping("editUser/{idUser}")
@@ -72,7 +73,7 @@ public class UserController {
 		        
 		        userService.save(oldUSer);
 		        model.addAttribute("users",userService.getAll());
-		        return "redirect:/users/usersTable";
+		        return "redirect:/users/login";
 	    
 	    }
 	    

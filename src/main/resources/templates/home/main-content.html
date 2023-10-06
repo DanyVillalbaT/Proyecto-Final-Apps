@@ -12,10 +12,18 @@
 </head>
 
 <body>
-	<div th:replace="partials/header :: header"></div>
-	<div class="container">
+	<div th:if="${estado == 'activo'}">
+    <p>El estado está activo.</p>
+    <div th:replace="partials/headerAdmin :: header"></div>
+</div>
+<div th:if="${estado == 'desactivo'}">
+    <div th:replace="partials/header :: header"></div>
+    <div class="container">
 		<h1>HOME</h1>
 	</div>
+</div>
+	
+	
 <div th:replace="partials/footer :: footer"></div>
 
 </body>

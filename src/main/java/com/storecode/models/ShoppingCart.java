@@ -27,10 +27,10 @@ public class ShoppingCart {
 		super();
 	}
 	
-	public ShoppingCart(long id, double totalValueItems, User user) {
+	public ShoppingCart(long id, User user) {
 		super();
 		this.id = id;
-		this.totalValueItems = calculateTotalValueItems();
+		this.totalValueItems = 0;
 		this.user = user;
 	}
 
@@ -56,12 +56,6 @@ public class ShoppingCart {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	public double calculateTotalValueItems() {
-		totalValueItems = 0;
-		//Aquí va todo el proceso para hallar el cálculo
-		return totalValueItems;
 	}
 	
 }

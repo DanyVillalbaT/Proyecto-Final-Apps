@@ -33,8 +33,8 @@
 				</div>
 			</div>
 			<div class="col-6 d-flex align-items-center">
-				<form class="form-horizontal" method="post" th:action="@{/user/addProductCart}">
-
+				<form class="form-horizontal" method="post" th:action="@{/shoppingcarts/user/addProductCart}">
+					<input type="hidden" th:value="${product.id}" th:name="id">
 					<div class="form-group price_elem row">
 						<h5 class="col-sm-3 col-md-3 form-control-label">Precio:</h5>
 						<div class="col-sm-8 col-md-9">
@@ -59,23 +59,22 @@
 					<div class="form-group stock_elem row">
 						<h5 class="col-sm-3 col-md-3 form-control-label">Stock:</h5>
 						<div class="col-sm-8 col-md-9">
-							<span class="product-form-stock" id="product-form-stock" th:text="${product.stock}" th:name="idProduct"></span>
+							<span class="product-form-stock" id="product-form-stock" th:text="${product.stock}"></span>
 						</div>
 					</div>
 					<div class="form-group stock_elem row">
 						<h5 class="col-sm-3 col-md-3 form-control-label">Cantidad:</h5>
 						<div class="col-sm-8 col-md-9">
-							<input type="number" min="1" pattern="^[0-9]+" placeholder="1" value="1" th:name="quantity" class="product-form-quantity" id="product-form-quantity" required>
+							<input type="number" onkeydown="return event.key !== '-' && event.key !== '.'" min="1" step="1" placeholder="1" value="1" name="quantity" class="product-form-quantity" id="product-form-quantity" required>
 							<span th:if="${message} != null" th:text="${mensaje}" class="text-danger"></span>
 						</div>
 					</div>
 					<div class="form-group stock_elem row">
-						<span th:if="${log == null}">Inicie sesión para añadir el producto al carrito</span>
-						<input th:if="${log != null}" type="submit" class="addProduct-btn-add adc btn btn-primary" value="Agregar Producto">
+						<span th:if="${log == 0}">Inicie sesión para añadir el producto al carrito</span>
+						<input th:if="${log != 0}" type="submit" class="addProduct-btn-add adc btn btn-primary" value="Agregar Producto">
 					</div>
-
+				</form>
 			</div>
-			</form>
 
 		</div>
 	</div>

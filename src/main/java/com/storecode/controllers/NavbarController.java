@@ -15,6 +15,7 @@ import com.storecode.services.CategoryService;
 import com.storecode.services.ItemCartService;
 import com.storecode.services.ProductService;
 import com.storecode.services.ShoppingCartService;
+import com.storecode.services.UserService;
 
 @Controller
 @RequestMapping("/navbar")
@@ -28,6 +29,8 @@ public class NavbarController {
 	private ShoppingCartService shoppingCartService;
 	@Autowired
 	private ItemCartService itemCartService;
+	@Autowired
+	private UserService userService;
 
 	@GetMapping("/home")
 	public String home() {
@@ -45,8 +48,8 @@ public class NavbarController {
 	@GetMapping("/shopping-cart")
 	public String showShoppingCart(Model model) {
 
-		User user = null;
-		ShoppingCart shoppingCart = shoppingCartService.existsByUser(user);
+		User user = userService.getByiId(1);
+		ShoppingCart shoppingCart = shoppingCartService.findByUser(user);
 		List<ItemCart> itemsCart = null;
 		String message = null;
 		if (shoppingCart == null) {
@@ -58,14 +61,14 @@ public class NavbarController {
 			model.addAttribute("mensaje", message);
 			model.addAttribute("itemsCart", itemsCart);
 			model.addAttribute("totalAmount", shoppingCart.getTotalValueItems());
-			return "shoppingCart/productCart";
+			return "shoppingCart/shoppingCart";
 		} else {
 			itemsCart = itemCartService.getByShoppingCart(shoppingCart);
 
 			model.addAttribute("mensaje", message);
 			model.addAttribute("itemsCart", itemsCart);
 			model.addAttribute("totalAmount", shoppingCart.getTotalValueItems());
-			return "shoppingCart/productCart";
+			return "shoppingCart/shoppingCart";
 		}
 
 	}

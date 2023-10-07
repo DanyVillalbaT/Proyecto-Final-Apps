@@ -50,14 +50,14 @@
 									<td th:text="${itemCart.product.description}"></td>
 									<td th:text="${itemCart.product.price}"></td>
 									<td th:text="${itemCart.quantityItems}"></td>
-									<td><a th:href="@{/user/addOne/{idItemCart}(idItemCart=${itemCart.id})}"
+									<td><a th:href="@{/shoppingcarts/user/addOne/{idItemCart}(idItemCart=${itemCart.id})}"
 											class="btn btn-success"><i class="fas fa-plus-circle ml-1 mr-1"></i></a>
 									</td>
-									<td><a th:href="@{/user/removeOne/{idItemCart}(idItemCart=${idItemCart=${itemCart.id})}"
+									<td><a th:href="@{/user/removeOne/{idItemCart}(idItemCart=${itemCart.id})}"
 											class="btn btn-danger"><i class="fas fa-minus-circle ml-1 mr-1"></i></a>
 									</td>
 									<td th:text="${itemCart.accumulatedValue}"></td>
-									<td><a th:href="@{/user/deleteItem/{idItemCart}(idItemCart=${idItemCart=${itemCart.id})}"
+									<td><a th:href="@{/user/deleteItem/{idItemCart}(idItemCart=${itemCart.id})}"
 											class="btn btn-warning"><i class="fas fa-times ml-3 mr-3"></i></a></td>
 								</tr>
 								<tr th:if="${message != null}"><span th:text="${mensaje}" class="text-danger"></tr>

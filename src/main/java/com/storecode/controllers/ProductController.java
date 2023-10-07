@@ -27,7 +27,7 @@ public class ProductController {
 	@Autowired
 	private ProviderService providerService;
 	
-	private String log;
+	private long log;
 
 	@GetMapping("/listProducts")
 	public String listProducts(Model model) {
@@ -50,7 +50,7 @@ public class ProductController {
 		System.out.println("variable " + idProduct);
 		Product product = productService.getByiId(idProduct);
 		model.addAttribute("product", product);
-		log = null;
+		log = 1;
 		System.out.println(log);
 		model.addAttribute("log", log);
 		return "product/detailProduct";

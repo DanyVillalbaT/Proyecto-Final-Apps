@@ -7,6 +7,6 @@ import com.storecode.models.User;
 
 public interface IShoppingCartRepository extends JpaRepository<ShoppingCart, Long>{
 	
-	ShoppingCart existsByUser(User user);
+	ShoppingCart findByUser(User user);
 
 }

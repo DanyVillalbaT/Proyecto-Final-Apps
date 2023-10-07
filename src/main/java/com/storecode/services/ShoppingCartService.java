@@ -25,8 +25,8 @@ public class ShoppingCartService {
 		shoppingCartRepository.deleteById(id);
 	}
 	
-	public ShoppingCart existsByUser(User user) {
-		return shoppingCartRepository.existsByUser(user);
+	public ShoppingCart findByUser(User user) {
+		return shoppingCartRepository.findByUser(user);
 	}
 
 }

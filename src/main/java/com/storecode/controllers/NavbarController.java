@@ -34,11 +34,6 @@ public class NavbarController {
 	private ProductService productService;
 	@Autowired
 	private CategoryService categoryService;
-	@Autowired
-
-    private ProductService productService;
-	 @Autowired
-	 	private CategoryService categoryService;
 	 @Autowired
 		private ProviderService providerService;
 		@Autowired
@@ -90,24 +85,14 @@ public class NavbarController {
 	    }
 	 
 
+	 @Autowired
 	private ShoppingCartService shoppingCartService;
 	@Autowired
 	private ItemCartService itemCartService;
-	@Autowired
-	private UserService userService;
+	
+	
 
-	@GetMapping("/home")
-	public String home() {
-		return "home/main-content";
-	}
-
-	@GetMapping("/product")
-	public String products(Model model) {
-		model.addAttribute("listProducts", productService.getAll());
-		model.addAttribute("listCategories", categoryService.getAll());
-		return "product/listProducts";
-
-	}
+	
 
 	@GetMapping("/shopping-cart")
 	public String showShoppingCart(Model model) {

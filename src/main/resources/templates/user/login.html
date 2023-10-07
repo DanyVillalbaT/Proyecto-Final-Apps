@@ -12,11 +12,17 @@
  	cDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="static/css/partials/style.css" th:href="@{/css/partials/style.css}">
 </head>
+<style>
+	h2,h4{
+		padding: 20px 0;
+	}
+</style>
 
 <body>
 
 	<div class="container">
 		<div class="row">
+			<h2 class="text-center">INICIO DE SESIÓN</h2>
 			<div class="col-md-6 mx-auto p-0">
 
 				<div class="login-box">
@@ -51,6 +57,10 @@
 								<div class="hr"></div>
 
 							</div>
+							<br>
+							<hr>
+							<br>
+							<h4 class="text-center">¿No tienes cuenta? Registrate</h4>
 							<div class="sign-up-form">
 								<form th:object="${user}" th:action="@{/users/saveUser}" method="post">
 									<div class="row">

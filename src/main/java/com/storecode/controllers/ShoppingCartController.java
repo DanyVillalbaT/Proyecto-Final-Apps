@@ -15,6 +15,7 @@ import com.storecode.models.ItemCart;
 import com.storecode.models.Product;
 import com.storecode.models.ShoppingCart;
 import com.storecode.models.User;
+import com.storecode.models.UserSessionSingleton;
 import com.storecode.services.ItemCartService;
 import com.storecode.services.ProductService;
 import com.storecode.services.ShoppingCartService;
@@ -32,8 +33,6 @@ public class ShoppingCartController {
 
 	@Autowired
 	private ProductService productService;
-	@Autowired
-	private UserService userService;
 
 	private User user;
 
@@ -41,7 +40,7 @@ public class ShoppingCartController {
 	@PostMapping("/user/addProductCart")
 	public String addProducts(@RequestParam(value = "id") long idProduct,
 			@RequestParam(value = "quantity") int quantity, Model model) {
-		user = userService.getByiId(1);
+		user = UserSessionSingleton.getINSTANCIA().getUserSession();
 		ShoppingCart shoppingCart = shoppingCartService.findByUser(user);
 		if (shoppingCart == null) {
 			shoppingCart = new ShoppingCart();

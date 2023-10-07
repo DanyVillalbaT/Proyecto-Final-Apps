@@ -17,7 +17,7 @@ public class ItemCart {
 	@Column(name = "item_id")
 	private long id;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "item_product")
 	Product product;
 	

@@ -17,7 +17,7 @@ public class ShoppingCart {
 	private long id;
 	
 	@Column(name = "cart_total_value")
-	private double totalValueItems;
+	private int totalValueItems;
 	
 	@OneToOne
 	@JoinColumn(name = "cart_user")
@@ -27,10 +27,10 @@ public class ShoppingCart {
 		super();
 	}
 	
-	public ShoppingCart(long id, double totalValueItems, User user) {
+	public ShoppingCart(long id, User user) {
 		super();
 		this.id = id;
-		this.totalValueItems = calculateTotalValueItems();
+		this.totalValueItems = 0;
 		this.user = user;
 	}
 
@@ -42,11 +42,11 @@ public class ShoppingCart {
 		this.id = id;
 	}
 
-	public double getTotalValueItems() {
+	public int getTotalValueItems() {
 		return totalValueItems;
 	}
 
-	public void setTotalValueItems(double totalValueItems) {
+	public void setTotalValueItems(int totalValueItems) {
 		this.totalValueItems = totalValueItems;
 	}
 
@@ -56,12 +56,6 @@ public class ShoppingCart {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	public double calculateTotalValueItems() {
-		totalValueItems = 0;
-		//Aquí va todo el proceso para hallar el cálculo
-		return totalValueItems;
 	}
 	
 }

@@ -19,7 +19,7 @@ margin-bottom: 30px;
  /* border-color: #007bff;*/ /* Cambia el borde en hover */
 }
 .card-title {
-  color: rgb(255, 187, 0);
+  color: #E51B23;
   font-weight: bold;
   text-align: center;
 }
@@ -29,7 +29,7 @@ p{
   padding: 0;
 }
 .price{
-	 color: rgb(0, 0, 0);
+	 color: #E51B23;
   font-weight: bold;
   font-size: 25px;
   text-align: center;
@@ -67,7 +67,7 @@ p{
 a:hover{
    font-weight: bold;
    /*font-size: 25px;*/
-	color: darkorange;
+	color: #E51B23;
 	transition: 0.7s;
 }
 
@@ -76,4 +76,7 @@ a:hover{
   transform: scale(0.8);
   transition: 0.75s;
   filter: grayscale(70%);
+}
+.stock{
+	color: #03A650;
 }

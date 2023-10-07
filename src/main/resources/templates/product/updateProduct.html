@@ -49,7 +49,7 @@
 				</div>
 				<div class="form-group col-md-6">
 					<label for="stock" class="col-form-label">Stock</label> <input type="number" th:field="*{stock}"
-						class="form-control" id="stock" placeholder="0" required="required"> <span
+						class="form-control" id="stock" placeholder="0" required="required" min="0" onkeydown="return event.key !== '-' && event.key !== '.'"> <span
 						th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}" class="text-danger"></span>
 				</div>
 

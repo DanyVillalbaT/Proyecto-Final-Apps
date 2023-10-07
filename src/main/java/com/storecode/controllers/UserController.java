@@ -24,7 +24,6 @@ public class UserController {
 	    @GetMapping("/login")
 	    public String showUserForm(Model model) {
 	        model.addAttribute("user", new User());
-	    	model.addAttribute("users", userService.getAll());
 	        return "user/login";
 	    }
 
@@ -46,7 +45,7 @@ public class UserController {
 	    	User user = userService.getByiId(idUser);
 	    	userService.delete(idUser);
 	        model.addAttribute("users", userService.getAll());
-	        return "redirect:/users/login";
+	        return "redirect:/users/usersTable";
 	    }
 	    
 	    @GetMapping("editUser/{idUser}")
@@ -73,7 +72,7 @@ public class UserController {
 		        
 		        userService.save(oldUSer);
 		        model.addAttribute("users",userService.getAll());
-		        return "redirect:/users/login";
+		        return "redirect:/users/usersTable";
 	    
 	    }
 	    

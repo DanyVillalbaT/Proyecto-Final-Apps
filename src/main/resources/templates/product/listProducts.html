@@ -22,30 +22,24 @@
 	<div class="container">
 
 		<div class="p-2">
-			<h1>Lista de Categorias</h1>
-			<div class="d-flex flex-column">
-				<!--div class=" d-flex flex-row">
-					<div>
-						#
-					</div>
-					<div>
-						Nombre
-					</div>
-				</div-->
-				<div class="d-flex flex-column">
-					<a th:href="@{/products/listProducts}">
+			<h5 class="text-center">Categorias</h5>
+			<br>
+			
+				<div class="row">
+					<a class="catego col-2" th:href="@{/products/listProducts}">
 			      		<span>Todos</span>
 					</a>
-			    	<a  th:each="category : ${listCategories}" th:href="@{/products/category/{idCategory}(idCategory=${category.id})}">
-			      		<span th:text="${category.id}"></span>
+			    	<a class="catego col-2" th:each="category : ${listCategories}" th:href="@{/products/category/{idCategory}(idCategory=${category.id})}">
 			      		<span th:text="${category.name}"></span>
 					</a>
 				</div>
-			</div>
+			
 		</div>	
+		<br>
+		<hr>
     
 		<div class="p-2">
-			<h1>Lista de Productos</h1>
+			<!--h1>Lista de Productos</h1-->
 		<div class="row">
 			<div class="col-3" th:each="product, i : ${listProducts}">
 				<div class="card custom-card text-center"  >
@@ -77,6 +71,7 @@
 		<hr>
 
 	</div>
+	<br>
 	
 <div th:replace="partials/footer :: footer"></div>
 </body>

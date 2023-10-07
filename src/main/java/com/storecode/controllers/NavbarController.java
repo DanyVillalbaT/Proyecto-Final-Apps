@@ -28,8 +28,8 @@ public class NavbarController {
 	
 	 @GetMapping("/home")
 	    public String home(Model model) {
-		 String estado = "activo";
-	        model.addAttribute("estado", estado);
+		 String cargo = "Cliente";
+	        model.addAttribute("cargo", cargo);
 	        return "home/main-content";
 	    }
 	 @GetMapping("/product")

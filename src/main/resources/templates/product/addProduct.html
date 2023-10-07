@@ -15,7 +15,7 @@
 	th:href="@{/css/partials/style.css}">
 </head>
 <body>
- 
+
      <div class="container">
     <h1>Form</h1>
     <form th:object="${product}" th:action="@{/products/saveProduct}" method="post">
@@ -31,7 +31,7 @@
 
         <div class="form-outline col-4">
           <label class="form-label"  for="precio">Precio:</label>
-        <input class="form-control" type="number" id="precio" th:field="*{price}" step="0.01" required><br>
+        <input class="form-control" type="number" id="precio" th:field="*{price}" step="0.01" onkeydown="return event.key !== '-' && event.key !== '.'" required><br>
         </div>
 
         <div class="form-outline col-4">

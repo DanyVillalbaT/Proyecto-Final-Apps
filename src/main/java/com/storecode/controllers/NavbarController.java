@@ -107,6 +107,7 @@ public class NavbarController {
 			shoppingCart.setTotalValueItems(0);
 			shoppingCartService.save(shoppingCart);
 
+			
 			model.addAttribute("mensaje", message);
 			model.addAttribute("itemsCart", itemsCart);
 			model.addAttribute("totalAmount", shoppingCart.getTotalValueItems());

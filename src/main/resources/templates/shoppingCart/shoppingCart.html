@@ -51,14 +51,14 @@
 									<td th:text="${itemCart.product.price}"></td>
 									<td th:text="${itemCart.quantityItems}"></td>
 									<td><a th:href="@{/shoppingcarts/user/addOne/{idItemCart}(idItemCart=${itemCart.id})}"
-											class="btn btn-success"><i class="fas fa-plus-circle ml-1 mr-1"></i></a>
+											class="btn btn-success"><i class="bi bi-plus-circle-fill"></i></a>
 									</td>
 									<td><a th:href="@{/shoppingcarts/user/removeOne/{idItemCart}(idItemCart=${itemCart.id})}"
-											class="btn btn-danger"><i class="fas fa-minus-circle ml-1 mr-1"></i></a>
+											class="btn btn-danger"><i class="bi bi-x-circle-fill"></i></a>
 									</td>
 									<td th:text="${itemCart.accumulatedValue}"></td>
 									<td><a th:href="@{/shoppingcarts/user/deleteItem/{idItemCart}(idItemCart=${itemCart.id})}"
-											class="btn btn-warning"><i class="fas fa-times ml-3 mr-3"></i></a></td>
+											class="btn btn-warning"><i class="bi bi-trash3-fill"></i></a></td>
 								</tr>
 								<tr th:if="${message != null}"><span th:text="${mensaje}" class="text-danger"></tr>
 

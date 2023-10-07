@@ -109,6 +109,7 @@ public class NavbarController {
 			
 			 model.addAttribute("user",user);
 
+			
 			model.addAttribute("mensaje", message);
 			model.addAttribute("itemsCart", itemsCart);
 			model.addAttribute("totalAmount", shoppingCart.getTotalValueItems());

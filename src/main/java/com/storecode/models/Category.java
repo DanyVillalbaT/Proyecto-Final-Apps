@@ -1,6 +1,5 @@
 package com.storecode.models;
 
-import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,7 +30,7 @@ public class Category {
 	}
 
 	public long getId() {
-		return id;
+		return this.id;
 	}
 
 
@@ -41,7 +40,7 @@ public class Category {
 
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 

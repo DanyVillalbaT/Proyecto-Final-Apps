@@ -3,8 +3,10 @@ package com.storecode.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
+import com.storecode.models.Category;
 import com.storecode.models.Product;
 import com.storecode.repositories.IProductRepository;
 
@@ -29,4 +31,15 @@ public class ProductService {
 	public void delete(Long id) {
 		productRepository.deleteById(id);
 	}
+
+	public List<Product> getProductsByCategory(@Param(value = "param") int  idCategory){
+		Category category = new Category();
+		category.setId(idCategory);
+		return productRepository.findByCategory(category);
+	}
+
+	  public boolean existsByCategory(Category category) {
+	        return productRepository.existsByCategory(category);
+	    }
+
 }

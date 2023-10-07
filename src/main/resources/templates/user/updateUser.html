@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+		integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css"
+		integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+	<title>Index Admin</title>
+</head>
+
+<body>
+	<!-- Menu para Todas las Vistas de Administrador-->
+
+	<!--Fin del Menu de Administrador-->
+	<!-- Inicio del Cuerpo de la Pagina -->
+
+	<br>
+	<div class="container text-center">
+		<h1>Actualizacion de Usuario</h1>
+		<hr>
+	</div>
+	<br>
+	<div class="container">
+		<form th:action="@{/users/updateUser/{idUser}(idUser=${user.id})}" th:object="${user}" method="post">
+			<!--input type="hidden" id="agregarUrl" th:field="*{urlFoto}" th:value="${product.img}">
+            <input type="hidden" id="cambioUrl" name="cambioUrl" value="false"-->
+
+			<div class="row">
+				<div class="form-group col-md-6">
+					<label for="nombreUsuario" class="col-form-label">Nombre Del Usuario</label> 
+						<input type="text" th:field="*{name}" class="form-control" id="name"
+						placeholder="..." required="required"> <span th:if="${#fields.hasErrors('name')}"
+						th:errors="*{name}" class="text-danger"></span>
+				</div>
+				 <div class="form-outline col-4 ">
+		           <label class="form-label" for="email">Correo:</label>
+		        <input class="form-control" type="email" id="email" th:field="*{email}" required><br>
+		        </div>
+		
+		        <div class="form-outline col-4">
+		           <label class="form-label" for="password">Contraseña</label>
+		        <input class="form-control" type="text" id="password" th:field="*{password}" required><br>
+		        </div>
+		        
+		         <div class="form-outline col-4">
+		           <label class="form-label" for="document">Documento:</label>
+		        <input class="form-control" type="number" id="document" th:field="*{document}" required><br>
+		        </div>
+		        
+		        <div class="form-outline col-4">
+		           <label class="form-label" for="address">Direccion:</label>
+		        <input class="form-control" type="text" id="address" th:field="*{address}" required><br>
+		        </div>
+		
+		 		<div class="form-group col-4">
+		                <label for="opcionSeleccionada">Seleccione un rol:</label>
+		                <select class="form-control" id="opcionSeleccionada" name="opcionSeleccionada" th:field="*{rol}" >
+		                    <option value="Administrador" id="admin" >Administrador</option>
+		                    <option value="Cliente" id="client" >Cliente</option>
+		                    <option value="Empleado" id="empleado" >Empleado</option>
+		                </select>
+		            </div>
+		
+		        
+		        <div class="form-outline col-4">
+          <label class="form-label"  for="telephone">Telefono:</label>
+        <input class="form-control" type="number" id="telephone" th:field="*{telephone}"  required><br>
+        </div>
+		            
+		        <div class="form-outline col-4">
+		          <label class="form-label"  for="zipCode">ZipCode:</label>
+		        <input class="form-control" type="number" id="zipCode" th:field="*{zipCode}"  required><br>
+		        </div>
+
+				<!--div class="form-group ">
+    				<label  for="file-upload" class="subir btn btn-primary" >
+    					<i class="fas fa-cloud-upload-alt" ></i> 
+					</label>
+    				<input type="file" id="file-upload" accept="image/*" class="form-control-file" style='display: none;' name="file">
+    				<div id="zona">
+  						<img id="imcargar" th:src="${product.img}"    alt="${product.img}" class="img-fluid rounded mt-2" style='width: 12rem; heigth: auto;' >
+  					</div>
+  				</div-->
+
+
+
+			</div>
+
+			<button type="submit" class="btn btn-primary" th:value="#{updateUser-btn-update}">Actualizar
+				Usuario</button>
+		</form>
+	</div>
+	<!-- Fin del Cuerpo de la Pagina -->
+	<br>
+	<br>
+	<br>
+
+	<!-- Footer -->
+
+	<!-- Fin del Footer -->
+
+
+</body>
+
+</html>

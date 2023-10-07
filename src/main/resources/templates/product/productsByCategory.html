@@ -20,10 +20,34 @@
 <body>
 	<div th:replace="partials/header :: header"></div>
 	<div class="container">
-		<h1>Lista de Productos</h1>
+		<div class="p-2">
+			<h1>Lista de Categorias</h1>
+			<div class="d-flex flex-column">
+				<!--div class=" d-flex flex-row">
+					<div>
+						#
+					</div>
+					<div>
+						Nombre
+					</div>
+				</div-->
+				<div class="d-flex flex-column">
+					<a th:href="@{/products/listProducts}">
+			      		<span>Todos</span>
+					</a>
+			    	<a  th:each="category : ${listCategories}" th:href="@{/products/category/{idCategory}(idCategory=${category.id})}">
+			      		<span th:text="${category.id}"></span>
+			      		<span th:text="${category.name}"></span>
+					</a>
+				</div>
+			</div>
+		</div>	
+    
+		<div class="p-2">
+			<h1>Lista de Productos</h1>
 		<div class="row">
 			<div class="col-3" th:each="product : ${listProducts}">
-				<div class="card" >
+				<div class="card custom-card" >
 
 					<img class="card-img-top" th:src="${product.img}"alt="" />
 					<div class="card-body">
@@ -44,8 +68,10 @@
 				</div>
 			</div>
 		</div>
+		</div>
 	</div>
-
+	
+<div th:replace="partials/footer :: footer"></div>
 </body>
 
 </html>

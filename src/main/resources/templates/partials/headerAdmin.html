@@ -1,82 +1,77 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-  <title>HOLA MUNDO</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
- 
-  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-   <link rel="stylesheet" type="text/css" href="static/css/partials/style.css"
-	th:href="@{/css/partials/style.css}">
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+	<meta http-equiv="Pragma" content="no-cache" />
+	<meta http-equiv="Expires" content="0" />
+	<title>HOLA MUNDO</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
-</style>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="static/css/partials/style.css" th:href="@{/css/partials/style.css}">
+
+	</style>
 </head>
-  <body>
-  <div class=" ">
-      <header>
-        <div class="head-row">
-          <nav id="navbar" class="navbar navbar-expand-lg container">
-          
-            <div class="container-fluid d-flex justify-content-between row">
-           
-          
-              <button
-                class="navbar-toggler col-3"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#navbarNav"
-                aria-controls="navbarNav"
-                aria-expanded="false"
-                aria-label="Toggle navigation"
-              >
-                <span class="navbar-toggler-icon">MENÚ</span>
-              </button>
 
-              
-              <div class="collapse navbar-collapse row " id="navbarNav">
-              
-               <img id="logo"class="navbar-brand col-2" src="../../static/img/logo.png"  th:src="@{/img/logo.png}"alt="">
-                <ul class="navbar-nav col row ">
-                  
-                  <li class="text-center nav-item col-sm-2 col-md-2 col-lg-2">
-                    <a class="" aria-current="page"  href="/navbar/home">Home</a>
-                  </li>
-                  <li class="text-center nav-item col-sm-2 col-md-2 col-lg-2">
-                    <a class="" aria-current="page"  href="/navbar/productsTable">Productos</a>
-                  </li>
-                  <li class="text-center nav-item col-sm-2 col-md-2 col-lg-2">
-                    <a class="" aria-current="page" href="/navbar/categoriesTable">Categorias</a>
-                  </li>
-                  <li class="text-center nav-item col-sm-2 col-md-2 col-lg-2">
-                    <a class="" aria-current="page"  href="/navbar/listProviders">Provedores</a>
-                  </li>
-                   <li class="text-center nav-item col-sm-2 col-md-2 col-lg-2">
-                    <a class="" aria-current="page" href="/navbar/usersTable">Usuarios</a>
-                  </li>
-       
-                 
-                  <li class="text-center nav-item col-sm-2 col-md-2 col-lg-2">
-                    <a class="" aria-current="page" href="#">Login<i class="bi bi-person-dash"></i></a>
-                    
-                  </li>
-               
+<body>
+	<div class=" ">
+		<header>
+			<div class="head-row">
+				<nav id="navbar" class="navbar navbar-expand-lg container">
 
-                 
-                </ul>
-                
-              </div>
-            </div>
-          </nav>
-        </div>
-      </header>
-      </div>
-  </body>
+					<div class="container-fluid d-flex justify-content-between row">
+
+
+						<button class="navbar-toggler col-3" type="button" data-bs-toggle="collapse"
+							data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+							aria-label="Toggle navigation">
+							<span class="navbar-toggler-icon">MENÚ</span>
+						</button>
+
+
+						<div class="collapse navbar-collapse row " id="navbarNav">
+
+							<img id="logo" class="navbar-brand col-2" src="../../static/img/logo.png"
+								th:src="@{/img/logo.png}" alt="">
+							<ul class="navbar-nav col row ">
+
+								<li class="text-center nav-item col-sm-2 col-md-2 col-lg-2">
+									<a class="" aria-current="page" href="/navbar/home">Home</a>
+								</li>
+								<li class="text-center nav-item col-sm-2 col-md-2 col-lg-2">
+									<a class="" aria-current="page" href="/navbar/productsTable">Productos</a>
+								</li>
+								<li class="text-center nav-item col-sm-2 col-md-2 col-lg-2">
+									<a class="" aria-current="page" href="/navbar/categoriesTable">Categorias</a>
+								</li>
+								<li class="text-center nav-item col-sm-2 col-md-2 col-lg-2">
+									<a class="" aria-current="page" href="/navbar/listProviders">Provedores</a>
+								</li>
+								<li class="text-center nav-item col-sm-2 col-md-2 col-lg-2">
+									<a class="" aria-current="page" href="/navbar/usersTable">Usuarios</a>
+								</li>
+
+								<li class="nav-item col">
+									<a class="" aria-current="page" href="/navbar/logOut">Salir</a>
+								</li>
+
+
+
+							</ul>
+
+						</div>
+					</div>
+				</nav>
+			</div>
+		</header>
+	</div>
+</body>
+
 </html>

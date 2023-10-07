@@ -33,7 +33,7 @@ public class UserService {
 		userRepository.deleteById(id);
 	}
 	
-	public User getUserByEmailAndPassword(@Param(value = "param") String email, @Param(value = "param") String password){
+	public User getUserByEmailAndPassword( String email, String password){
 		System.out.println( userRepository.findByEmailAndPassword(email, password) );
 		return userRepository.findByEmailAndPassword(email, password);
 	}

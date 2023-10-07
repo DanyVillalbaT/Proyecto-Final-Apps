@@ -10,11 +10,11 @@ import java.io.ObjectOutputStream;
 public class UserSessionSingleton {
 	 private static UserSessionSingleton INSTANCIA = new UserSessionSingleton();
 	 
-	 private User userSession;
+	  User userSession;
 	    
 	    
 	    private UserSessionSingleton() {
-	        userSession= readUserSession();
+	    	userSession= readUserSession();
 	    }
 	    
 	    
@@ -22,7 +22,7 @@ public class UserSessionSingleton {
 	        try{
 	            FileOutputStream file = new FileOutputStream("userSession.dat");
 	            ObjectOutputStream writer = new ObjectOutputStream(file);
-	            writer.writeObject( getUserSession() );
+	            writer.writeObject(userSession);
 	        }catch(FileNotFoundException ex){
 	            ex.getStackTrace();
 	        }catch(IOException ex){
@@ -46,10 +46,20 @@ public class UserSessionSingleton {
 	    public static UserSessionSingleton getINSTANCIA() {
 	        return INSTANCIA;
 	    }
-
 	    
 	    public User getUserSession() {
 	        return userSession;
 	    }
+	    public String getCargo() {
+	    	return userSession.getRol();
+	    }
+	    
+	    
+
+
+		public void setUserSession(User userSession) {
+			this.userSession = userSession;
+		}
+	    
 
 }

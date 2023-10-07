@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.storecode.models.Provider;
+import com.storecode.models.User;
+import com.storecode.models.UserSessionSingleton;
 import com.storecode.services.CategoryService;
 import com.storecode.services.ProductService;
 import com.storecode.services.ProviderService;
@@ -25,10 +27,13 @@ public class NavbarController {
 		@Autowired
 	    private UserService userService;
 		
+	 	private User user = UserSessionSingleton.getINSTANCIA().getUserSession(); 
+		
 	
 	 @GetMapping("/home")
 	    public String home(Model model) {
-		 String cargo = "Cliente";
+		 String cargo = UserSessionSingleton.getINSTANCIA().getCargo();
+		 model.addAttribute("user",user);
 	        model.addAttribute("cargo", cargo);
 	        return "home/main-content";
 	    }
@@ -36,6 +41,7 @@ public class NavbarController {
 	    public String products(Model model) {
 		 model.addAttribute("listProducts", productService.getAll());
 		 model.addAttribute("listCategories", categoryService.getAll());
+		 model.addAttribute("user",user);
 	        return "product/listProducts";
 	        
 	    }
@@ -59,6 +65,13 @@ public class NavbarController {
 	    	model.addAttribute("users", userService.getAll());
 	        return "user/usersTable";
 	    }
+	 @GetMapping("/logOut")
+	    public String remove(Model model) {
+		 UserSessionSingleton.getINSTANCIA().setUserSession(null);
+	    	
+	        return "redirect:/users/login";
+	    }
+	 
 
 
 }

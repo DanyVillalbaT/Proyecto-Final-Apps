@@ -63,13 +63,23 @@ public class ShoppingCartController {
 				itemCart = new ItemCart();
 				itemCart.setProduct(product);
 				itemCart.setQuantityItems(quantity);
-				double accumulatedValue = itemCart.getQuantityItems() * itemCart.getProduct().getPrice();
+				double accumulatedValue = quantity * product.getPrice();
 				itemCart.setAccumulatedValue(accumulatedValue);
 				itemCart.setShoppingCart(shoppingCart);
+				itemCartService.save(itemCart);
 				
-				model.addAttribute("product", product);
-				model.addAttribute("itemCart", itemCart);
+				List<ItemCart> itemsCart = itemCartService.getByShoppingCart(shoppingCart);
 				
+				double totalAmount = 0;
+				for (ItemCart itemCartAux : itemsCart) {
+					totalAmount += itemCartAux.getAccumulatedValue();
+				}
+				
+				shoppingCart.setTotalValueItems(totalAmount);
+				shoppingCartService.save(shoppingCart);
+				
+				model.addAttribute("itemsCart", itemsCart);
+				model.addAttribute("totalAmount", totalAmount);
 				return "shoppingCart/addProductCart";
 			}
 		}

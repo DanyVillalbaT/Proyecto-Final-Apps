@@ -31,34 +31,32 @@
 						<table class="table table-striped table-responsive-md">
 							<thead class="thead-dark">
 								<tr>
+									<th>Imagen Producto</th>
 									<th>Nombre Producto</th>
-									<th>Marca</th>
+									<th>Descripción</th>
 									<th>Valor Unitario</th>
-									<th>Quitar unidad</th>
 									<th>Cantidad producto</th>
 									<th>Agregar unidad</th>
-									<th>Valor Total (IVA incluido)</th>
-									<th>IVA</th>
+									<th>Quitar unidad</th>
+									<th>Valor Total</th>
 									<th>Eliminar producto</th>
 
 								</tr>
 							</thead>
 							<tbody>
-								<tr th:each="detallefacturas : ${detallefactura}">
-									<td th:text="${detallefacturas.producto.nombreProducto}"></td>
-									<td th:text="${detallefacturas.producto.marca}"></td>
-									<td th:text="${detallefacturas.producto.valorUnitario}"></td>
-
-									<td><a th:href="@{/user/restaruno/{idDetalle}(idDetalle=${detallefacturas.id_detalleFactura})}"
-											class="btn btn-danger"><i class="fas fa-minus-circle ml-1 mr-1"></i></a>
-									</td>
-									<td th:text="${detallefacturas.cantidadProducto}"></td>
+								<tr th:each="itemsCart : ${itemCart}">
+									<td><img th:src="${itemCart.product.img}" alt="Producto Seleccionado"></td>
+									<td th:text="${itemCart.product.name}"></td>
+									<td th:text="${itemCart.product.description}"></td>
+									<td th:text="${itemCart.product.price}"></td>
+									<td th:text="${itemCart.quantityItems}"></td>
 									<td><a th:href="@{/user/sumaruno/{idDetalle}(idDetalle=${detallefacturas.id_detalleFactura})}"
 											class="btn btn-success"><i class="fas fa-plus-circle ml-1 mr-1"></i></a>
 									</td>
-
-									<td th:text="${detallefacturas.valorTotal}"></td>
-									<td th:text="${detallefacturas.valorIvaTotal}"></td>
+									<td><a th:href="@{/user/restaruno/{idDetalle}(idDetalle=${detallefacturas.id_detalleFactura})}"
+											class="btn btn-danger"><i class="fas fa-minus-circle ml-1 mr-1"></i></a>
+									</td>
+									<td th:text="${itemCart.accumulatedValue}"></td>
 									<td><a th:href="@{/user/deletedetalle/{idDetalle}(idDetalle=${detallefacturas.id_detalleFactura})}"
 											class="btn btn-warning"><i class="fas fa-times ml-3 mr-3"></i></a></td>
 								</tr>
@@ -72,7 +70,7 @@
 									<td>
 										<h6>TOTAL =</h6>
 									</td>
-									<td th:text="${totalfactura}"></td>
+									<td th:text="${totalAmount}"></td>
 									<td></td>
 									<td></td>
 								</tr>

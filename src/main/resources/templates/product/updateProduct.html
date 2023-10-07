@@ -49,7 +49,7 @@
 				</div>
 				<div class="form-group col-md-6">
 					<label for="stock" class="col-form-label">Stock</label> <input type="number" th:field="*{stock}"
-						class="form-control" id="stock" placeholder="0" required="required"> <span
+						class="form-control" id="stock" placeholder="0" required="required" min="0" onkeydown="return event.key !== '-' && event.key !== '.'"> <span
 						th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}" class="text-danger"></span>
 				</div>
 
@@ -71,7 +71,7 @@
 					<!--span th:if="${#fields.hasErrors('proveedor.idProveedor')}" th:errors="*{proveedor.idProveedor}" class="text-danger"></span-->
 				</div>
 				<div class="form-group col-md-6">
-					<label for="url" class="col-form-label">Descripcion</label> <input type="text"
+					<label for="url" class="col-form-label">URL de imagen</label> <input type="text"
 						th:field="*{img}" class="form-control" id="url" placeholder="..."
 						required="required"> <span th:if="${#fields.hasErrors('img')}"
 						th:errors="*{img}" class="text-danger"></span>

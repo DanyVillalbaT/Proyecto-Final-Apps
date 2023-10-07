@@ -21,8 +21,7 @@
 
 <body>
 
-	<div th:replace="partials/header :: header"></div>
-	
+	 <div th:replace="partials/headerAdmin :: header"></div>
 
 	<div class="container">
 
@@ -66,14 +65,14 @@
 									<td th:text="${user.zipCode}"></td>
 									<td>
 										<a
-										th:href="@{editUser/{idUser}(idUser=${user.id})}"
+										th:href="@{/users/editUser/{idUser}(idUser=${user.id})}"
 										class="btn btn-primary">
-											<i class="bi bi-pencil-square"></i>
+											<i class="bi bi-pencil-square"></i></i>
 										</a>
 										</td>
 									<td>
 										<a
-										th:href="@{deleteUser/{idUser}(idUser=${user.id})}"
+										th:href="@{/users/deleteUser/{idUser}(idUser=${user.id})}"
 										class="btn btn-danger">
 											<i class="bi bi-file-earmark-minus"></i>
 										</a>

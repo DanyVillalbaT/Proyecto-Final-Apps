@@ -3,8 +3,11 @@ package com.storecode.services;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
+import com.storecode.models.Category;
+import com.storecode.models.Product;
 import com.storecode.models.User;
 import com.storecode.repositories.IUserRepository;
 
@@ -28,5 +31,10 @@ public class UserService {
 
 	public void delete(long id) {
 		userRepository.deleteById(id);
+	}
+	
+	public User getUserByEmailAndPassword( String email, String password){
+		System.out.println( userRepository.findByEmailAndPassword(email, password) );
+		return userRepository.findByEmailAndPassword(email, password);
 	}
 }

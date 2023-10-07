@@ -12,10 +12,16 @@
 </head>
 
 <body>
-	<div th:replace="partials/header :: header"></div>
-	<div class="container">
-		<h1>HOME</h1>
+	<div th:if="${cargo == 'Administrador' ||cargo == 'Empleado'}">
+    <div th:replace="partials/headerAdmin :: header"></div>
+</div>
+<div th:if="${cargo == 'Cliente' || user==null}">
+    <div th:replace="partials/header :: header"></div>
+    <div class="container">
 	</div>
+</div>
+	
+	
 <div th:replace="partials/footer :: footer"></div>
 
 </body>

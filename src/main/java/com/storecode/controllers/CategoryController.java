@@ -33,18 +33,24 @@ public class CategoryController {
 		model.addAttribute("categories", categoryService.getAll());
 		return "category/categoriesTable";
 	}
+	
+	@GetMapping("/categoriesTableError")
+	public String showCategoriesTable(Model model) {
+		model.addAttribute("categories", categoryService.getAll());
+		model.addAttribute("error", "La categoria no puede ser eliminado porque cuenta con relación con productos registrados");
+		return "category/categoriesTable";
+	}
 
 	@GetMapping("/deleteCategory/{idCategory}")
 	public String deleteProduct(@PathVariable("idCategory") long idCategory, Model model) {
 		Category category = categoryService.getByiId(idCategory);
 		 if (productService.existsByCategory(category)) {
-	            model.addAttribute("mensajeError", "No se puede eliminar la categoría porque está siendo utilizada en productos.");
-	            System.out.println("CATEGORIA SIENDO USADA");
-	            return "error";
+			 return "redirect:/categories/categoriesTableError";
+	        }else {
+	        	categoryService.delete(idCategory);
+	    		model.addAttribute("categories", categoryService.getAll());
+	    		return "redirect:/categories/categoriesTable";
 	        }
-		categoryService.delete(idCategory);
-		model.addAttribute("categories", categoryService.getAll());
-		return "redirect:/categories/categoriesTable";
 	}
 
 	@GetMapping("/addCategory")

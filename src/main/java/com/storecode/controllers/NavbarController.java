@@ -55,7 +55,7 @@ public class NavbarController {
 		if (shoppingCart == null) {
 			shoppingCart = new ShoppingCart();
 			shoppingCart.setUser(user);
-			shoppingCart.setTotalValueItems(0.0);
+			shoppingCart.setTotalValueItems(0);
 			shoppingCartService.save(shoppingCart);
 
 			model.addAttribute("mensaje", message);

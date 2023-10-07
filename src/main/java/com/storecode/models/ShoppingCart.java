@@ -17,7 +17,7 @@ public class ShoppingCart {
 	private long id;
 	
 	@Column(name = "cart_total_value")
-	private double totalValueItems;
+	private int totalValueItems;
 	
 	@OneToOne
 	@JoinColumn(name = "cart_user")
@@ -42,11 +42,11 @@ public class ShoppingCart {
 		this.id = id;
 	}
 
-	public double getTotalValueItems() {
+	public int getTotalValueItems() {
 		return totalValueItems;
 	}
 
-	public void setTotalValueItems(double totalValueItems) {
+	public void setTotalValueItems(int totalValueItems) {
 		this.totalValueItems = totalValueItems;
 	}
 

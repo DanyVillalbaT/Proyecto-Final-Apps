@@ -70,7 +70,7 @@ public class ShoppingCartController {
 				itemCart = new ItemCart();
 				itemCart.setProduct(product);
 				itemCart.setQuantityItems(quantity);
-				double accumulatedValue = quantity * product.getPrice();
+				int accumulatedValue = quantity * product.getPrice();
 				itemCart.setAccumulatedValue(accumulatedValue);
 				itemCart.setShoppingCart(shoppingCart);
 				itemCartService.save(itemCart);
@@ -80,7 +80,7 @@ public class ShoppingCartController {
 
 				List<ItemCart> itemsCart = itemCartService.getByShoppingCart(shoppingCart);
 
-				double totalAmount = 0;
+				int totalAmount = 0;
 				for (ItemCart itemCartAux : itemsCart) {
 					totalAmount += itemCartAux.getAccumulatedValue();
 				}
@@ -115,7 +115,7 @@ public class ShoppingCartController {
 			return "shoppingCart/shoppingCart";
 		} else {
 			itemCart.setQuantityItems(itemCart.getQuantityItems() + quantity);
-			itemCart.setAccumulatedValue(itemCart.getAccumulatedValue() + product.getPrice());
+			itemCart.setAccumulatedValue(itemCart.getQuantityItems() + product.getPrice());
 			itemCartService.save(itemCart);
 
 			product.setStock(product.getStock() - quantity);
@@ -188,7 +188,7 @@ public class ShoppingCartController {
 		Product product = itemCart.getProduct();
 		ShoppingCart shoppingCart = shoppingCartService.getById(itemCart.getShoppingCart().getId());
 		int quantity = itemCart.getQuantityItems();
-		double accumulatedValue = itemCart.getAccumulatedValue();
+		int accumulatedValue = itemCart.getAccumulatedValue();
 
 		itemCartService.deleteById(idItemCart);
 		String message = "El producto ha sido eliminado del carrito de compras";

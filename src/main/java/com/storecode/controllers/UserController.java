@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.storecode.models.User;
+import com.storecode.models.UserSessionSingleton;
 import com.storecode.services.UserService;
 
 @Controller
@@ -21,17 +22,24 @@ public class UserController {
 	 	@Autowired
 	    private UserService userService;
 	 	
-	    @GetMapping("/addUser")
+	    @GetMapping("/login")
 	    public String showUserForm(Model model) {
 	        model.addAttribute("user", new User());
-	        return "user/addUser";
+	        return "user/login";
+	    }
+
+	    @PostMapping("/signIn/{emailUser}&{passwordUser}")
+	    public String signIn(@PathVariable("emailUser") String email, @PathVariable("passwordUser") String password, Model model) {
+	    	userService.getUserByEmailAndPassword(email, password);
+	    	UserSessionSingleton.getINSTANCIA().writeUserSession();
+	        return "redirect:/products/listProducts"; // Redirecciona al formulario después de guardar
 	    }
 
 	    @PostMapping("/saveUser")
 	    public String saveUser(@ModelAttribute User user, Model model) {
 	    	userService.save(user);
 	        System.out.println("Usuario guardado: " + user.getName());
-	        return "redirect:/users/usersTable"; // Redirecciona al formulario después de guardar
+	        return "redirect:/users/login"; // Redirecciona al formulario después de guardar
 	    }
 	    
 	    @GetMapping("/usersTable")

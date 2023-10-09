@@ -45,8 +45,8 @@ header {
     transition: 0.5s;
   }
   #logo{
-	  width: 27px;
-	  height: 27px;
+	  width: 150px;
+	  height: 100px;
   }
   
   
@@ -67,7 +67,7 @@ header {
     left: 0;
     width: 100%;
     height: 2px; /* ajusta el grosor de la barra */
-    background-color: rgb(255, 187, 0); /* ajusta el color de la barra */
+    background-color: #E51B23; /* ajusta el color de la barra */
     transform: scaleX(0); /* para ocultar inicialmente la barra */
     transform-origin: left center;
     transition: transform 0.4s ease-in-out;
@@ -81,15 +81,13 @@ header {
   font-weight: bold;
 }
 .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
-    color: rgb(255, 187, 0);  
+    color:#E51B23;  
  
 }
 
 
 /*///////////////////////*/
-footer{
-    padding-top: 10%;
-}
+
 span{
     font-weight: bold;
    /* color: #fff;*/

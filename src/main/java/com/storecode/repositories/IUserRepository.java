@@ -6,4 +6,6 @@ import com.storecode.models.User;
 
 public interface IUserRepository extends JpaRepository<User, Long>{
 
+	User findByEmailAndPassword(String email, String password);
+	
 }

@@ -5,9 +5,13 @@
 	max-width:350px;
 	min-height:670px;
 	padding-top: 20%;
-	box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+
+	
 }
 
+.login-snip{
+ margin: 0 10px;
+}
 .login-snip .login,
 .login-snip .sign-up-form{
 	top:0;
@@ -39,8 +43,8 @@
 }
 .login-snip .sign-in:checked + .tab,
 .login-snip .sign-up:checked + .tab{
-	color:#fff;
-	border-color:rgb(255, 187, 0);
+	/*color:#fff;*/
+	border-color:#E51B23;
 }
 .login-space{
 	min-height:345px;
@@ -63,7 +67,7 @@
 	border:none;
 	padding:15px 20px;
 	border-radius:25px;
-	background:rgba(255,255,255,.1);
+	/*background:rgba(255,255,255,.1);*/
 }
 .login-space .group input[data-type="password"]{
 	text-security:circle;
@@ -74,7 +78,7 @@
 	font-size:12px;
 }
 .login-space .group .button{
-	background:rgb(255, 187, 0);
+	background:#E51B23;
 }
 .login-space .group label .icon{
 	width:15px;
@@ -82,14 +86,14 @@
 	border-radius:2px;
 	position:relative;
 	display:inline-block;
-	background:rgba(255,255,255,.1);
+	/*background:rgba(255,255,255,.1);*/
 }
 .login-space .group label .icon:before,
 .login-space .group label .icon:after{
 	content:'';
 	width:10px;
 	height:2px;
-	background:#fff;
+	/*background:#fff;*/
 	position:absolute;
 	transition:all .2s ease-in-out 0s;
 }
@@ -108,7 +112,7 @@
 	color:#fff;
 }
 .login-space .group .check:checked + label .icon{
-	background:rgb(255, 187, 0);
+	background:#E51B23;
 }
 .login-space .group .check:checked + label .icon:before{
 	transform:scale(1) rotate(45deg);
@@ -145,77 +149,5 @@ a{color:inherit;text-decoration:none}
 ::placeholder{
 color: #6d6d6d;
 } 
-tabla tbody tr:hover{
-	background-color: rgba(255, 0, 0, 0.336);
-    color: black;
-}
-
-/*.login-snip .sign-up:checked + .tab + .login-space .sign-up-form{
-	transform:rotate(0);
-
-}*/
-#data-table {
-    background-color: rgb(226, 220, 200);
-    color: black;
-}
-#edit-table td,th {
-    text-align: center;
-}
-#edit-table th {
-    background-color:rgb(15, 61, 62);
-	color: rgba(255, 255, 255, 0.795);
-}
-
-#main-content{
-  /*  background-color: rgb(112, 112, 112);*/
-   border-radius: 10px;
-
-   
-}
-#data-table tbody tr:hover{
-    background-color: rgba(100, 96, 82, 0.514);
-    color: black;
-}
-label{
-    color: white;
-}
-.button-delete{
-    background-color: rgba(255, 0, 0, 0.656);
-}
-.button-edit{
-    background-color: rgb(8, 108, 133);
-    color: white;
 
 
-}
-input[class^="button"] {
-    border-radius: 10px;
-    color: white;
-    width: 75px;
-
-  }
-div.col{
-    display: flex;
-    justify-content: center;
-}
-.btn-save{
-
-    
-    background-color: rgb(5, 139, 14);
-    color: white;
-    width: 200px;
- height: 30px;
-    border-radius: 15px;
-  
-}
-.btn-save:hover{
-    background-color: rgba(5, 139, 14, 0.635);
-    transition: 0.5s;
-}
-
-
-div[class^="table-responsive"]  > table{
-    background-color: rgb(255, 255, 255);
-    color: aquamarine;
-}
-  

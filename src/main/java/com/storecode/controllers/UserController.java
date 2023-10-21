@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.storecode.models.Product;
 import com.storecode.models.User;
 import com.storecode.models.UserSessionSingleton;
 import com.storecode.services.UserService;
@@ -48,6 +49,14 @@ public class UserController {
 	    	}
 	    	
 	    }
+
+		@GetMapping("/addUser")
+		public String showProductForm(Model model) {
+	
+			model.addAttribute("user", new User());
+			return "user/addUser";
+		}
+
 
 	    @PostMapping("/saveUser")
 	    public String saveUser(@ModelAttribute User user, Model model) {
@@ -96,7 +105,6 @@ public class UserController {
 		        userService.save(oldUSer);
 		        model.addAttribute("users",userService.getAll());
 		        return "redirect:/users/usersTable";
-	    
 	    }
 	    
 	    

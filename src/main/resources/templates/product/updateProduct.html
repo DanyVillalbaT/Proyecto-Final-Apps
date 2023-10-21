@@ -31,10 +31,10 @@
 			<div class="row">
 				<div class="form-group col-md-6">
 					<label for="nombreProducto" class="col-form-label">Nombre Del
-						Producto</label> 
-						<input type="text" th:field="*{name}" class="form-control" id="name"
-						placeholder="..." required="required"> <span th:if="${#fields.hasErrors('name')}"
-						th:errors="*{name}" class="text-danger"></span>
+						Producto</label>
+					<input type="text" th:field="*{name}" class="form-control" id="name" placeholder="..."
+						required="required"> <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+						class="text-danger"></span>
 				</div>
 				<div class="form-group col-md-6">
 					<label for="description" class="col-form-label">Descripcion</label> <input type="text"
@@ -77,8 +77,32 @@
 					<!--input type="text"
 						th:field="*{img}" class="form-control" id="url" placeholder="..."
 						required="required"-->
-					<input type="file" id="file-upload" accept="image/" class="form-control" name="fileImg">
+					<input type="file" id="imagenInput" accept="image/" class="form-control" name="fileImg">
 					<span th:if="${#fields.hasErrors('img')}" th:errors="*{img}" class="text-danger"></span>
+					<p id="mensaje"></p>
+					<script>
+						const imagenInput = document.getElementById('imagenInput');
+						const mensaje = document.getElementById('mensaje');
+
+						imagenInput.addEventListener('change', function () {
+							
+
+							if (imagenInput.files.length> 0) {
+								const file = imagenInput.files[0];
+								const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'];
+
+								if (allowedTypes.includes(file.type)) {
+									mensaje.textContent = 'Archivo válido: es una imagen.';
+								} else {
+									mensaje.textContent = 'Error: selecciona un archivo de imagen válido (JPEG, PNG, GIF, JPG).';
+									imagenInput.value = ''; // Limpia el campo de entrada
+								}
+							}else{
+								mensaje.textContent = 'Debe seleccionar una imágen.';
+								imagenInput.value = ''; // Limpia el campo de entrada
+							}
+						});
+					</script>
 				</div>
 
 				<!--div class="form-group ">

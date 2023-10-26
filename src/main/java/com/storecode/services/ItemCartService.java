@@ -36,4 +36,8 @@ public class ItemCartService {
 		return itemCartRepository.getByShoppingCart(shoppingCart);
 	}
 
+	public void deleteByShoppingCart(ShoppingCart shoppingCart) {
+		itemCartRepository.deleteByShoppingCart(shoppingCart);
+	}
+
 }

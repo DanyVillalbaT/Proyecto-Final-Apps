@@ -1,9 +1,11 @@
 package com.storecode.controllers;
 
-import com.storecode.models.User;
-import com.storecode.models.UserSessionSingleton;
+import com.storecode.models.*;
 import com.storecode.services.ShoppingCartService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/purchases")
@@ -20,7 +22,8 @@ public class PurchaseController {
 
     private User user;
 
-    public void createPurchase(Purchase purchase) {
+    @PostMapping("/user/createPurchase")
+    public void createPurchase(Model model) {
 
         user = UserSessionSingleton.getINSTANCIA().getUserSession();
         ShoppingCart shoppingCart = shoppingCartService.findByUser(user);
@@ -31,7 +34,7 @@ public class PurchaseController {
             message = "El carrito de compras se encuentra vacio";
         }else{
             PurchaseDetail purchaseDetail = new PurchaseDetail();
-            purchaseDetail.setAccumulatedValue(shoppingCart.getAccumulatedValue());
+            purchaseDetail.setAccumulatedValue(shoppingCart.getTotalValueItems());
             purchaseDetail.setDeliveryAddress(user.getAddress());
             purchaseDetail.setPaymentMethod("Tarjeta de credito");
             purchaseDetail.setItemsCart(itemsCart);
@@ -39,11 +42,27 @@ public class PurchaseController {
             Purchase purchase = new Purchase();
             purchase.setStatus("Generada");
             purchase.setDate(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
-            //Impuesto del 19%
-            //Más envío
-            purchase.setTotalValue(purchaseDetail.getAccumulatedValue());
+            int IVA = (int) (shoppingCart.getAccumulatedValue() * 0.19);
+            int deliveryCost = 5000;
+            purchase.setTotalValue(purchaseDetail.getAccumulatedValue() + IVA + deliveryCost);
+            purchase.setPurchaseDetail(purchaseDetail);
+            purchase.setUser(user);
+
+            purchaseService.save(purchase);
+            message = "La compra se ha realizado con exito";
+
+            shoppingCart.setTotalValueItems(0);
+            shoppingCartService.save(shoppingCart);
+
+            itemCartService.deleteByShoppingCart(shoppingCart);
+
         }
 
+        List<Purchase> purchases = purchaseService.findByUser(user);
+        model.addAttribute("mensaje", message);
+        model.addAttribute("purchases", purchases);
+
+        //Falta redireccionar a la vista del historial de compras y que genere el PDF
 
     }
 

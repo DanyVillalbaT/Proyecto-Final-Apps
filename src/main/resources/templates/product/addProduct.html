@@ -1,83 +1,109 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Agregar Producto</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+	<meta charset="UTF-8">
+	<title>Agregar Producto</title>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	 
- 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7Rxnatzj
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7Rxnatzj
  	cDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
- 	 <link rel="stylesheet" type="text/css" href="static/css/list-products/style.css"
-	th:href="@{/css/list-products/style.css}">
-	   <link rel="stylesheet" type="text/css" href="static/css/partials/style.css"
-	th:href="@{/css/partials/style.css}">
+	<link rel="stylesheet" type="text/css" href="static/css/list-products/style.css"
+		th:href="@{/css/list-products/style.css}">
+	<link rel="stylesheet" type="text/css" href="static/css/partials/style.css" th:href="@{/css/partials/style.css}">
 </head>
+
 <body>
- 
-     <div class="container">
-    <h1>Form</h1>
-    <form th:object="${product}" th:action="@{/products/saveProduct}" method="post">
-      <div class="row">
-        <div class="form-outline col-4 ">             
-   		<label class="form-label" for="nombre">Nombre:</label>
-        <input class="form-control" type="text" id="nombre" th:field="*{name}" required><br>
-        </div>
-        <div class="form-outline col-4 ">
-           <label class="form-label" for="descripcion">Descripción:</label>
-        <input class="form-control" type="text" id="descripcion" th:field="*{description}" required><br>
-        </div>
 
-        <div class="form-outline col-4">
-          <label class="form-label"  for="precio">Precio:</label>
-        <input class="form-control" type="number" id="precio" th:field="*{price}" step="0.01" required><br>
-        </div>
+	<div class="container">
+		<h1>Form</h1>
+		<form th:object="${product}" th:action="@{/products/image}" method="post" enctype="multipart/form-data"
+			name="registro">
+			<div class="row">
+				<div class="form-outline col-4 ">
+					<label class="form-label" for="nombre">Nombre:</label>
+					<input class="form-control" type="text" id="nombre" th:field="*{name}" required><br>
+				</div>
+				<div class="form-outline col-4 ">
+					<label class="form-label" for="descripcion">Descripción:</label>
+					<input class="form-control" type="text" id="descripcion" th:field="*{description}" required><br>
+				</div>
 
-        <div class="form-outline col-4">
-           <label class="form-label" for="imagenUrl">URL de la Imagen:</label>
-        <input class="form-control" type="text" id="imagenUrl" th:field="*{img}" required><br>
-        </div>
-         <div class="form-outline col-4">
-           <label class="form-label" for="imagenUrl">Stock:</label>
-        <input class="form-control" type="number" id="stock" th:field="*{stock}" min="0" onkeydown="return event.key !== '-' && event.key !== '.'"><br>
-        </div>
+				<div class="form-outline col-4">
+					<label class="form-label" for="precio">Precio:</label>
+					<input class="form-control" type="number" id="precio" th:field="*{price}" step="0.01"
+						onkeydown="return event.key !== '-' && event.key !== '.'" required><br>
+				</div>
 
- 		<div class="form-group col-4">
-                <label for="opcionSeleccionada">Selecciona una categoria:</label>
-                <select class="form-control" id="opcionSeleccionada" name="opcionSeleccionada" th:field="*{category}" >
-                    <option th:each="opcion : ${categories}" th:value="${opcion.id}" th:text="${opcion.name}"></option>
-                </select>
-            </div>
+				<div class="form-outline col-4">
+					<label class="form-label" for="imagenUrl">URL de la Imagen:</label>
+					<!--input class="form-control" type="file"  accept="image/" id="imagenUrl" th:field="*{img}" name="fileImg" required-->
+					<input type="file" id="imagenInput" accept="image/" class="form-control" name="fileImg" required>
+					<div class="alert" id="mensaje"></div>
+					<script>
+						const imagenInput = document.getElementById('imagenInput');
+						const mensaje = document.getElementById('mensaje');
 
- 		<div class="form-group col-4">
-                <label for="opcionSeleccionada">Selecciona una opción:</label>
-                <select class="form-control" id="opcionSeleccionada" name="opcionSeleccionada"  th:field="*{provider}">
-                    <option th:each="opcion : ${providers}" th:value="${opcion.id}" th:text="${opcion.name}"></option>
-                </select>
-            </div>
-     
-<button type="submit" name="button" id="button" class="btn btn-success btn-block mb-2">Guardar</button>
+						imagenInput.addEventListener('change', function () {
+							
 
-      
-      </div>
-    </form>
-  </div>
-    
-    <!--form th:object="${product}" th:action="@{/productos/guardarProducto}" method="post">
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" th:field="*{name}" required><br>
+							if (imagenInput.files.length> 0) {
+								const file = imagenInput.files[0];
+								const allowedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/jpg'];
 
-        <label for="descripcion">Descripción:</label>
-        <input type="text" id="descripcion" th:field="*{description}" required><br>
+								if (allowedTypes.includes(file.type)) {
+									mensaje.textContent = 'Archivo válido: es una imagen.';
+									//mensaje.classList.add(" alert-success")
+								} else {
+									mensaje.textContent = 'Error: selecciona un archivo de imagen válido (JPEG, PNG, GIF, JPG).';
+									//mensaje.classList.add(" alert-danger")
+									imagenInput.value = ''; // Limpia el campo de entrada
+								}
+							} else {
+								mensaje.textContent = 'Debe seleccionar una imágen.';
+								imagenInput.value = ''; // Limpia el campo de entrada
+								
+							}
+						});
+					</script>
+				</div>
+				<div class="form-outline col-4">
+					<label class="form-label" for="imagenUrl">Stock:</label>
+					<input class="form-control" type="number" id="stock" th:field="*{stock}" min="0"
+						onkeydown="return event.key !== '-' && event.key !== '.'"><br>
+				</div>
 
-        <label for="precio">Precio:</label>
-        <input type="number" id="precio" th:field="*{price}" step="0.01" required><br>
+				<div class="form-group col-4">
+					<label for="opcionSeleccionada">Selecciona una categoria:</label>
+					<select class="form-control" id="opcionSeleccionada" name="opcionSeleccionada"
+						th:field="*{category}">
+						<option th:each="opcion : ${categories}" th:value="${opcion.id}" th:text="${opcion.name}">
+						</option>
+					</select>
+				</div>
 
-        <label for="imagenUrl">URL de la Imagen:</label>
-        <input type="text" id="imagenUrl" th:field="*{img}" required><br-->
+				<div class="form-group col-4">
+					<label for="opcionSeleccionada">Selecciona una opción:</label>
+					<select class="form-control" id="opcionSeleccionada" name="opcionSeleccionada"
+						th:field="*{provider}">
+						<option th:each="opcion : ${providers}" th:value="${opcion.id}" th:text="${opcion.name}">
+						</option>
+					</select>
+				</div>
+				<br>
+				<br>
+				<br>
 
-       
-    </form>
+				<button type="submit" name="button" id="button" class="btn btn-success btn-block mb-2">Guardar</button>
+
+
+			</div>
+		</form>
+	</div>
+
+	</form>
 </body>
+
 </html>

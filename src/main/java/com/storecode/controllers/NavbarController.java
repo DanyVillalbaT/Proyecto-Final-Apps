@@ -97,7 +97,7 @@ public class NavbarController {
 	@GetMapping("/shopping-cart")
 	public String showShoppingCart(Model model) {
 
-		User user = userService.getByiId(1);
+		User user = UserSessionSingleton.getINSTANCIA().getUserSession();
 		ShoppingCart shoppingCart = shoppingCartService.findByUser(user);
 		List<ItemCart> itemsCart = null;
 		String message = null;
@@ -106,13 +106,18 @@ public class NavbarController {
 			shoppingCart.setUser(user);
 			shoppingCart.setTotalValueItems(0);
 			shoppingCartService.save(shoppingCart);
+			
+			 model.addAttribute("user",user);
 
+			
 			model.addAttribute("mensaje", message);
 			model.addAttribute("itemsCart", itemsCart);
 			model.addAttribute("totalAmount", shoppingCart.getTotalValueItems());
 			return "shoppingCart/shoppingCart";
 		} else {
 			itemsCart = itemCartService.getByShoppingCart(shoppingCart);
+			
+			 model.addAttribute("user",user);
 
 			model.addAttribute("mensaje", message);
 			model.addAttribute("itemsCart", itemsCart);

@@ -17,7 +17,7 @@ public class ItemCart {
 	@Column(name = "item_id")
 	private long id;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "item_product")
 	Product product;
 	
@@ -27,7 +27,7 @@ public class ItemCart {
 	@Column(name = "item_accumulated_value")
 	private int accumulatedValue;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "item_cart_id")
 	private ShoppingCart shoppingCart;
 	

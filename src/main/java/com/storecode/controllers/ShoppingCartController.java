@@ -86,7 +86,6 @@ public class ShoppingCartController {
 
 				shoppingCart.setTotalValueItems(totalAmount);
 				shoppingCartService.save(shoppingCart);
-
 				model.addAttribute("message", message);
 				model.addAttribute("itemsCart", itemsCart);
 				model.addAttribute("totalAmount", totalAmount);

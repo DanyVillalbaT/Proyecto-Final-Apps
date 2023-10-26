@@ -6,10 +6,10 @@ import java.util.List;
 public class PurchaseDetail {
 	
 	private long id;
-	
 	private double accumulatedValue;
 	private String deliveryAddress;
 	private String paymentMethod;
+	private List<ItemCart> itemsCart;
 	
 	public PurchaseDetail() {
 		super();
@@ -32,8 +32,6 @@ public class PurchaseDetail {
 	public void setId(long id) {
 		this.id = id;
 	}
-
-	
 
 	public double getAccumulatedValue() {
 		return accumulatedValue;
@@ -59,4 +57,7 @@ public class PurchaseDetail {
 		this.paymentMethod = paymentMethod;
 	}
 
+	public List<ItemCart> getItemsCart() { return itemsCart; }
+
+	public void setItemsCart(List<ItemCart> itemsCart) { this.itemsCart = itemsCart; }
 }

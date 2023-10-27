@@ -32,6 +32,7 @@ public class PurchaseController {
 
         if (itemsCart.isEmpty()) {
             message = "El carrito de compras se encuentra vacio";
+            return "redirect:/navbar/shopping-cart";
         }else{
             PurchaseDetail purchaseDetail = new PurchaseDetail();
             purchaseDetail.setAccumulatedValue(shoppingCart.getTotalValueItems());
@@ -62,7 +63,7 @@ public class PurchaseController {
         model.addAttribute("mensaje", message);
         model.addAttribute("purchases", purchases);
 
-        //Falta redireccionar a la vista del historial de compras y que genere el PDF
+        return "purchases/listPurchases";
 
     }
 

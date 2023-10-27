@@ -44,7 +44,9 @@ public class PurchaseController {
             purchase.setStatus("Generada");
             purchase.setDate(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
             int IVA = (int) (shoppingCart.getAccumulatedValue() * 0.19);
+            purchaseDetail.setIVA(IVA);
             int deliveryCost = 5000;
+            purchaseDetail.setDeliveryCost(deliveryCost);
             purchase.setTotalValue(purchaseDetail.getAccumulatedValue() + IVA + deliveryCost);
             purchase.setPurchaseDetail(purchaseDetail);
             purchase.setUser(user);

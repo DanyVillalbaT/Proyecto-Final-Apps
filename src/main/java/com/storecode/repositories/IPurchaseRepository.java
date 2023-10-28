@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface IPurchaseRepository extends JpaRepository<Purchase, Long>{
 
-    Purchase findByUser(User user);
-
     List<Purchase> findByUser(User user);
 
 }

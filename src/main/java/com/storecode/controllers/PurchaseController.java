@@ -1,10 +1,17 @@
 package com.storecode.controllers;
 
 import com.storecode.models.*;
+import com.storecode.services.ItemCartService;
+import com.storecode.services.PurchaseService;
 import com.storecode.services.ShoppingCartService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -23,7 +30,7 @@ public class PurchaseController {
     private User user;
 
     @PostMapping("/user/createPurchase")
-    public void createPurchase(Model model) {
+    public String createPurchase(Model model) {
 
         user = UserSessionSingleton.getINSTANCIA().getUserSession();
         ShoppingCart shoppingCart = shoppingCartService.findByUser(user);
@@ -43,7 +50,7 @@ public class PurchaseController {
             Purchase purchase = new Purchase();
             purchase.setStatus("Generada");
             purchase.setDate(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
-            int IVA = (int) (shoppingCart.getAccumulatedValue() * 0.19);
+            int IVA = (int) (shoppingCart.getTotalValueItems() * 0.19);
             purchaseDetail.setIVA(IVA);
             int deliveryCost = 5000;
             purchaseDetail.setDeliveryCost(deliveryCost);

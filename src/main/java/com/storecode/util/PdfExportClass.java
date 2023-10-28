@@ -14,13 +14,15 @@ import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
+
 import com.storecode.models.ItemCart;
 import com.storecode.models.Purchase;
 import jakarta.servlet.http.HttpServletResponse;
 
+
 public class PdfExportClass {
 
-    public PDFExport() {
+    public PdfExportClass() {
         super();
     }
 
@@ -60,11 +62,11 @@ public class PdfExportClass {
         List<ItemCart> itemsPurchase = purchase.getPurchaseDetail().getItemsCart();
         for (ItemCart itemPurchase: itemsPurchase) {
 
-            table.addCell(itemPurchase.getId());
+            table.addCell(String.valueOf(itemPurchase.getId()));
             table.addCell(itemPurchase.getProduct().getName());
-            table.addCell(itemPurchase.getProduct().getPrice());
-            table.addCell(itemPurchase.getQuantityItems());
-            table.addCell(itemPurchase.getAccumulatedValue());
+            table.addCell(String.valueOf(itemPurchase.getProduct().getPrice()));
+            table.addCell(String.valueOf(itemPurchase.getQuantityItems()));
+            table.addCell(String.valueOf(itemPurchase.getAccumulatedValue()));
 
         }
 
@@ -98,11 +100,11 @@ public class PdfExportClass {
 
 
         document.add(p);
-        document.add(p4);
         document.add(p2);
         document.add(p3);
+        document.add(p4);
         document.add(p5);
-        document.add(p56);
+        document.add(p6);
         document.add(p7);
 
 

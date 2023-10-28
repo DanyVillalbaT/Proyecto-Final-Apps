@@ -116,8 +116,13 @@ public class PdfExportClass {
 
         document.add(table);
 
-        Paragraph p8 = new Paragraph("Total : " + purchase.getTotalValue() , font);
+        Paragraph p8 = new Paragraph("IVA (19%) : " + purchase.getPurchaseDetail().getIVA(), font);
+        Paragraph p9 = new Paragraph("Costo de envío : " + purchase.getPurchaseDetail().getDeliveryCost() , font);
+        Paragraph p10 = new Paragraph("Total : " + purchase.getTotalValue() , font);
+
         document.add(p8);
+        document.add(p9);
+        document.add(p10);
 
         document.close();
 

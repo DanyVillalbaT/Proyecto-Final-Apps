@@ -4,6 +4,7 @@ import com.storecode.models.*;
 import com.storecode.services.ItemCartService;
 import com.storecode.services.PurchaseService;
 import com.storecode.services.ShoppingCartService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,7 @@ public class PurchaseController {
 
     private User user;
 
+    @Transactional
     @GetMapping("/user/createPurchase")
     public String createPurchase(Model model, RedirectAttributes redirectAttributes) {
 

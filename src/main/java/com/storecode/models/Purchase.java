@@ -1,13 +1,6 @@
 package com.storecode.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 
 @Entity(name = "purchases")
 public class Purchase {
@@ -29,7 +22,7 @@ public class Purchase {
 	@Transient
 	private PurchaseDetail purchaseDetail;
 	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "purchase_user")
 	User user;
 	

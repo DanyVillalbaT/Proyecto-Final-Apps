@@ -7,8 +7,10 @@ import com.storecode.services.ShoppingCartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,8 +31,8 @@ public class PurchaseController {
 
     private User user;
 
-    @PostMapping("/user/createPurchase")
-    public String createPurchase(Model model) {
+    @GetMapping("/user/createPurchase")
+    public String createPurchase(Model model, RedirectAttributes redirectAttributes) {
 
         user = UserSessionSingleton.getINSTANCIA().getUserSession();
         ShoppingCart shoppingCart = shoppingCartService.findByUser(user);
@@ -40,7 +42,7 @@ public class PurchaseController {
         if (itemsCart.isEmpty()) {
             message = "El carrito de compras se encuentra vacio";
             return "redirect:/navbar/shopping-cart";
-        }else{
+        } else {
             PurchaseDetail purchaseDetail = new PurchaseDetail();
             purchaseDetail.setAccumulatedValue(shoppingCart.getTotalValueItems());
             purchaseDetail.setDeliveryAddress(user.getAddress());
@@ -66,13 +68,12 @@ public class PurchaseController {
 
             itemCartService.deleteByShoppingCart(shoppingCart);
 
+            redirectAttributes.addAttribute("userId", user.getId());
+            redirectAttributes.addAttribute("purchaseId", purchase.getId());
+
+            return "redirect:/pdfs/exportPurchase/pdf";
+
         }
-
-        List<Purchase> purchases = purchaseService.findByUser(user);
-        model.addAttribute("mensaje", message);
-        model.addAttribute("purchases", purchases);
-
-        return "purchases/listPurchases";
 
     }
 

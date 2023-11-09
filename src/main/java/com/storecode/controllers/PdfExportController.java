@@ -1,8 +1,12 @@
 package com.storecode.controllers;
 
 import com.lowagie.text.DocumentException;
+import com.storecode.models.ItemDetail;
 import com.storecode.models.Purchase;
+import com.storecode.models.PurchaseDetail;
 import com.storecode.models.User;
+import com.storecode.services.ItemDetailService;
+import com.storecode.services.PurchaseDetailService;
 import com.storecode.services.PurchaseService;
 import com.storecode.services.UserService;
 import com.storecode.util.PdfExportClass;
@@ -28,6 +32,12 @@ public class PdfExportController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private PurchaseDetailService purchaseDetailService;
+
+    @Autowired
+    private ItemDetailService itemDetailService;
+
     @GetMapping("/exportPurchase/pdf")
     public String exportToPDF(@RequestParam Long userId, @RequestParam Long purchaseId,  HttpServletResponse response, Model model) throws DocumentException, IOException {
         response.setContentType("application/pdf");
@@ -37,8 +47,10 @@ public class PdfExportController {
         response.setHeader(headerKey, headerValue);
 
         Purchase purchase = purchaseService.getById(purchaseId);
+        PurchaseDetail purchaseDetail = purchaseDetailService.getByPurchase(purchase);
+        List<ItemDetail> itemsDetail = itemDetailService.getByPurchaseDetail(purchaseDetail);
 
-        PdfExportClass exporter = new PdfExportClass(purchase);
+        PdfExportClass exporter = new PdfExportClass(purchase, purchaseDetail ,itemsDetail);
         exporter.export(response);
 
         User user = userService.getByiId(userId);

@@ -1,31 +1,48 @@
 package com.storecode.models;
 
+import jakarta.persistence.*;
+
 import java.util.List;
 
-
+@Entity(name = "purchase_details")
 public class PurchaseDetail {
-	
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "purchase_detail_id")
 	private long id;
+
+	@Column(name = "purchase_detail_accumulated_value")
 	private int accumulatedValue;
+
+	@Column(name = "purchase_detail_iva")
 	private int IVA;
+
+	@Column(name = "purchase_detail_delivery_cost")
 	private int deliveryCost;
+
+	@Column(name = "purchase_detail_delivery_address")
 	private String deliveryAddress;
+
+	@Column(name = "purchase_detail_payment_method")
 	private String paymentMethod;
-	private List<ItemCart> itemsCart;
+
+	@OneToOne
+	@JoinColumn(name = "purchase")
+	private Purchase purchase;
 	
 	public PurchaseDetail() {
 		super();
 	}
 
-	public PurchaseDetail(long id, int accumulatedValue, int IVA, int deliveryCost, String deliveryAddress,
-			String paymentMethod) {
-		super();
+	public PurchaseDetail(long id, int accumulatedValue, int IVA, int deliveryCost, String deliveryAddress, String paymentMethod, Purchase purchase) {
 		this.id = id;
 		this.accumulatedValue = accumulatedValue;
 		this.IVA = IVA;
 		this.deliveryCost = deliveryCost;
 		this.deliveryAddress = deliveryAddress;
 		this.paymentMethod = paymentMethod;
+		this.purchase = purchase;
 	}
 
 	public long getId() {
@@ -76,7 +93,11 @@ public class PurchaseDetail {
 		this.paymentMethod = paymentMethod;
 	}
 
-	public List<ItemCart> getItemsCart() { return itemsCart; }
+	public Purchase getPurchase() {
+		return purchase;
+	}
 
-	public void setItemsCart(List<ItemCart> itemsCart) { this.itemsCart = itemsCart; }
+	public void setPurchase(Purchase purchase) {
+		this.purchase = purchase;
+	}
 }

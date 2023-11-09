@@ -16,7 +16,9 @@ import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
 import com.storecode.models.ItemCart;
+import com.storecode.models.ItemDetail;
 import com.storecode.models.Purchase;
+import com.storecode.models.PurchaseDetail;
 import jakarta.servlet.http.HttpServletResponse;
 
 
@@ -27,9 +29,13 @@ public class PdfExportClass {
     }
 
     private Purchase purchase;
+    private PurchaseDetail purchaseDetail;
+    private List<ItemDetail> itemsDetail;
 
-    public PdfExportClass(Purchase purchase) {
+    public PdfExportClass(Purchase purchase, PurchaseDetail purchaseDetail, List<ItemDetail> itemsDetail) {
         this.purchase = purchase;
+        this.purchaseDetail = purchaseDetail;
+        this.itemDetail = itemsDetail;
     }
 
     private void writeTableHeader(PdfPTable table) {
@@ -59,14 +65,13 @@ public class PdfExportClass {
 
     private void writeTableData(PdfPTable table) {
 
-        List<ItemCart> itemsPurchase = purchase.getPurchaseDetail().getItemsCart();
-        for (ItemCart itemPurchase: itemsPurchase) {
+        for (ItemDetail itemDetail: itemsDetail) {
 
-            table.addCell(String.valueOf(itemPurchase.getId()));
-            table.addCell(itemPurchase.getProduct().getName());
-            table.addCell(String.valueOf(itemPurchase.getProduct().getPrice()));
-            table.addCell(String.valueOf(itemPurchase.getQuantityItems()));
-            table.addCell(String.valueOf(itemPurchase.getAccumulatedValue()));
+            table.addCell(String.valueOf(itemDetail.getId()));
+            table.addCell(itemDetail.getProduct().getName());
+            table.addCell(String.valueOf(itemDetail.getProduct().getPrice()));
+            table.addCell(String.valueOf(itemDetail.getQuantityItems()));
+            table.addCell(String.valueOf(itemDetail.getAccumulatedValue()));
 
         }
 
@@ -86,8 +91,8 @@ public class PdfExportClass {
         Paragraph p3 = new Paragraph("Fecha Compra : " + purchase.getDate() , font);
         Paragraph p4 = new Paragraph("Nombre Persona : " + purchase.getUser().getName() , font);
         Paragraph p5 = new Paragraph("Cedula : " + purchase.getUser().getDocument() , font);
-        Paragraph p6 = new Paragraph("Dirección de entrega : " + purchase.getPurchaseDetail().getDeliveryAddress() , font);
-        Paragraph p7 = new Paragraph("Método de pago : " + purchase.getPurchaseDetail().getPaymentMethod() , font);
+        Paragraph p6 = new Paragraph("Dirección de entrega : " + purchaseDetail.getDeliveryAddress() , font);
+        Paragraph p7 = new Paragraph("Método de pago : " + purchaseDetail.getPaymentMethod()) , font);
 
 
         p.setAlignment(Paragraph.ALIGN_CENTER);
@@ -118,8 +123,8 @@ public class PdfExportClass {
 
         document.add(table);
 
-        Paragraph p8 = new Paragraph("IVA (19%) : " + purchase.getPurchaseDetail().getIVA(), font);
-        Paragraph p9 = new Paragraph("Costo de envío : " + purchase.getPurchaseDetail().getDeliveryCost() , font);
+        Paragraph p8 = new Paragraph("IVA (19%) : " + purchaseDetail.getIVA(), font);
+        Paragraph p9 = new Paragraph("Costo de envío : " + purchaseDetail.getDeliveryCost() , font);
         Paragraph p10 = new Paragraph("Total : " + purchase.getTotalValue() , font);
 
         document.add(p8);

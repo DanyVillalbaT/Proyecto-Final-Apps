@@ -1,10 +1,7 @@
 package com.storecode.controllers;
 
 import com.storecode.models.*;
-import com.storecode.services.ItemCartService;
-import com.storecode.services.PurchaseService;
-import com.storecode.services.ShoppingCartService;
-import jakarta.transaction.Transactional;
+import com.storecode.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,9 +27,14 @@ public class PurchaseController {
     @Autowired
     private ItemCartService itemCartService;
 
+    @Autowired
+    private ItemDetailService itemDetailService;
+
+    @Autowired
+    private PurchaseDetailService purchaseDetailService;
+
     private User user;
 
-    @Transactional
     @GetMapping("/user/createPurchase")
     public String createPurchase(Model model, RedirectAttributes redirectAttributes) {
 
@@ -45,25 +47,42 @@ public class PurchaseController {
             message = "El carrito de compras se encuentra vacio";
             return "redirect:/navbar/shopping-cart";
         } else {
-            PurchaseDetail purchaseDetail = new PurchaseDetail();
-            purchaseDetail.setAccumulatedValue(shoppingCart.getTotalValueItems());
-            purchaseDetail.setDeliveryAddress(user.getAddress());
-            purchaseDetail.setPaymentMethod("Tarjeta de credito");
-            purchaseDetail.setItemsCart(itemsCart);
-
             Purchase purchase = new Purchase();
             purchase.setStatus("Generada");
             purchase.setDate(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
+            purchase.setUser(user);
+
+            PurchaseDetail purchaseDetail = new PurchaseDetail();
             int IVA = (int) (shoppingCart.getTotalValueItems() * 0.19);
             purchaseDetail.setIVA(IVA);
             int deliveryCost = 5000;
             purchaseDetail.setDeliveryCost(deliveryCost);
-            purchase.setTotalValue(purchaseDetail.getAccumulatedValue() + IVA + deliveryCost);
-            purchase.setPurchaseDetail(purchaseDetail);
-            purchase.setUser(user);
+            purchaseDetail.setDeliveryAddress(user.getAddress());
+            purchaseDetail.setPaymentMethod("Tarjeta de credito");
 
+            int accumulatedValue = 0;
+
+            for (ItemCart itemCart: itemsCart) {
+                ItemDetail itemDetail = new ItemDetail();
+                itemDetail.setProduct(itemCart.getProduct());
+                itemDetail.setQuantityItems(itemCart.getQuantityItems());
+                itemDetail.setAccumulatedValue(itemCart.getAccumulatedValue());
+                accumulatedValue += itemCart.getAccumulatedValue();
+                itemDetail.setPurchaseDetail(purchaseDetail);
+                itemDetailService.save(itemDetail);
+            }
+
+            purchaseDetail.setAccumulatedValue(accumulatedValue);
+            purchase.setTotalValue(accumulatedValue + IVA + deliveryCost);
             purchaseService.save(purchase);
-            message = "La compra se ha realizado con exito";
+            purchaseDetail.setPurchase(purchase);
+            purchaseDetailService.save(purchaseDetail);
+
+            List<ItemDetail> itemsDetail = itemDetailService.getByPurchaseDetail(purchaseDetail);
+            for (ItemDetail itemDetail: itemsDetail) {
+                itemDetail.setPurchaseDetail(purchaseDetail);
+                itemDetailService.save(itemDetail);
+            }
 
             shoppingCart.setTotalValueItems(0);
             shoppingCartService.save(shoppingCart);

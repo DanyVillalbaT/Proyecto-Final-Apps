@@ -19,9 +19,6 @@ public class Purchase {
 	@Column(name = "purchase_total_value" )
 	private double totalValue;
 	
-	@Transient
-	private PurchaseDetail purchaseDetail;
-	
 	@ManyToOne
 	@JoinColumn(name = "purchase_user")
 	User user;
@@ -30,13 +27,11 @@ public class Purchase {
 		super();
 	}
 
-	public Purchase(long id, String status, String date, double totalValue, PurchaseDetail purchaseDetail, User user) {
-		super();
+	public Purchase(long id, String status, String date, double totalValue, User user) {
 		this.id = id;
 		this.status = status;
 		this.date = date;
-		this.totalValue = calculateTotalValue();
-		this.purchaseDetail = purchaseDetail;
+		this.totalValue = totalValue;
 		this.user = user;
 	}
 
@@ -72,26 +67,12 @@ public class Purchase {
 		this.totalValue = totalValue;
 	}
 
-	public PurchaseDetail getPurchaseDetail() {
-		return purchaseDetail;
-	}
-
-	public void setPurchaseDetail(PurchaseDetail purchaseDetail) {
-		this.purchaseDetail = purchaseDetail;
-	}
-
 	public User getUser() {
 		return user;
 	}
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-	
-	public double calculateTotalValue() {
-		double tax = 0;
-		double deliveryCost = 0;
-		return totalValue = purchaseDetail.getAccumulatedValue() + tax + deliveryCost;
 	}
 	
 }

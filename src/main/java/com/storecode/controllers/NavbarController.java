@@ -2,29 +2,15 @@ package com.storecode.controllers;
 
 import java.util.List;
 
+import com.storecode.models.*;
+import com.storecode.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.storecode.models.Provider;
 import com.storecode.models.User;
-import com.storecode.models.UserSessionSingleton;
-
-import com.storecode.models.ItemCart;
-import com.storecode.models.ShoppingCart;
-import com.storecode.models.User;
-
-import com.storecode.services.CategoryService;
-import com.storecode.services.ItemCartService;
-import com.storecode.services.ProductService;
-
-import com.storecode.services.ProviderService;
-
-import com.storecode.services.ShoppingCartService;
-
-import com.storecode.services.UserService;
 
 @Controller
 @RequestMapping("/navbar")
@@ -128,4 +114,14 @@ public class NavbarController {
 
 	}
 
+	@Autowired
+	private PurchaseService purchaseService;
+
+	@GetMapping("/purchases-history")
+	public String showPurchasesHistory(Model model) {
+		User user = UserSessionSingleton.getINSTANCIA().getUserSession();
+		List<Purchase> purchases = purchaseService.findByUser(user);
+		model.addAttribute("purchases", purchases);
+		return "purchase/listPurchases";
+	}
 }

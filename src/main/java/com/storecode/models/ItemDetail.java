@@ -21,7 +21,7 @@ public class ItemDetail {
 	private int accumulatedValue;
 
 	@ManyToOne
-	@JoinColumn(name = "item_purchase_detail")
+	@JoinColumn(name = "item_purchase_detail", nullable = true)
 	private PurchaseDetail purchaseDetail;
 
 	public ItemDetail() {

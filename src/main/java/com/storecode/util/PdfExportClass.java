@@ -1,6 +1,7 @@
 package com.storecode.util;
 
 import java.awt.Color;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class PdfExportClass {
     public PdfExportClass(Purchase purchase, PurchaseDetail purchaseDetail, List<ItemDetail> itemsDetail) {
         this.purchase = purchase;
         this.purchaseDetail = purchaseDetail;
-        this.itemDetail = itemsDetail;
+        this.itemsDetail = itemsDetail;
     }
 
     private void writeTableHeader(PdfPTable table) {
@@ -77,9 +78,11 @@ public class PdfExportClass {
 
     }
 
-    public void export(HttpServletResponse response) throws DocumentException, IOException {
+//    HttpServletResponse response
+    public void export(ByteArrayOutputStream baos) throws DocumentException, IOException {
         Document document = new Document(PageSize.A4.rotate());
-        PdfWriter.getInstance(document, response.getOutputStream());
+//        response.getOutputStream()
+        PdfWriter.getInstance(document, baos);
 
         document.open();
         Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
@@ -92,7 +95,7 @@ public class PdfExportClass {
         Paragraph p4 = new Paragraph("Nombre Persona : " + purchase.getUser().getName() , font);
         Paragraph p5 = new Paragraph("Cedula : " + purchase.getUser().getDocument() , font);
         Paragraph p6 = new Paragraph("Dirección de entrega : " + purchaseDetail.getDeliveryAddress() , font);
-        Paragraph p7 = new Paragraph("Método de pago : " + purchaseDetail.getPaymentMethod()) , font);
+        Paragraph p7 = new Paragraph("Método de pago : " + purchaseDetail.getPaymentMethod() , font);
 
 
         p.setAlignment(Paragraph.ALIGN_CENTER);

@@ -17,7 +17,7 @@ public class Purchase {
 	private String date;
 	
 	@Column(name = "purchase_total_value" )
-	private double totalValue;
+	private int totalValue;
 	
 	@ManyToOne
 	@JoinColumn(name = "purchase_user")
@@ -27,7 +27,7 @@ public class Purchase {
 		super();
 	}
 
-	public Purchase(long id, String status, String date, double totalValue, User user) {
+	public Purchase(long id, String status, String date, int totalValue, User user) {
 		this.id = id;
 		this.status = status;
 		this.date = date;
@@ -59,11 +59,11 @@ public class Purchase {
 		this.date = date;
 	}
 
-	public double getTotalValue() {
+	public int getTotalValue() {
 		return totalValue;
 	}
 
-	public void setTotalValue(double totalValue) {
+	public void setTotalValue(int totalValue) {
 		this.totalValue = totalValue;
 	}
 

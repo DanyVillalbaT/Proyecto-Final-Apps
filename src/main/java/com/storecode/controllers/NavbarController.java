@@ -129,7 +129,7 @@ public class NavbarController {
 	public String showPurchasesHistoryUsers(Model model) {
 		List<Purchase> purchases = purchaseService.getAll();
 		model.addAttribute("purchases", purchases);
-		return "purchase/listPurchases";
+		return "purchase/listPurchasesAdmin";
 	}
 
 

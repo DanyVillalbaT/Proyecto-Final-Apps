@@ -18,6 +18,10 @@ public class PurchaseService {
         return purchaseRepository.findById(id).orElse(null);
     }
 
+    public List<Purchase> getAll() {
+        return purchaseRepository.findAll();
+    }
+
     public Purchase save(Purchase purchase) {
         return purchaseRepository.save(purchase);
     }

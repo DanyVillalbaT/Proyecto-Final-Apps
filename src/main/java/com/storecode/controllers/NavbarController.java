@@ -124,4 +124,13 @@ public class NavbarController {
 		model.addAttribute("purchases", purchases);
 		return "purchase/listPurchases";
 	}
+
+	@GetMapping("/purchases-history-users")
+	public String showPurchasesHistoryUsers(Model model) {
+		List<Purchase> purchases = purchaseService.getAll();
+		model.addAttribute("purchases", purchases);
+		return "purchase/listPurchases";
+	}
+
+
 }

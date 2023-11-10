@@ -14,7 +14,6 @@ import com.storecode.models.UserSessionSingleton;
 
 import com.storecode.models.ItemCart;
 import com.storecode.models.ShoppingCart;
-import com.storecode.models.User;
 
 import com.storecode.services.CategoryService;
 import com.storecode.services.ItemCartService;

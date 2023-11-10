@@ -93,13 +93,14 @@
 								th:text="${product.stock}"></span>
 						</div>
 					</div>
-          	<div class="form-group stock_elem row">
+          	<div class="form-group stock_elem row text-center">
 						<h5 class="col-sm-12 col-md-12 col-lg-12 form-control-label">Cantidad:</h5>
 						<div class="col-sm-12 col-md-12 col-lg-12">
 							<input type="number" onkeydown="return event.key !== '-' && event.key !== '.'" min="1" step="1" placeholder="1" value="1" name="quantity" class="product-form-quantity" id="product-form-quantity" required>
 							<span th:if="${message} != null" th:text="${mensaje}" class="text-danger"></span>
 						</div>
 					</div>
+					<br>
 					<div class="form-group stock_elem row">
 						<span th:if="${log == 0}">Inicie sesión para añadir el producto al carrito</span>
 						<input th:if="${log != 0}" type="submit" class="addProduct-btn-add adc btn btn-primary" value="Agregar Producto">

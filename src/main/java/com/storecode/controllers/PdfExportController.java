@@ -41,15 +41,21 @@ public class PdfExportController {
 
     @GetMapping("/exportPurchase/pdf")
     public String exportToPDF(@RequestParam Long userId, @RequestParam Long purchaseId,  HttpServletResponse response, Model model) throws DocumentException, IOException {
+        exportToPDFRedirect(userId, purchaseId, response);
+        return "user/login";
+
+    }
+
+    public void exportToPDFRedirect(Long userId, Long purchaseId,  HttpServletResponse response) throws DocumentException, IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
 
         Purchase purchase = purchaseService.getById(purchaseId);
         PurchaseDetail purchaseDetail = purchaseDetailService.getByPurchase(purchase);
         List<ItemDetail> itemsDetail = itemDetailService.getByPurchaseDetail(purchaseDetail);
 
-        User user = userService.getByiId(userId);
-        List<Purchase> purchases = purchaseService.findByUser(user);
-        model.addAttribute("purchases", purchases);
+//        User user = userService.getByiId(userId);
+//        List<Purchase> purchases = purchaseService.findByUser(user);
+//        model.addAttribute("purchases", purchases);
 
         try {
             PdfExportClass exporter = new PdfExportClass(purchase, purchaseDetail, itemsDetail);
@@ -75,7 +81,7 @@ public class PdfExportController {
 
         CompletableFuture.runAsync(() -> {
             try {
-                Thread.sleep(1000); // Puedes ajustar esto según sea necesario
+                Thread.sleep(5000); // Puedes ajustar esto según sea necesario
                 // Realizar la redirección
                 response.sendRedirect("/purchase/listPurchases");
             } catch (InterruptedException | IOException e) {
@@ -83,8 +89,8 @@ public class PdfExportController {
             }
         });
 
-        // Devolver el nombre de la vista (plantilla) a la cual redirigir desde el lado del servidor
-        return "redirect:/purchase/listPurchases";
+        response.sendRedirect("/purchase/listPurchases");
+        System.out.println("hola");
 
     }
 

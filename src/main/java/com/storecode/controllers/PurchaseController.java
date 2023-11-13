@@ -95,6 +95,7 @@ public class PurchaseController {
             redirectAttributes.addAttribute("userId", user.getId());
             redirectAttributes.addAttribute("purchaseId", purchase.getId());
 
+            System.out.println("hola");
             return "redirect:/pdfs/exportPurchase/pdf";
 
         }

@@ -107,6 +107,7 @@ public class ProductController {
 		productOldProduct.setPrice(product.getPrice());
 		productOldProduct.setCategory(product.getCategory());
 		productOldProduct.setStock(product.getStock());
+		System.out.println(productOldProduct.getStock());
 		productOldProduct.setProvider(product.getProvider());
 		productOldProduct.setImg(product.getImg());
 

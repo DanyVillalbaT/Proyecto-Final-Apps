@@ -134,28 +134,20 @@ public class ProductController {
 	  
 	  @PostMapping("/imageUpdate/{idProduct}")
 	    public String update(@PathVariable("idProduct") long idProduct,Product product, BindingResult result ,Model model, @RequestParam("fileImg") MultipartFile fileImg) {
-	        System.out.println("SI ESTA ENTRANDO");
 	        try {
 	        	Map uploadResult = cloudc.upload(fileImg.getBytes(), ObjectUtils.asMap("resourcetype", "auto"));
 	            System.out.println(uploadResult.get("url").toString());
 	            product.setImg(uploadResult.get("url").toString());
-	            Product productOldProduct = productService.getByiId(idProduct);
-	    		productOldProduct.setName(product.getName());
-	    		productOldProduct.setDescription(product.getDescription());
-	    		productOldProduct.setPrice(product.getPrice());
-	    		productOldProduct.setCategory(product.getCategory());
-	    		productOldProduct.setStock(product.getStock());
-	    		productOldProduct.setProvider(product.getProvider());
-	    		productOldProduct.setImg(product.getImg());
-
-	    		productService.save(productOldProduct);
-	    		model.addAttribute("products", productService.getAll());
-	    		return "redirect:/products/productsTable";
-	           
+				
 	        } catch (Exception e) {
+	        	System.out.println("Hubo un error");
 	        	System.out.println(e.getMessage());
+				
+				Product productOldProduct = productService.getByiId(idProduct);
+				product.setImg(productOldProduct.getImg());
 	        }
-	        return "redirect:/products/productsTable";
+			
+			return updateProduct(idProduct, product, result, model);
 	    }
 
 }

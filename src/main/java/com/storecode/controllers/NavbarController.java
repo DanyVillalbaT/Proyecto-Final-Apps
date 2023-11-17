@@ -122,6 +122,7 @@ public class NavbarController {
 		User user = UserSessionSingleton.getINSTANCIA().getUserSession();
 		List<Purchase> purchases = purchaseService.findByUser(user);
 		model.addAttribute("purchases", purchases);
+		model.addAttribute("user",user);
 		return "purchase/listPurchases";
 	}
 

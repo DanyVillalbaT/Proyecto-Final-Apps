@@ -33,8 +33,6 @@ public class ShoppingCartController {
 
 	@Autowired
 	private ProductService productService;
-	@Autowired
-	private UserService userService;
 
 	private User user;
 
@@ -115,7 +113,7 @@ public class ShoppingCartController {
 			return "shoppingCart/shoppingCart";
 		} else {
 			itemCart.setQuantityItems(itemCart.getQuantityItems() + quantity);
-			itemCart.setAccumulatedValue(itemCart.getQuantityItems() + product.getPrice());
+			itemCart.setAccumulatedValue(itemCart.getQuantityItems() * product.getPrice());
 			itemCartService.save(itemCart);
 
 			product.setStock(product.getStock() - quantity);
@@ -161,7 +159,7 @@ public class ShoppingCartController {
 			return "shoppingCart/shoppingCart";
 		} else {
 			itemCart.setQuantityItems(itemCart.getQuantityItems() - quantity);
-			itemCart.setAccumulatedValue(itemCart.getAccumulatedValue() - product.getPrice());
+			itemCart.setAccumulatedValue(itemCart.getQuantityItems() * product.getPrice());
 			itemCartService.save(itemCart);
 
 			product.setStock(product.getStock() + quantity);
@@ -197,6 +195,7 @@ public class ShoppingCartController {
 		productService.save(product);
 
 		shoppingCart.setTotalValueItems(shoppingCart.getTotalValueItems() - accumulatedValue);
+
 		shoppingCartService.save(shoppingCart);
 
 		List<ItemCart> itemsCart = itemCartService.getByShoppingCart(shoppingCart);

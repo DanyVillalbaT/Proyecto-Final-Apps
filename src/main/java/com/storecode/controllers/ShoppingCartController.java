@@ -103,6 +103,7 @@ public class ShoppingCartController {
 
 		ItemCart itemCart = itemCartService.getById(idItemCart);
 		Product product = itemCart.getProduct();
+		user = UserSessionSingleton.getINSTANCIA().getUserSession();
 		ShoppingCart shoppingCart = shoppingCartService.getById(itemCart.getShoppingCart().getId());
 		int quantity = 1;
 		String message = null;
@@ -113,6 +114,7 @@ public class ShoppingCartController {
 			model.addAttribute("mensaje", message);
 			model.addAttribute("itemsCart", itemsCart);
 			model.addAttribute("totalAmount", shoppingCart.getTotalValueItems());
+			model.addAttribute("user", user);
 			return "shoppingCart/shoppingCart";
 		} else {
 			itemCart.setQuantityItems(itemCart.getQuantityItems() + quantity);
@@ -130,6 +132,7 @@ public class ShoppingCartController {
 			model.addAttribute("mensaje", message);
 			model.addAttribute("itemsCart", itemsCart);
 			model.addAttribute("totalAmount", shoppingCart.getTotalValueItems());
+			model.addAttribute("user", user);
 			return "shoppingCart/shoppingCart";
 
 		}
@@ -141,6 +144,7 @@ public class ShoppingCartController {
 
 		ItemCart itemCart = itemCartService.getById(idItemCart);
 		Product product = itemCart.getProduct();
+		user = UserSessionSingleton.getINSTANCIA().getUserSession();
 		ShoppingCart shoppingCart = shoppingCartService.getById(itemCart.getShoppingCart().getId());
 		int quantity = 1;
 		String message = null;
@@ -159,6 +163,7 @@ public class ShoppingCartController {
 			model.addAttribute("mensaje", message);
 			model.addAttribute("itemsCart", itemsCart);
 			model.addAttribute("totalAmount", shoppingCart.getTotalValueItems());
+			model.addAttribute("user", user);
 			return "shoppingCart/shoppingCart";
 		} else {
 			itemCart.setQuantityItems(itemCart.getQuantityItems() - quantity);
@@ -176,6 +181,7 @@ public class ShoppingCartController {
 			model.addAttribute("mensaje", message);
 			model.addAttribute("itemsCart", itemsCart);
 			model.addAttribute("totalAmount", shoppingCart.getTotalValueItems());
+			model.addAttribute("user", user);
 			return "shoppingCart/shoppingCart";
 
 		}
@@ -187,6 +193,7 @@ public class ShoppingCartController {
 
 		ItemCart itemCart = itemCartService.getById(idItemCart);
 		Product product = itemCart.getProduct();
+		user = UserSessionSingleton.getINSTANCIA().getUserSession();
 		ShoppingCart shoppingCart = shoppingCartService.getById(itemCart.getShoppingCart().getId());
 		int quantity = itemCart.getQuantityItems();
 		int accumulatedValue = itemCart.getAccumulatedValue();
@@ -206,6 +213,7 @@ public class ShoppingCartController {
 		model.addAttribute("mensaje", message);
 		model.addAttribute("itemsCart", itemsCart);
 		model.addAttribute("totalAmount", shoppingCart.getTotalValueItems());
+		model.addAttribute("user", user);
 		return "shoppingCart/shoppingCart";
 
 	}

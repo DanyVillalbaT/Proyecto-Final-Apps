@@ -1,1 +1,0 @@
-Aquí van todos los modelos y entidades que necesitará el proyecto

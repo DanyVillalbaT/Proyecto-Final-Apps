@@ -12,6 +12,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.storecode.models.User;
 
+import com.storecode.models.UserSessionSingleton;
+
+import com.storecode.models.ItemCart;
+import com.storecode.models.ShoppingCart;
+
+import com.storecode.services.CategoryService;
+import com.storecode.services.ItemCartService;
+import com.storecode.services.ProductService;
+
+import com.storecode.services.ProviderService;
+
+import com.storecode.services.ShoppingCartService;
+
+import com.storecode.services.UserService;
+
 @Controller
 @RequestMapping("/navbar")
 public class NavbarController {
@@ -68,6 +83,12 @@ public class NavbarController {
 		 UserSessionSingleton.getINSTANCIA().setUserSession(null);
 	    	
 	        return "redirect:/users/login";
+	    }
+	 @GetMapping("/about")
+	    public String showAbout(Model model) {
+	    	model.addAttribute("users", userService.getAll());
+	    	model.addAttribute("user",user);
+	        return "home/about";
 	    }
 	 
 

@@ -8,7 +8,8 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-  	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>	 
+  	 	<!-- Agrega SweetAlert a tu proyecto -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> 
  	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7Rxnatzj
  	cDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
  	<!--          CSS          -->
@@ -18,7 +19,27 @@
 	th:href="@{/css/partials/style.css}">
 
 </head>
+<script>
+      function confirmDelete(element) {
+        const userId = element.getAttribute('data-id');
 
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: 'Esta acción eliminará el usuario. ¿Deseas continuar?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Sí, eliminar',
+            cancelButtonText: 'Cancelar'
+        }).then(function(result) {
+            if (result.isConfirmed) {
+                // Redirige a la URL de eliminación con el ID del producto como parámetro
+                window.location.href = '/users/deleteUser/' + userId;
+            }
+        });
+    }
+</script>
 <body>
 
 	 <div th:replace="partials/headerAdmin :: header"></div>
@@ -72,7 +93,7 @@
 										</td>
 									<td>
 										<a
-										th:href="@{/users/deleteUser/{idUser}(idUser=${user.id})}"
+										th:attr="data-id=${user.id}" onclick="confirmDelete(this)"
 										class="btn btn-danger">
 											<i class="bi bi-file-earmark-minus"></i>
 										</a>

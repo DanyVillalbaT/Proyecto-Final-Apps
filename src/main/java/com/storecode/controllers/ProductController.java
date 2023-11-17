@@ -3,6 +3,9 @@ package com.storecode.controllers;
 import java.util.List;
 import java.util.Map;
 
+import com.storecode.models.User;
+import com.storecode.models.UserSessionSingleton;
+import com.storecode.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +38,7 @@ public class ProductController {
 	@Autowired
 	private CloudinaryConfig cloudc;
 
+
 	@GetMapping("/listProducts")
 	public String listProducts(Model model) {
 		model.addAttribute("listProducts", productService.getAll());
@@ -52,9 +56,11 @@ public class ProductController {
 
 	@GetMapping("/productdetail/{idProduct}")
 	public String viewDetail(@PathVariable("idProduct") long idProduct, Model model) {
+		User user = UserSessionSingleton.getINSTANCIA().getUserSession();
 		System.out.println("variable " + idProduct);
 		Product product = productService.getByiId(idProduct);
 		model.addAttribute("product", product);
+		model.addAttribute("user",user);
 		return "product/detailProduct";
 	}
 

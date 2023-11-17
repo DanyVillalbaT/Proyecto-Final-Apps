@@ -55,6 +55,7 @@ public class ShoppingCartController {
 			message = "El producto seleccionado ya se encuentra en el carrito de compras";
 			model.addAttribute("product", product);
 			model.addAttribute("mensaje", message);
+			model.addAttribute("user", user);
 			return "product/detailProduct";
 		} else {
 			if (quantity < 0) {
@@ -64,6 +65,7 @@ public class ShoppingCartController {
 				message = "La cantidad ingresada sobrepasa el stock disponible del producto";
 				model.addAttribute("product", product);
 				model.addAttribute("mensaje", message);
+				model.addAttribute("user", user);
 				return "product/detailProduct";
 			} else {
 				itemCart = new ItemCart();
@@ -89,6 +91,7 @@ public class ShoppingCartController {
 				model.addAttribute("message", message);
 				model.addAttribute("itemsCart", itemsCart);
 				model.addAttribute("totalAmount", totalAmount);
+				model.addAttribute("user", user);
 				return "shoppingCart/shoppingCart";
 			}
 		}

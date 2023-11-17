@@ -2,19 +2,20 @@ package com.storecode.controllers;
 
 import java.util.List;
 
+import com.storecode.models.*;
+import com.storecode.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.storecode.models.Provider;
 import com.storecode.models.User;
+
 import com.storecode.models.UserSessionSingleton;
 
 import com.storecode.models.ItemCart;
 import com.storecode.models.ShoppingCart;
-import com.storecode.models.User;
 
 import com.storecode.services.CategoryService;
 import com.storecode.services.ItemCartService;
@@ -83,6 +84,12 @@ public class NavbarController {
 	    	
 	        return "redirect:/users/login";
 	    }
+	 @GetMapping("/about")
+	    public String showAbout(Model model) {
+	    	model.addAttribute("users", userService.getAll());
+	    	model.addAttribute("user",user);
+	        return "home/about";
+	    }
 	 
 
 	 @Autowired
@@ -127,5 +134,25 @@ public class NavbarController {
 
 
 	}
+
+	@Autowired
+	private PurchaseService purchaseService;
+
+	@GetMapping("/purchases-history")
+	public String showPurchasesHistory(Model model) {
+		User user = UserSessionSingleton.getINSTANCIA().getUserSession();
+		List<Purchase> purchases = purchaseService.findByUser(user);
+		model.addAttribute("purchases", purchases);
+		model.addAttribute("user",user);
+		return "purchase/listPurchases";
+	}
+
+	@GetMapping("/purchases-history-users")
+	public String showPurchasesHistoryUsers(Model model) {
+		List<Purchase> purchases = purchaseService.getAll();
+		model.addAttribute("purchases", purchases);
+		return "purchase/listPurchasesAdmin";
+	}
+
 
 }

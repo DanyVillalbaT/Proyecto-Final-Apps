@@ -14,4 +14,6 @@ public interface IItemCartRepository extends JpaRepository<ItemCart, Long>{
 	
 	List<ItemCart> getByShoppingCart(ShoppingCart shoppingCart);
 
+	void deleteByShoppingCart(ShoppingCart shoppingCart);
+
 }

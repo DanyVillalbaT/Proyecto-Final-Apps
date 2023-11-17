@@ -1,1 +1,0 @@
-Aquí van todas las interfaces que necesitará el proyecto, para el manejo de la base de datos

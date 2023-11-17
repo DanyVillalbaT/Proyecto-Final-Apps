@@ -3,6 +3,9 @@ package com.storecode.controllers;
 import java.util.List;
 import java.util.Map;
 
+import com.storecode.models.User;
+import com.storecode.models.UserSessionSingleton;
+import com.storecode.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,6 +38,7 @@ public class ProductController {
 	@Autowired
 	private CloudinaryConfig cloudc;
 
+
 	@GetMapping("/listProducts")
 	public String listProducts(Model model) {
 		model.addAttribute("listProducts", productService.getAll());
@@ -52,9 +56,11 @@ public class ProductController {
 
 	@GetMapping("/productdetail/{idProduct}")
 	public String viewDetail(@PathVariable("idProduct") long idProduct, Model model) {
+		User user = UserSessionSingleton.getINSTANCIA().getUserSession();
 		System.out.println("variable " + idProduct);
 		Product product = productService.getByiId(idProduct);
 		model.addAttribute("product", product);
+		model.addAttribute("user",user);
 		return "product/detailProduct";
 	}
 
@@ -107,6 +113,7 @@ public class ProductController {
 		productOldProduct.setPrice(product.getPrice());
 		productOldProduct.setCategory(product.getCategory());
 		productOldProduct.setStock(product.getStock());
+		System.out.println(productOldProduct.getStock());
 		productOldProduct.setProvider(product.getProvider());
 		productOldProduct.setImg(product.getImg());
 
@@ -134,28 +141,20 @@ public class ProductController {
 	  
 	  @PostMapping("/imageUpdate/{idProduct}")
 	    public String update(@PathVariable("idProduct") long idProduct,Product product, BindingResult result ,Model model, @RequestParam("fileImg") MultipartFile fileImg) {
-	        System.out.println("SI ESTA ENTRANDO");
 	        try {
 	        	Map uploadResult = cloudc.upload(fileImg.getBytes(), ObjectUtils.asMap("resourcetype", "auto"));
 	            System.out.println(uploadResult.get("url").toString());
 	            product.setImg(uploadResult.get("url").toString());
-	            Product productOldProduct = productService.getByiId(idProduct);
-	    		productOldProduct.setName(product.getName());
-	    		productOldProduct.setDescription(product.getDescription());
-	    		productOldProduct.setPrice(product.getPrice());
-	    		productOldProduct.setCategory(product.getCategory());
-	    		productOldProduct.setStock(product.getStock());
-	    		productOldProduct.setProvider(product.getProvider());
-	    		productOldProduct.setImg(product.getImg());
-
-	    		productService.save(productOldProduct);
-	    		model.addAttribute("products", productService.getAll());
-	    		return "redirect:/products/productsTable";
-	           
+				
 	        } catch (Exception e) {
+	        	System.out.println("Hubo un error");
 	        	System.out.println(e.getMessage());
+				
+				Product productOldProduct = productService.getByiId(idProduct);
+				product.setImg(productOldProduct.getImg());
 	        }
-	        return "redirect:/products/productsTable";
+			
+			return updateProduct(idProduct, product, result, model);
 	    }
 
 }

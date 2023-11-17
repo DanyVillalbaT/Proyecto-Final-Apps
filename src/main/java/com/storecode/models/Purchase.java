@@ -1,13 +1,6 @@
 package com.storecode.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Transient;
+import jakarta.persistence.*;
 
 @Entity(name = "purchases")
 public class Purchase {
@@ -24,12 +17,9 @@ public class Purchase {
 	private String date;
 	
 	@Column(name = "purchase_total_value" )
-	private double totalValue;
+	private int totalValue;
 	
-	@Transient
-	private PurchaseDetail purchaseDetail;
-	
-	@OneToOne
+	@ManyToOne
 	@JoinColumn(name = "purchase_user")
 	User user;
 	
@@ -37,13 +27,11 @@ public class Purchase {
 		super();
 	}
 
-	public Purchase(long id, String status, String date, double totalValue, PurchaseDetail purchaseDetail, User user) {
-		super();
+	public Purchase(long id, String status, String date, int totalValue, User user) {
 		this.id = id;
 		this.status = status;
 		this.date = date;
-		this.totalValue = calculateTotalValue();
-		this.purchaseDetail = purchaseDetail;
+		this.totalValue = totalValue;
 		this.user = user;
 	}
 
@@ -71,20 +59,12 @@ public class Purchase {
 		this.date = date;
 	}
 
-	public double getTotalValue() {
+	public int getTotalValue() {
 		return totalValue;
 	}
 
-	public void setTotalValue(double totalValue) {
+	public void setTotalValue(int totalValue) {
 		this.totalValue = totalValue;
-	}
-
-	public PurchaseDetail getPurchaseDetail() {
-		return purchaseDetail;
-	}
-
-	public void setPurchaseDetail(PurchaseDetail purchaseDetail) {
-		this.purchaseDetail = purchaseDetail;
 	}
 
 	public User getUser() {
@@ -93,12 +73,6 @@ public class Purchase {
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-	
-	public double calculateTotalValue() {
-		double tax = 0;
-		double deliveryCost = 0;
-		return totalValue = purchaseDetail.getAccumulatedValue() + tax + deliveryCost;
 	}
 	
 }

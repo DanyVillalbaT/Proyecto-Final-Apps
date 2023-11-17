@@ -45,7 +45,7 @@ public class PdfExportClass {
         table.getDefaultCell().setHorizontalAlignment(Element.ALIGN_CENTER);
 
         PdfPCell cell = new PdfPCell();
-        cell.setBackgroundColor(Color.BLUE);
+        cell.setBackgroundColor(Color.RED);
         cell.setPadding(5);
 
         Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);

@@ -82,6 +82,12 @@ public class NavbarController {
 	    	
 	        return "redirect:/users/login";
 	    }
+	 @GetMapping("/about")
+	    public String showAbout(Model model) {
+	    	model.addAttribute("users", userService.getAll());
+	    	model.addAttribute("user",user);
+	        return "home/about";
+	    }
 	 
 
 	 @Autowired
